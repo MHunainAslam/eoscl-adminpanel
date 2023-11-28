@@ -41,9 +41,9 @@ const Sidebar = () => {
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'#'} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                <button  className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                                     Ecommerce
-                                </NavLink>
+                                </button>
                             </h2>
                             <div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body p-0">
