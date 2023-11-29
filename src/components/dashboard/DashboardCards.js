@@ -6,7 +6,7 @@ import Sales from './icons/Sales'
 const DashboardCards = () => {
     return (
         <div className="row">
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-6 mt-3">
                 <div className="card m-card">
                     <div className="card-body py-4 text-center">
                         <div className="img mx-auto mb-3">
@@ -17,7 +17,7 @@ const DashboardCards = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-6 mt-3">
                 <div className="card m-card">
                     <div className="card-body py-4 text-center">
                         <div className="img mx-auto mb-3">
@@ -28,7 +28,7 @@ const DashboardCards = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-6 mt-3">
                 <div className="card m-card">
                     <div className="card-body py-4 text-center">
                         <div className="img mx-auto mb-3">

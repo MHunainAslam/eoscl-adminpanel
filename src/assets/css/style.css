@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 :root {
   --dark: #707070;
   --secondary: #26a4dd;
@@ -22,19 +23,24 @@ body {
 }
 
 .text-p {
-  color: var(--primary);
+  color: var(--primary) !important;
 }
 .back-p {
   background-color: var(--primary) !important;
 }
 .text-s {
-  color: var(--secondary);
+  color: var(--secondary) !important;
 }
 .link-hov {
   text-decoration: none;
 }
 .link-hov:hover {
   text-decoration: underline;
+}
+.para-lg {
+  font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
 }
 .para {
   font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (1920 - 320)));
@@ -46,7 +52,7 @@ body {
   font-size: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  color: black !important;
+  color: black;
 }
 .heading span {
   color: var(--secondary);
@@ -54,7 +60,7 @@ body {
 .heading-m {
   font-size: calc(20px + (35 - 20) * ((100vw - 320px) / (1920 - 320)));
   font-family: "Inter", sans-serif;
-  color: black !important;
+  color: black;
   font-weight: 700;
 }
 .heading-sm {
@@ -219,7 +225,6 @@ body {
   transition: 0.3s;
 }
 
-
 .m-card .card-body::before {
   content: "";
   background-image: radial-gradient(
@@ -253,32 +258,80 @@ body {
   transition: 0.3s;
 }
 
-.m-card:hover .img{
+.m-card:hover .img {
   background-color: white;
 }
 
-.m-card .img{
+.m-card .img {
   background-color: var(--secondary);
-  width:  calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));;
-  height:  calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));;
+  width: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.m-card .img svg{
+.m-card .img svg {
   width: 100%;
   height: 100%;
   object-fit: contain;
   padding: 25%;
-
 }
-.m-card:hover .img svg path{
+.m-card:hover .img svg path {
   color: var(--primary);
   fill: var(--primary);
 }
-.m-card:hover p , .m-card:hover span{
+.m-card:hover p,
+.m-card:hover span {
   color: white !important;
+}
+.chart {
+  border: 0 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0.1rem 0.5rem rgb(0 0 0 / 8%);
+}
+.c-card {
+  border: 0 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0.1rem 0.5rem rgb(0 0 0 / 8%);
+}
+.Vendors-Active ul {
+  padding: 0;
+  height: 500px;
+  overflow: auto;
+}
+.Vendors-Active li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-block: 20px;
+  justify-content: space-between;
+}
+.Vendors-Active div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.vendorscard .v-logo img {
+  width: calc(130px + (170 - 130) * ((100vw - 320px) / (1920 - 320)));
+}
+.v-logo.active {
+  position: relative;
+}
+.v-logo.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  background-color: green;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+.usertable thead tr th {
+  background-color: var(--secondary);
+  color: white;
 }
 @media (min-width: 992px) {
   .offcanva-custome {
