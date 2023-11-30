@@ -9,9 +9,8 @@ const Header = () => {
                     <i class="bi bi-bell me-3"></i>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
                     </ul>
                     <div className=' me-3 dropdown-toggle nav-link pointer' data-bs-toggle="dropdown" aria-expanded="false">
                         <img src={man} alt="" className='man' />

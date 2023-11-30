@@ -8,10 +8,16 @@ import Dashboard from './pages/Dashboard';
 import Vendors from './pages/Vendors';
 import Users from './pages/Users';
 import Orders from './pages/Orders';
+import Login from './pages/Login';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
       <BrowserRouter>
 
         <Routes>
@@ -19,7 +25,7 @@ function App() {
 
 
 
-          <Route path='/' element={<Test />} />
+          <Route path='/' element={<Login />} />
           <Route element={<Routeprivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/vendors' element={<Vendors />} />

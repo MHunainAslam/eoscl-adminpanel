@@ -99,13 +99,19 @@ body {
 }
 
 .primary-btn {
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -120,8 +126,12 @@ body {
   background: transparent;
   color: var(--primary) !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 2px solid var(--primary) !important;
   font-weight: 600 !important;
@@ -132,9 +142,11 @@ body {
   scale: 1.04;
   transition: 0.9s;
   color: white !important;
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
 }
 
 .header {
@@ -258,9 +270,11 @@ body {
 
 .m-card .card-body::before {
   content: "";
-  background-image: radial-gradient(white -87%,
-      var(--primary) 34%,
-      var(--primary) 0%) !important;
+  background-image: radial-gradient(
+    white -87%,
+    var(--primary) 34%,
+    var(--primary) 0%
+  ) !important;
   transition: 0.3s;
   height: 100%;
   position: absolute;
@@ -338,7 +352,10 @@ body {
   padding: 0;
   height: 500px;
   overflow: auto;
-  background-image: linear-gradient(to bottom, #ffffff, rgb(255 255 255)), linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to bottom, #00000026, rgba(255, 255, 255, 0)), linear-gradient(to top, #00000026, rgb(255 255 255));
+  background-image: linear-gradient(to bottom, #ffffff, rgb(255 255 255)),
+    linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)),
+    linear-gradient(to bottom, #00000026, rgba(255, 255, 255, 0)),
+    linear-gradient(to top, #00000026, rgb(255 255 255));
   background-position: 0 0, 0 100%, 0 0, 0 100%;
   background-repeat: no-repeat;
   background-color: white;
@@ -397,7 +414,6 @@ body {
 .pagination-btn.page-active button {
   background-color: var(--primary) !important;
   color: white;
-
 }
 
 .pagination-btn button:hover {
@@ -409,7 +425,44 @@ body {
 table {
   min-width: max-content !important;
 }
+.login-left {
+  min-height: 90vh;
+}
+.login-left img {
+  min-height: 90vh;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px 0px 0 20px;
+}
+.login-right img{
+  width: calc(130px + (170 - 130) * ((100vw - 320px) / (1920 - 320)));
 
+}
+
+.inp,
+.tarea {
+  border: 0 !important;
+  border-bottom: 1px solid var(--secondary) !important;
+  border-radius: 0 !important;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.inp:focus,
+.tarea:focus {
+  box-shadow: none !important;
+}
+.login-bg{
+  background: url('../../assets/images/Mask Group 2.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: #f6f6f6;
+
+}
+.eye-pass{
+  position: absolute;
+  right: 10px;
+  
+}
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;
