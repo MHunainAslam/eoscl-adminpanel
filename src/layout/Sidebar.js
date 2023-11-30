@@ -42,7 +42,7 @@ const Sidebar = () => {
                             </h2>
 
                         </div>
-                        <div class="accordion-item">
+                        {/* <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                                     Ecommerce
@@ -67,7 +67,7 @@ const Sidebar = () => {
                                 </NavLink>
                             </h2>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
