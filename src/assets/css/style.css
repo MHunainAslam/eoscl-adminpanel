@@ -15,7 +15,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
+  height: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -337,6 +338,12 @@ body {
   padding: 0;
   height: 500px;
   overflow: auto;
+  background-image: linear-gradient(to bottom, #ffffff, rgb(255 255 255)), linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to bottom, #00000026, rgba(255, 255, 255, 0)), linear-gradient(to top, #00000026, rgb(255 255 255));
+  background-position: 0 0, 0 100%, 0 0, 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 2em, 100% 4em, 100% 2em, 100% 2em;
+  background-attachment: local, local, scroll, scroll;
 }
 
 .Vendors-Active li {
@@ -397,6 +404,10 @@ body {
   background-color: var(--primary) !important;
   color: white;
   transition: 0.2s;
+}
+
+table {
+  min-width: max-content !important;
 }
 
 @media (min-width: 992px) {

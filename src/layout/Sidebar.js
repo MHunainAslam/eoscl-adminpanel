@@ -3,6 +3,9 @@ import logo from '../assets/images/logo/eoscl-logo.png'
 import { Link, NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
+    const closesidebar = () => {
+        document.querySelector('.btn-close').click()
+    }
     return (
         <>
 
@@ -18,14 +21,14 @@ const Sidebar = () => {
                     <div class="accordion accordion-flush mt-5 side-bar-dd" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/dashboard'} className="accordion-button collapsed"   type="button" >
+                                <NavLink to={'/dashboard'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
                                     Dashboard
                                 </NavLink>
                             </h2>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/vendors'} className="accordion-button collapsed" type="button" >
+                                <NavLink to={'/vendors'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
                                     Vendors
                                 </NavLink>
                             </h2>
@@ -33,7 +36,7 @@ const Sidebar = () => {
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/Users'} className="accordion-button collapsed" type="button" >
+                                <NavLink to={'/Users'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
                                     Users
                                 </NavLink>
                             </h2>
@@ -41,25 +44,25 @@ const Sidebar = () => {
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button  className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                                     Ecommerce
                                 </button>
                             </h2>
                             <div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body p-0">
                                     <ul className='sidebar-ul'>
-                                        <li><NavLink to={'/product'} >Product</NavLink></li>
-                                        <li><NavLink to={'/addproduct'}>Add Product</NavLink></li>
-                                        <li><NavLink to={'/productlist'}>Product List</NavLink></li>
-                                        <li><NavLink to={'/productdetails'}>Product Details</NavLink></li>
-                                        <li><NavLink to={'/orderhistory'}>Order History</NavLink></li>
+                                        <li><NavLink to={'/product'} onClick={closesidebar}>Product</NavLink></li>
+                                        <li><NavLink to={'/addproduct'} onClick={closesidebar}>Add Product</NavLink></li>
+                                        <li><NavLink to={'/productlist'} onClick={closesidebar}>Product List</NavLink></li>
+                                        <li><NavLink to={'/productdetails'} onClick={closesidebar}>Product Details</NavLink></li>
+                                        <li><NavLink to={'/orderhistory'} onClick={closesidebar}>Order History</NavLink></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/orders'} className="accordion-button collapsed" type="button" >
+                                <NavLink to={'/orders'} className="accordion-button collapsed" type="button" onClick={closesidebar}>
                                     Orders
                                 </NavLink>
                             </h2>

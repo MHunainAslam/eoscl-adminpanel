@@ -5,7 +5,7 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
 
     return (
         <>
-           
+           <div className="table-responsive">
             <table class="table table-striped usertable text-center">
                 <thead>
                     <tr>
@@ -52,6 +52,7 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
                 </tbody>
 
             </table>
+            </div>
         </>
     )
 }
