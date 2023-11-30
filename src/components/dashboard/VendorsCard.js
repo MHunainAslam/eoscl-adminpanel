@@ -11,11 +11,11 @@ const VendorsCard = () => {
         <>
             <div className="card c-card h-100 overflow-auto Vendors-Active">
                 <div className="card-body px-0" >
-                    <p className="heading-m px-lg-4">
+                    <p className="heading-m px-lg-4 px-3">
                         Vendors
                     </p>
                     <div className="border-bottom"></div>
-                    <ul className='px-lg-4'>
+                    <ul className='px-lg-4 px-3'>
                         <li>
                             <div className="d-flex align-items-center">
                                 <img src={men1} alt="" />
