@@ -433,9 +433,11 @@ table {
   width: 100%;
   object-fit: cover;
   border-radius: 20px 0px 0 20px;
+  object-position: left;
 }
 .login-right img{
   width: calc(130px + (170 - 130) * ((100vw - 320px) / (1920 - 320)));
+
 
 }
 
