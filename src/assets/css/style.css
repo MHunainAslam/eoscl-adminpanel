@@ -98,6 +98,30 @@ body {
   padding: 1.5rem;
 }
 
+.secondary-btn {
+  /* background: linear-gradient(
+    -125deg,
+    #0c0cd3 0%,
+    var(--secondary) 50%
+  ) !important; */
+  background-color: var(--secondary) !important;
+  color: white !important;
+  border-radius: 50px !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  transition: 0.8s !important;
+  border: 0 !important;
+}
+
+.primary-btn:hover {
+  /* background: linear-gradient(-225deg, #f5d2a3 0%, var(--primary) 50%) !important; */
+  scale: 1.04;
+  transition: 0.9s;
+}
 .primary-btn {
   background: linear-gradient(
     -125deg,
@@ -465,6 +489,7 @@ table {
   right: 10px;
   
 }
+
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;

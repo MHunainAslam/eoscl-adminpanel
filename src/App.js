@@ -10,6 +10,7 @@ import Users from './pages/Users';
 import Orders from './pages/Orders';
 import Login from './pages/Login';
 import { Toaster } from 'react-hot-toast';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/vendors' element={<Vendors />} />
             <Route path='/users' element={<Users />} />
             <Route path='/orders' element={<Orders />} />
+            <Route path='/profile' element={<Profile />} />
           </Route>
 
 
