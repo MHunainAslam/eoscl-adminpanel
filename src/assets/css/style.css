@@ -11,7 +11,7 @@
 body {
   min-height: 100vh;
   color: #707070;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif !important;
 }
 
 ::-webkit-scrollbar {
@@ -335,8 +335,8 @@ body {
 
 .m-card .img {
   background-color: var(--secondary);
-  width: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
-  height: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
+  width: calc(60px + (100 - 60) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(60px + (100 - 60) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -421,11 +421,36 @@ body {
   border-radius: 100%;
 }
 
+.usertable thead tr {
+  vertical-align: middle;
+}
 .usertable thead tr th {
   background-color: var(--secondary);
   color: white;
+  padding-block: 15px !important ;
+  border: 0;
 }
+.usertable thead tr th:nth-child(1) {
+  border-radius: 50px 0 0px 50px;
+}
+.usertable thead tr th:nth-last-child(1) {
+  border-radius: 0px 50px 50px 0px;
+}
+.usertable tbody tr {
+  border: 15px solid transparent;
+  vertical-align: middle;
+}
+.usertable tbody tr td {
+  border: 0 !important;
 
+  border-width: 20px !important;
+}
+.usertable tbody tr td:nth-child(1) {
+  border-radius: 50px 0 0px 50px;
+}
+.usertable tbody tr td:nth-last-child(1) {
+  border-radius: 0px 50px 50px 0px;
+}
 .pagination-btn button {
   background-color: transparent !important;
   border: 1px solid var(--primary) !important;
@@ -459,37 +484,85 @@ table {
   border-radius: 20px 0px 0 20px;
   object-position: left;
 }
-.login-right img{
+.login-right img {
   width: calc(130px + (170 - 130) * ((100vw - 320px) / (1920 - 320)));
-
-
 }
 
 .inp,
 .tarea {
+  background-color: #f1f1f1 !important;
   border: 0 !important;
   border-bottom: 1px solid var(--secondary) !important;
   border-radius: 0 !important;
-  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
+  padding-inline: 10px !important;
+  padding-block: 15px !important;
+  font-size: calc(
+    12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
 .inp:focus,
 .tarea:focus {
-  box-shadow: none !important;
+  /* box-shadow: none !important; */
+  border: 1px solid var(--secondary) !important;
 }
-.login-bg{
-  background: url('../../assets/images/Mask Group 2.png');
+.login-bg {
+  background: url("../../assets/images/Mask Group 2.png");
   background-repeat: no-repeat;
   background-position: top;
   background-color: #f6f6f6;
-
 }
-.eye-pass{
+.eye-pass {
   position: absolute;
   right: 10px;
-  
 }
-
+.user-card .user-img {
+  width: calc(100px + (150 - 100) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(100px + (150 - 100) * ((100vw - 320px) / (1920 - 320)));
+  border-radius: 100%;
+  position: relative;
+}
+.user-card .user-img img {
+  border-radius: 100%;
+}
+.cam-img-change {
+  width: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
+  background-color: var(--dark);
+  border-radius: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: -7px;
+}
+.notiication-btn {
+  list-style: none;
+}
+.notiication-btn ul {
+  padding:10px 5px;
+  border-radius: 15px !important;
+  border: 0 !important;
+  box-shadow: 0 0.1rem 0.5rem rgb(0 0 0 / 8%);
+}
+.notiication-btn ul li{
+  /* background-color: #f1f1f1; */
+  margin-block: 10px;
+  padding-block: 5px ;
+  font-size: calc(12px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+  transition: 0.2s;
+}
+.notiication-btn ul li:hover ,.notiication-btn ul li:hover  a{
+  background-color: var(--secondary);
+  color: white;
+  transition: 0.2s;
+}
+.notiication-btn .heading-sm {
+  font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;

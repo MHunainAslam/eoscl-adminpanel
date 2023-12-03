@@ -19,9 +19,9 @@ const LoginForm = () => {
     }
     return (
         <form onSubmit={Login}>
-            <input type="text" className='form-control shadow-sm mt-5 inp' value={Name} onChange={(e) => { setName(e.target.value) }} placeholder='Username or Email' name="" id="" />
+            <input type="text" className='form-control shadow-sm mt-5 inp px-2 py-3' value={Name} onChange={(e) => { setName(e.target.value) }} placeholder='Username or Email' name="" id="" />
             <div className="position-relative d-flex align-items-center mt-3">
-                <input type={showPass ? 'text' : 'password'} className='form-control   shadow-sm  inp' value={Password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Password' name="" id="" />
+                <input type={showPass ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={Password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Password' name="" id="" />
                 <i class={`bi eye-pass ${showPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass(!showPass)}></i>
 
             </div>
