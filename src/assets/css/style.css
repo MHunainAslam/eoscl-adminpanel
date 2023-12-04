@@ -120,8 +120,12 @@ body {
   background-color: var(--secondary) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -133,13 +137,19 @@ body {
 }
 
 .primary-btn {
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -154,8 +164,12 @@ body {
   background: transparent;
   color: var(--primary) !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 2px solid var(--primary) !important;
   font-weight: 600 !important;
@@ -166,9 +180,11 @@ body {
   scale: 1.04;
   transition: 0.9s;
   color: white !important;
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
 }
 
 .header {
@@ -292,9 +308,11 @@ body {
 
 .m-card .card-body::before {
   content: "";
-  background-image: radial-gradient(white -87%,
-      var(--primary) 34%,
-      var(--primary) 0%) !important;
+  background-image: radial-gradient(
+    white -87%,
+    var(--primary) 34%,
+    var(--primary) 0%
+  ) !important;
   transition: 0.3s;
   height: 100%;
   position: absolute;
@@ -503,7 +521,9 @@ table {
   border-radius: 0 !important;
   padding-inline: 10px !important;
   padding-block: 15px !important;
-  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))) !important;
+  font-size: calc(
+    12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
@@ -548,6 +568,18 @@ table {
   position: absolute;
   top: 0;
   right: -7px;
+}
+
+.cam-img-change-2 {
+  width: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
+  background-color: var(--dark);
+  border-radius: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
 }
 
 .notiication-btn {
@@ -606,7 +638,43 @@ table {
   align-items: center;
   justify-content: center;
 }
+.vendor-card .card-header {
+  background: transparent;
+  border: 0;
+  padding-right: 0;
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+}
 
+.vendor-card .card-header img {
+  color: transparent;
+  width: 154px;
+  height: auto;
+  object-fit: cover;
+}
+
+.vendor-card .card-header .discount {
+  background: var(--primary);
+  border-radius: 0 5px 0 0;
+}
+
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+.vendors-card .card:hover {
+  transform: scale(1.04);
+  transition: 0.3s;
+}
+
+.vendors-card .card {
+  transition: 0.3s;
+}
+
+.offcanva-btn:focus {
+  box-shadow: none !important;
+}
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;

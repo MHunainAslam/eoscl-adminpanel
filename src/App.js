@@ -14,6 +14,10 @@ import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import Changepassword from './pages/Changepassword';
 import Notification from './pages/Notification';
+import AddVendors from './pages/AddVendors';
+import ViewVendors from './pages/ViewVendors';
+import AddvendorsDiscount from './pages/AddvendorsDiscount';
+import EditVendors from './pages/EditVendors';
 
 function App() {
   return (
@@ -33,6 +37,10 @@ function App() {
           <Route element={<Routeprivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/vendors' element={<Vendors />} />
+            <Route path='/addvendors' element={<AddVendors />} />
+            <Route path='/viewvendors' element={<ViewVendors />} />
+            <Route path='/addvendorsdiscount' element={<AddvendorsDiscount />} />
+            <Route path='/editvendors' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />

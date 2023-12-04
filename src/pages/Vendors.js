@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../components/vendors/Card'
+import { Link } from 'react-router-dom'
 
 const Vendors = () => {
   return (
@@ -8,7 +9,7 @@ const Vendors = () => {
         <p className="heading-m">
           Vendors
         </p>
-        <button className='btn primary-btn  h-100'>Add New Vendor</button>
+        <Link className='btn primary-btn  h-100' to={'/addvendors'}>Add New Vendor</Link>
       </div>
 
       <Card />

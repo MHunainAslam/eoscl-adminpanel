@@ -11,6 +11,7 @@ import v9 from '../../assets/images/vendors/Rectangle 28.png'
 import v10 from '../../assets/images/vendors/Rectangle 31.png'
 import v11 from '../../assets/images/vendors/Rectangle 32.png'
 import v12 from '../../assets/images/vendors/Rectangle 34.png'
+import { Link } from 'react-router-dom'
 
 const Card = () => {
     return (
@@ -27,8 +28,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -59,8 +60,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -91,8 +92,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -123,8 +124,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -155,8 +156,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -187,8 +188,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -219,8 +220,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -251,8 +252,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -283,8 +284,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -315,8 +316,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -347,8 +348,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
@@ -379,8 +380,8 @@ const Card = () => {
                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View</a></li>
+                                    <li><Link class="dropdown-item"  to="/editVendors">Edit</Link></li>
+                                    <li><Link class="dropdown-item" to="/viewvendors">View</Link></li>
                                     <li>
                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                             <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
