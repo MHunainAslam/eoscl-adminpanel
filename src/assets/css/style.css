@@ -14,6 +14,14 @@ body {
   font-family: "Open Sans", sans-serif !important;
 }
 
+.text-d {
+  color: #493c3cb3;
+}
+
+.text-l {
+  color: #c7bcbc;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 3px;
@@ -36,6 +44,10 @@ body {
   background-color: var(--primary) !important;
 }
 
+.back-s {
+  background-color: var(--secondary) !important;
+}
+
 .text-s {
   color: var(--secondary) !important;
 }
@@ -56,6 +68,7 @@ body {
 
 .para {
   font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (1920 - 320)));
+  font-weight: 500;
 }
 
 .para-m {
@@ -107,12 +120,8 @@ body {
   background-color: var(--secondary) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -122,20 +131,15 @@ body {
   scale: 1.04;
   transition: 0.9s;
 }
+
 .primary-btn {
-  background: linear-gradient(
-    -125deg,
-    #e7b879 0%,
-    var(--primary) 50%
-  ) !important;
+  background: linear-gradient(-125deg,
+      #e7b879 0%,
+      var(--primary) 50%) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -150,12 +154,8 @@ body {
   background: transparent;
   color: var(--primary) !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 2px solid var(--primary) !important;
   font-weight: 600 !important;
@@ -166,11 +166,9 @@ body {
   scale: 1.04;
   transition: 0.9s;
   color: white !important;
-  background: linear-gradient(
-    -125deg,
-    #e7b879 0%,
-    var(--primary) 50%
-  ) !important;
+  background: linear-gradient(-125deg,
+      #e7b879 0%,
+      var(--primary) 50%) !important;
 }
 
 .header {
@@ -294,11 +292,9 @@ body {
 
 .m-card .card-body::before {
   content: "";
-  background-image: radial-gradient(
-    white -87%,
-    var(--primary) 34%,
-    var(--primary) 0%
-  ) !important;
+  background-image: radial-gradient(white -87%,
+      var(--primary) 34%,
+      var(--primary) 0%) !important;
   transition: 0.3s;
   height: 100%;
   position: absolute;
@@ -424,33 +420,41 @@ body {
 .usertable thead tr {
   vertical-align: middle;
 }
+
 .usertable thead tr th {
   background-color: var(--secondary);
   color: white;
-  padding-block: 15px !important ;
+  padding-block: 15px !important;
   border: 0;
 }
+
 .usertable thead tr th:nth-child(1) {
   border-radius: 50px 0 0px 50px;
 }
+
 .usertable thead tr th:nth-last-child(1) {
   border-radius: 0px 50px 50px 0px;
 }
+
 .usertable tbody tr {
   border: 15px solid transparent;
   vertical-align: middle;
 }
+
 .usertable tbody tr td {
   border: 0 !important;
 
   border-width: 20px !important;
 }
+
 .usertable tbody tr td:nth-child(1) {
   border-radius: 50px 0 0px 50px;
 }
+
 .usertable tbody tr td:nth-last-child(1) {
   border-radius: 0px 50px 50px 0px;
 }
+
 .pagination-btn button {
   background-color: transparent !important;
   border: 1px solid var(--primary) !important;
@@ -474,9 +478,11 @@ body {
 table {
   min-width: max-content !important;
 }
+
 .login-left {
   min-height: 90vh;
 }
+
 .login-left img {
   min-height: 90vh;
   width: 100%;
@@ -484,6 +490,7 @@ table {
   border-radius: 20px 0px 0 20px;
   object-position: left;
 }
+
 .login-right img {
   width: calc(130px + (170 - 130) * ((100vw - 320px) / (1920 - 320)));
 }
@@ -496,9 +503,7 @@ table {
   border-radius: 0 !important;
   padding-inline: 10px !important;
   padding-block: 15px !important;
-  font-size: calc(
-    12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))) !important;
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
@@ -507,25 +512,30 @@ table {
   /* box-shadow: none !important; */
   border: 1px solid var(--secondary) !important;
 }
+
 .login-bg {
   background: url("../../assets/images/Mask Group 2.png");
   background-repeat: no-repeat;
   background-position: top;
   background-color: #f6f6f6;
 }
+
 .eye-pass {
   position: absolute;
   right: 10px;
 }
+
 .user-card .user-img {
   width: calc(100px + (150 - 100) * ((100vw - 320px) / (1920 - 320)));
   height: calc(100px + (150 - 100) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 100%;
   position: relative;
 }
+
 .user-card .user-img img {
   border-radius: 100%;
 }
+
 .cam-img-change {
   width: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
   height: calc(30px + (50 - 30) * ((100vw - 320px) / (1920 - 320)));
@@ -539,30 +549,64 @@ table {
   top: 0;
   right: -7px;
 }
+
 .notiication-btn {
   list-style: none;
 }
+
 .notiication-btn ul {
-  padding:10px 5px;
+  padding: 10px 5px;
   border-radius: 15px !important;
   border: 0 !important;
   box-shadow: 0 0.1rem 0.5rem rgb(0 0 0 / 8%);
 }
-.notiication-btn ul li{
+
+.notiication-btn ul li {
   /* background-color: #f1f1f1; */
   margin-block: 10px;
-  padding-block: 5px ;
+  padding-block: 5px;
   font-size: calc(12px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
   transition: 0.2s;
 }
-.notiication-btn ul li:hover ,.notiication-btn ul li:hover  a{
+
+.notiication-btn ul li:hover,
+.notiication-btn ul li:hover a {
   background-color: var(--secondary);
   color: white;
   transition: 0.2s;
 }
+
+.notiication-btn ul li:hover span {
+  color: white;
+  transition: 0.2s;
+}
+
 .notiication-btn .heading-sm {
   font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
 }
+
+.noti-btn-icon {
+  background-color: var(--primary);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noti-btn-icon-lg {
+  background-color: var(--primary);
+  color: white;
+  width: calc(35px + (50 - 35) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(35px + (50 - 35) * ((100vw - 320px) / (1920 - 320)));
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;
