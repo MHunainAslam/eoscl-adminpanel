@@ -24,8 +24,8 @@ const Logout = () => {
                             </p>
                         </div>
                         <div class="modal-footer border-0 pb-5 justify-content-center">
-                            <button type="button" class="btn rounded-5 px-md-5 btn-outline-light close-modal " data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-light rounded-5 px-md-5 text-p" onClick={logoutUser}>Save changes</button>
+                            <button type="button" class="btn rounded-5 px-md-5 btn-outline-light close-modal " data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-light rounded-5 px-md-5 text-p" onClick={logoutUser}>Yes</button>
                         </div>
                     </div>
                 </div>
