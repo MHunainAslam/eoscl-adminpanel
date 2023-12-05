@@ -26,10 +26,10 @@ const LoginForm = () => {
 
             </div>
             <div className="text-end mt-3">
-                <Link className='para link-hov text-p mt-3 text-end ms-auto' to={'#'}>Forget Password</Link>
+                <Link className='para link-hov text-p mt-3 text-end ms-auto' to={'/forget'}>Forget Password</Link>
             </div>
             <button className='btn primary-btn py-2 w-100 mt-5 mb-3'> Login</button>
-            <Link className='para link-hov text-p text-end ms-auto' to={'#'}>Resgister Your Self</Link>
+            <Link className='para link-hov text-p text-end ms-auto' to={'/registration'}>Resgister Your Self</Link>
         </form>
     )
 }

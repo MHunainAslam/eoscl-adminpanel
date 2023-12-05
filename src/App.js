@@ -20,6 +20,8 @@ import AddvendorsDiscount from './pages/AddvendorsDiscount';
 import EditVendors from './pages/EditVendors';
 import Userview from './pages/Userview';
 import Edituser from './pages/Edituser';
+import Registration from './pages/Registration';
+import Forget from './pages/Forget';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
 
 
           <Route path='/' element={<Login />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/forget' element={<Forget />} />
           <Route element={<Routeprivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/vendors' element={<Vendors />} />
