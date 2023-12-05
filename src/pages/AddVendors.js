@@ -75,6 +75,19 @@ const AddVendors = () => {
                                         <textarea type="text" className='form-control tarea shadow-sm' name="" rows={5} id="" />
                                     </div>
                                 </div>
+                                <div className="d-flex  my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Status:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <div class="form-check form-switch dropdown-item  d-flex">
+                                            {/* <label class="form-check-label me-3" for="flexSwitchCheckChecked">Active</label> */}
+                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='w-100 text-end' >
                                     <button className='btn primary-btn px-md-5 mt-4'>Update</button>
                                 </div>
