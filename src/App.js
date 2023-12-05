@@ -18,6 +18,8 @@ import AddVendors from './pages/AddVendors';
 import ViewVendors from './pages/ViewVendors';
 import AddvendorsDiscount from './pages/AddvendorsDiscount';
 import EditVendors from './pages/EditVendors';
+import Userview from './pages/Userview';
+import Edituser from './pages/Edituser';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             <Route path='/addvendorsdiscount' element={<AddvendorsDiscount />} />
             <Route path='/editvendors' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
+            <Route path='/userview' element={<Userview />} />
+            <Route path='/edit-user' element={<Edituser />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit-profile' element={<EditProfile />} />

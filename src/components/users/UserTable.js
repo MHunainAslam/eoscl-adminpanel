@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
     const currentData = tabledata.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
@@ -30,8 +31,8 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
                                     <td>
                                         <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">View</a></li>
+                                            <li><Link class="dropdown-item" to="/edit-user">Edit</Link></li>
+                                            <li><Link class="dropdown-item" to="/userview">View</Link></li>
                                             <li>
                                                 <div class="form-check form-switch dropdown-item justify-content-between d-flex">
                                                     <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
