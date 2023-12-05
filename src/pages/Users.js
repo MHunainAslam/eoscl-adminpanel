@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserTable from '../components/users/UserTable'
 import Pagination from '../components/Pagination'
 
@@ -30,6 +30,14 @@ const Users = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const a = parseInt(itemsPerPage);
   const b = parseInt(indexOfFirstItem);
+  useEffect(() => {
+    if (dataOnPage > tabledata.length) {
+      setdataOnPage(tabledata.length)
+      setCurrentPage(1)
+    }
+    console.log('lol',dataOnPage, currentPage)
+  }, [dataOnPage])
+
   return (
     <>
       <p className="heading-m">
