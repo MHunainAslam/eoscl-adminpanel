@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import UserTable from '../components/users/UserTable'
 import Pagination from '../components/Pagination'
+import { Link } from 'react-router-dom'
 
 const Users = () => {
   const [tabledata, settabledata] = useState([
@@ -35,14 +36,20 @@ const Users = () => {
       setdataOnPage(tabledata.length)
       setCurrentPage(1)
     }
-    console.log('lol',dataOnPage, currentPage)
+    console.log('lol', dataOnPage, currentPage)
   }, [dataOnPage])
 
   return (
     <>
-      <p className="heading-m">
-        Users
-      </p>
+      <div className="d-md-flex justify-content-between">
+
+        <p className="heading-m">
+          Users
+        </p>
+        <div className="d-flex justify-content-end h-100 col-md-6">
+          <Link to={'/AddNewuser'} className='btn w-50 primary-btn'>Add New User</Link>
+        </div>
+      </div>
       <div className="row">
         <div className="col">
           <div className="card c-card">

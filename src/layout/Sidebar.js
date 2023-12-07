@@ -28,16 +28,24 @@ const Sidebar = () => {
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/vendors'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
-                                    Vendors
+                                <NavLink to={'/partner'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
+                                    Partner
                                 </NavLink>
                             </h2>
 
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <NavLink to={'/Users'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
+                                <NavLink to={'/users'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
                                     Users
+                                </NavLink>
+                            </h2>
+
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <NavLink to={'/membership'} className="accordion-button collapsed" onClick={closesidebar} type="button" >
+                                    Membership
                                 </NavLink>
                             </h2>
 

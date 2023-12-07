@@ -9,7 +9,7 @@ const Vendors = () => {
         <p className="heading-m">
           Vendors
         </p>
-        <Link className='btn primary-btn  h-100' to={'/addvendors'}>Add New Vendor</Link>
+        <Link className='btn primary-btn  h-100' to={'/addpartner'}>Add New Vendor</Link>
       </div>
 
       <Card />

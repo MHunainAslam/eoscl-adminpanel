@@ -22,6 +22,9 @@ import Userview from './pages/Userview';
 import Edituser from './pages/Edituser';
 import Registration from './pages/Registration';
 import Forget from './pages/Forget';
+import EditvendorsDiscount from './pages/EditvendorsDiscount';
+import AddNewuser from './pages/AddNewuser';
+import Membership from './pages/Membership';
 
 function App() {
   return (
@@ -42,19 +45,22 @@ function App() {
           <Route path='/forget' element={<Forget />} />
           <Route element={<Routeprivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/vendors' element={<Vendors />} />
-            <Route path='/addvendors' element={<AddVendors />} />
-            <Route path='/viewvendors' element={<ViewVendors />} />
-            <Route path='/addvendorsdiscount' element={<AddvendorsDiscount />} />
-            <Route path='/editvendors' element={<EditVendors />} />
+            <Route path='/partner' element={<Vendors />} />
+            <Route path='/addpartner' element={<AddVendors />} />
+            <Route path='/viewpartner' element={<ViewVendors />} />
+            <Route path='/addpartnerdiscount' element={<AddvendorsDiscount />} />
+            <Route path='/editpartnerdiscount' element={<EditvendorsDiscount />} />
+            <Route path='/editpartner' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
             <Route path='/userview' element={<Userview />} />
+            <Route path='/addnewuser' element={<AddNewuser />} />
             <Route path='/edit-user' element={<Edituser />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit-profile' element={<EditProfile />} />
             <Route path='/changepassword' element={<Changepassword />} />
             <Route path='/notification' element={<Notification />} />
+            <Route path='/membership' element={<Membership />} />
           </Route>
 
 

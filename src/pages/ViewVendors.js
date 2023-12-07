@@ -28,146 +28,395 @@ const ViewVendors = () => {
                 <div className="d-flex align-items-center">
                     <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
-                       Vendors Detail
+                        Vendors Detail
                     </p>
                 </div>
                 <div className="d-flex justify-content-end h-100  col-md-6">
-                    <Link to={'/addvendorsdiscount'} className='btn w-50 primary-btn me-3'>Add Discount</Link>
+                    <Link to={'/addpartnerdiscount'} className='btn w-50 primary-btn me-3'>Add Discount</Link>
                 </div>
             </div>
-            <div className="row mt-3">
+            <div className="row">
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">10</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                35% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">14</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                23% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">17</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                15% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">40</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                30% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">20</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                19% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">05</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                25% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">19</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                35% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">23</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                15% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mt-3">
-                    <div className="card vendor-card h-100">
-                        <div className="card-header">
-                            <img src={logo} className='pt-2' alt=''></img>
-                            <div className="discount p-3">
-                                <div className="heading-m text-white text-center">10</div>
-                                <div className="heading-m text-white text-center">% Off</div>
+                    <div className='card c-card vendorscard'>
 
-                            </div>
-                        </div>
                         <div className="card-body">
-                            <p className="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error dolorum, accusantium illo voluptatibus similique suscipit aut officia! </p>
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                35% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mt-3">
+                    <div className='card c-card vendorscard'>
+
+                        <div className="card-body">
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                18% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mt-3">
+                    <div className='card c-card vendorscard'>
+
+                        <div className="card-body">
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                08% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mt-3">
+                    <div className='card c-card vendorscard'>
+
+                        <div className="card-body">
+                            <div className="d-flex  justify-content-between">
+                                <div className='v-logo active'>
+                                    <img src={logo} alt="" />
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                    <ul class="dropdown-menu">
+                                        <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                        
+                                        <li>
+                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p className="heading-m text-s">
+                                35% <span className='para-lg text-black'>off</span>
+                            </p>
+                            <p className="para">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
+                            </p>
                         </div>
                     </div>
                 </div>

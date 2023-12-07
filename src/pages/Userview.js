@@ -82,6 +82,30 @@ const Userview = () => {
                                 <div className="d-flex">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
+                                            Membership Type:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <p className="para">
+                                            Beginner
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
+                                            Package Price:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <p className="para">
+                                            $100,000
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
                                             Status:
                                         </p>
                                     </div>

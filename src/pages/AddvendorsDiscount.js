@@ -48,14 +48,30 @@ const AddvendorsDiscount = () => {
                                 <div className="d-flex align-items-center my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
-                                           Discount:
+                                            Membership Type:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <select name="" className='form-select inp' id="">
+                                            <option value="" hidden>Select Card Type</option>
+                                            <option value="">Beginner</option>
+                                            <option value="">Premier</option>
+                                            <option value="">Elite</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="d-flex align-items-center my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Discount:
                                         </p>
                                     </div>
                                     <div className="col">
                                         <input type="text" className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
-                               
+
                                 <div className="d-flex  my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
@@ -64,6 +80,20 @@ const AddvendorsDiscount = () => {
                                     </div>
                                     <div className="col">
                                         <textarea type="text" className='form-control tarea shadow-sm' name="" rows={5} id="" />
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-center my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Status:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <select name="" className='form-select inp' id="">
+                                            <option value="" hidden>Select Status</option>
+                                            <option value="">Active</option>
+                                            <option value="">Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >

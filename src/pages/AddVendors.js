@@ -82,10 +82,11 @@ const AddVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <div class="form-check form-switch dropdown-item  d-flex">
-                                            {/* <label class="form-check-label me-3" for="flexSwitchCheckChecked">Active</label> */}
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
+                                    <select name="" className='form-select inp' id="">
+                                                <option value="" hidden>Select Status</option>
+                                                <option value="">Active</option>
+                                                <option value="">Inactive</option>
+                                            </select>
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
