@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import user from '../assets/images/vendors/Rectangle 20.png'
+import user from '../../assets/images/vendors/Rectangle 20.png'
 import { useNavigate } from 'react-router'
-const EditVendors = () => {
+const AddVendors = () => {
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -25,7 +25,7 @@ const EditVendors = () => {
             <div className="d-flex align-items-center">
                 <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
-                    Edit Vendors
+                    Add Partners
                 </p>
             </div>
             <div className="row mt-3">
@@ -82,14 +82,11 @@ const EditVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                            {/* <label class="form-check-label me-3" for="flexSwitchCheckChecked">Active</label> */}
-                                            <select name="" className='form-select inp' id="">
+                                    <select name="" className='form-select inp' id="">
                                                 <option value="" hidden>Select Status</option>
                                                 <option value="">Active</option>
                                                 <option value="">Inactive</option>
                                             </select>
-
-                                    
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
@@ -104,5 +101,4 @@ const EditVendors = () => {
     )
 }
 
-export default EditVendors
-
+export default AddVendors

@@ -4,27 +4,30 @@ import Routeprivate from './store/routeprivate';
 import { BrowserRouter, Navigate, Route, Router, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Test from './pages/Test';
-import Dashboard from './pages/Dashboard';
-import Vendors from './pages/Vendors';
-import Users from './pages/Users';
-import Orders from './pages/Orders';
-import Login from './pages/Login';
 import { Toaster } from 'react-hot-toast';
-import Profile from './pages/Profile';
-import EditProfile from './pages/EditProfile';
-import Changepassword from './pages/Changepassword';
-import Notification from './pages/Notification';
-import AddVendors from './pages/AddVendors';
-import ViewVendors from './pages/ViewVendors';
-import AddvendorsDiscount from './pages/AddvendorsDiscount';
-import EditVendors from './pages/EditVendors';
-import Userview from './pages/Userview';
-import Edituser from './pages/Edituser';
-import Registration from './pages/Registration';
-import Forget from './pages/Forget';
-import EditvendorsDiscount from './pages/EditvendorsDiscount';
-import AddNewuser from './pages/AddNewuser';
-import Membership from './pages/Membership';
+import Login from './pages/auth/Login';
+import Registration from './pages/auth/Registration';
+import Forget from './pages/auth/Forget';
+import Dashboard from './pages/dashboard/Dashboard';
+import Vendors from './pages/partners/Vendors';
+import AddVendors from './pages/partners/AddVendors';
+import ViewVendors from './pages/partners/ViewVendors';
+import AddvendorsDiscount from './pages/partners/AddvendorsDiscount';
+import EditvendorsDiscount from './pages/partners/EditvendorsDiscount';
+import EditVendors from './pages/partners/EditVendors';
+import Users from './pages/user/Users'
+import Userview from './pages/user/Userview'
+import AddNewuser from './pages/user/AddNewuser'
+import Edituser from './pages/user/Edituser'
+import Orders from './pages/Orders'
+import Profile from './pages/profile/Profile'
+import EditProfile from './pages/profile/EditProfile'
+import Changepassword from './pages/profile/Changepassword'
+import Notification from './pages/profile/Notification'
+import Membership from './pages/membership/Membership'
+import MembershipView from './pages/membership/MembershipView';
+import EditMembership from './pages/membership/EditMembership';
+import AddMembership from './pages/membership/AddMembership';
 
 function App() {
   return (
@@ -61,6 +64,9 @@ function App() {
             <Route path='/changepassword' element={<Changepassword />} />
             <Route path='/notification' element={<Notification />} />
             <Route path='/membership' element={<Membership />} />
+            <Route path='/membershipview' element={<MembershipView />} />
+            <Route path='/editmembership' element={<EditMembership />} />
+            <Route path='/addmembership' element={<AddMembership />} />
           </Route>
 
 

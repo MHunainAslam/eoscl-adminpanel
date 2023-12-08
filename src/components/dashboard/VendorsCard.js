@@ -13,7 +13,7 @@ const VendorsCard = () => {
             <div className="card c-card h-100 overflow-auto Vendors-Active">
                 <div className="card-body px-0" >
                     <p className="heading-m px-lg-4 px-3">
-                        Vendors
+                        Partners
                     </p>
                     <div className="border-bottom"></div>
                     <ul className='px-lg-4 px-3' id="myScrollableDiv">

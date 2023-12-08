@@ -1,7 +1,7 @@
 import React from 'react'
-import DashboardCards from '../components/dashboard/DashboardCards'
-import RevenueChart from '../components/dashboard/charts/RevenueChart'
-import VendorsCard from '../components/dashboard/VendorsCard'
+import DashboardCards from '../../components/dashboard/DashboardCards'
+import RevenueChart from '../../components/dashboard/charts/RevenueChart'
+import VendorsCard from '../../components/dashboard/VendorsCard'
 
 const Dashboard = () => {
   return (

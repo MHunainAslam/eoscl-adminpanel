@@ -1,5 +1,5 @@
 import React from 'react'
-import user from '../assets/images/men/Rectangle 1.png'
+import user from '../../assets/images/men/Rectangle 1.png'
 import { Link } from 'react-router-dom'
 const Profile = () => {
     return (

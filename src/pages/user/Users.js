@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import UserTable from '../components/users/UserTable'
-import Pagination from '../components/Pagination'
+import UserTable from '../../components/users/UserTable'
+import Pagination from '../../components/Pagination'
 import { Link } from 'react-router-dom'
 
 const Users = () => {

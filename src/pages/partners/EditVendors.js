@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import user from '../assets/images/vendors/Rectangle 20.png'
+import user from '../../assets/images/vendors/Rectangle 20.png'
 import { useNavigate } from 'react-router'
-const EditvendorsDiscount = () => {
+const EditVendors = () => {
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -25,14 +25,14 @@ const EditvendorsDiscount = () => {
             <div className="d-flex align-items-center">
                 <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
-                    Edit Discount
+                    Edit Partners
                 </p>
             </div>
             <div className="row mt-3">
                 <div class="card mb-3 c-card user-card" >
                     <div className="card-body">
                         <div class="row py-5 ">
-                            {/* <div class="col-md-2 text-md-start text-center position-relative">
+                            <div class="col-md-2 text-md-start text-center position-relative">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
                                 <label htmlFor='userimg' className="user-img ">
 
@@ -41,37 +41,30 @@ const EditvendorsDiscount = () => {
                                         <i class="bi bi-camera-fill "></i>
                                     </div>
                                 </label>
-                            </div> */}
+                            </div>
                             <div class="col-md-8 pt-4 pt-md-0">
 
 
                                 <div className="d-flex align-items-center my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
-                                            Membership Type:
-                                        </p>
-                                    </div>
-                                    <div className="col">
-                                        <select name="" className='form-select inp' id="">
-                                            <option value="" hidden>Select Card Type</option>
-                                            <option value="">Beginner</option>
-                                            <option value="">Premier</option>
-                                            <option value="">Elite</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="d-flex align-items-center my-3">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold mb-0">
-                                            Discount:
+                                            Company Name:
                                         </p>
                                     </div>
                                     <div className="col">
                                         <input type="text" className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
-
+                                <div className="d-flex align-items-center my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Discount Upto:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" className='form-control inp shadow-sm' name="" id="" />
+                                    </div>
+                                </div>
                                 <div className="d-flex  my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
@@ -82,18 +75,21 @@ const EditvendorsDiscount = () => {
                                         <textarea type="text" className='form-control tarea shadow-sm' name="" rows={5} id="" />
                                     </div>
                                 </div>
-                                <div className="d-flex align-items-center my-3">
+                                <div className="d-flex  my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
                                             Status:
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <select name="" className='form-select inp' id="">
-                                            <option value="" hidden>Select Status</option>
-                                            <option value="">Active</option>
-                                            <option value="">Inactive</option>
-                                        </select>
+                                            {/* <label class="form-check-label me-3" for="flexSwitchCheckChecked">Active</label> */}
+                                            <select name="" className='form-select inp' id="">
+                                                <option value="" hidden>Select Status</option>
+                                                <option value="">Active</option>
+                                                <option value="">Inactive</option>
+                                            </select>
+
+                                    
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
@@ -108,4 +104,5 @@ const EditvendorsDiscount = () => {
     )
 }
 
-export default EditvendorsDiscount
+export default EditVendors
+

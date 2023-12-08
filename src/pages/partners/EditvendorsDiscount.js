@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import user from '../assets/images/vendors/Rectangle 20.png'
+import user from '../../assets/images/vendors/Rectangle 20.png'
 import { useNavigate } from 'react-router'
-const AddvendorsDiscount = () => {
+const EditvendorsDiscount = () => {
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -25,7 +25,7 @@ const AddvendorsDiscount = () => {
             <div className="d-flex align-items-center">
                 <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
-                    Add Discount
+                    Edit Discount
                 </p>
             </div>
             <div className="row mt-3">
@@ -108,5 +108,4 @@ const AddvendorsDiscount = () => {
     )
 }
 
-export default AddvendorsDiscount
-
+export default EditvendorsDiscount

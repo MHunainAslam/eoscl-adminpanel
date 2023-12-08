@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import user from '../assets/images/men/Rectangle 1.png'
+import user from '../../assets/images/men/Rectangle 1.png'
 import { useNavigate } from 'react-router'
 const Notification = () => {
     const navigate = useNavigate()

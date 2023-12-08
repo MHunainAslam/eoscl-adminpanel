@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import user from '../assets/images/men/Rectangle 1.png'
+import user from '../../assets/images/men/Rectangle 1.png'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../assets/images/vendors/Rectangle 14.png'
+import logo from '../../assets/images/vendors/Rectangle 14.png'
 const ViewVendors = () => {
     const navigate = useNavigate()
     const backforward = () => {
@@ -28,7 +28,7 @@ const ViewVendors = () => {
                 <div className="d-flex align-items-center">
                     <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
-                        Vendors Detail
+                        Partners Detail
                     </p>
                 </div>
                 <div className="d-flex justify-content-end h-100  col-md-6">

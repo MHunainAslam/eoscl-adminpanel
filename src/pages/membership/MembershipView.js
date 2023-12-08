@@ -1,7 +1,7 @@
 import React from 'react'
-import user from '../assets/images/men/Rectangle 1.png'
+import user from '../../assets/images/vendors/Image 5.png'
 import { Link, useNavigate } from 'react-router-dom'
-const Userview = () => {
+const MembershipView = () => {
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -13,72 +13,20 @@ const Userview = () => {
                 <div className='d-flex align-items-center'>
                     <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
-                        User Profile
+                        Membership Detail
                     </p>
                 </div>
-                <div className="d-flex h-100 col-md-6 justify-content-end">
-                    <Link to={'/edit-user'} className='btn w-50 primary-btn me-3'>Edit Profile</Link>
-                </div>
+                
             </div>
             <div className="row mt-3">
                 <div class="card mb-3 c-card user-card" >
                     <div className="card-body">
                         <div class="row py-5 ">
                             <div class="col-md-2 text-md-start text-center">
-                                <img src={user} class=" user-img" alt="..." />
+                                <img src={user} class="rounded-0 object-fit-contain user-img" alt="..." />
                             </div>
                             <div class="col-md-8 pt-4 pt-md-0">
 
-                                <p class="heading-sm">
-                                    User Information</p>
-                                <div className="d-flex">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold">
-                                            Full Name:
-                                        </p>
-                                    </div>
-                                    <div className="col">
-                                        <p className="para">
-                                            Zabrina John
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold">
-                                            Email:
-                                        </p>
-                                    </div>
-                                    <div className="col">
-                                        <p className="para">
-                                            ZabrinaJohn@gmail.com
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold">
-                                            Phone:
-                                        </p>
-                                    </div>
-                                    <div className="col">
-                                        <p className="para">
-                                            123 123 123
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold">
-                                            Address:
-                                        </p>
-                                    </div>
-                                    <div className="col">
-                                        <p className="para">
-                                            United State 
-                                        </p>
-                                    </div>
-                                </div>
                                 <div className="d-flex">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
@@ -106,12 +54,39 @@ const Userview = () => {
                                 <div className="d-flex">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
+                                            Description:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <p className="para">
+                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita dicta facere dignissimos. Dolores nisi facere doloribus blanditiis? Dicta eveniet odio cumque accusamus delectus commodi, obcaecati vitae sequi quis animi voluptatem!
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="d-flex">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
+                                            Expires At:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <p className="para">
+                                            12/12/2024
+                                            {/* <input type="date" className='form-control inp' name="" id="" /> */}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="d-flex">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
                                             Status:
                                         </p>
                                     </div>
                                     <div className="col">
                                         <p className="para">
-                                            Active 
+                                            Active
                                         </p>
                                     </div>
                                 </div>
@@ -124,5 +99,4 @@ const Userview = () => {
     )
 }
 
-export default Userview
-
+export default MembershipView
