@@ -11,7 +11,7 @@ const Login = () => {
                 <div className="container">
                     <div className="row align-items-center min-vh-100 justify-content-center">
                         <div className="row col-md-10 col-lg-12">
-                            <div className="col-lg-6 d-lg-block d-none login-left">
+                            <div className="col-lg-6 d-lg-block d-none login-left my-auto">
                                 <img src={back2} className='' alt="" />
                             </div>
                             <div className="col-lg-6 my-auto login-right text-center">

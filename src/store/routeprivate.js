@@ -9,10 +9,10 @@ import Footer from "../layout/Footer";
 
 
 const Routeprivate = ({ path, ...rest }) => {
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const Navigate = useNavigate()
-  // return isAuthenticated ? (
-  return (
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated);
+  return isAuthenticated ? (
+
     <div className="container-fluid min-vh-100 ">
       <div className="row  ">
         <div className="col-lg-3 col-xl-2 px-0 sidebar-sticky">
@@ -28,10 +28,11 @@ const Routeprivate = ({ path, ...rest }) => {
       </div>
     </div>
 
-  )
-  //  : (
-  //   <Navigate to="/" />
-  // );
+  ) : (
+
+      <Navigate to="/" />
+ 
+  );
 };
 
 export default Routeprivate;

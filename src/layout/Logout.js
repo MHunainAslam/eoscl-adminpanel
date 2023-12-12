@@ -1,10 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router'
-
+import {logout} from '../store/Authaction'
 const Logout = () => {
     const Navigate = useNavigate()
+    const dispatch = useDispatch();
     const logoutUser = () => {
         Navigate('/')
+        dispatch(logout());
+        localStorage.removeItem("EosclDashboard")
         document.querySelector('.close-modal').click()
     }
     return (

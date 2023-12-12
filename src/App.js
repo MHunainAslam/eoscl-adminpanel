@@ -30,8 +30,20 @@ import EditMembership from './pages/membership/EditMembership';
 import AddMembership from './pages/membership/AddMembership';
 
 function App() {
+
+
+
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const getuser = localStorage.getItem("EosclDashboard");
+  const usertoken = JSON.parse(getuser);
+  if (usertoken) {
+    dispatch({ type: "LOGIN", payload: getuser.token });
+  }
   return (
     <>
+
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -46,6 +58,8 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/forget' element={<Forget />} />
+
+
           <Route element={<Routeprivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/partner' element={<Vendors />} />

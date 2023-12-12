@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
+import { app_url } from '../../config'
+
+
 
 const RegistrationForm = () => {
     const [Name, setName] = useState('')
@@ -9,16 +12,7 @@ const RegistrationForm = () => {
     const [showPass, setshowPass] = useState(false)
     const [showPass2, setshowPass2] = useState(false)
     const Navigate = useNavigate()
-    const Login = (e) => {
-        e.preventDefault();
-        if (Name === '' || Password === '') {
-            toast.error('Fields Empty')
-        } else {
 
-            Navigate('/dashboard')
-        }
-
-    }
     return (
         <form >
             <div className="row">
