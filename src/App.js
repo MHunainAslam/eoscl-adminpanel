@@ -65,7 +65,7 @@ function App() {
             <Route path='/partner' element={<Vendors />} />
             <Route path='/addpartner' element={<AddVendors />} />
             <Route path='/viewpartner/:slug' element={<ViewVendors />} />
-            <Route path='/addpartnerdiscount' element={<AddvendorsDiscount />} />
+            <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount />} />
             <Route path='/editpartnerdiscount' element={<EditvendorsDiscount />} />
             <Route path='/editpartner/:slug' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
