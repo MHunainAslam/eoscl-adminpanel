@@ -1,16 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import v1 from '../../assets/images/vendors/Rectangle 12.png'
-import v2 from '../../assets/images/vendors/Rectangle 14.png'
-import v3 from '../../assets/images/vendors/Rectangle 16.png'
-import v4 from '../../assets/images/vendors/Rectangle 18.png'
-import v5 from '../../assets/images/vendors/Rectangle 20.png'
-import v6 from '../../assets/images/vendors/Rectangle 23.png'
-import v7 from '../../assets/images/vendors/Rectangle 24.png'
-import v8 from '../../assets/images/vendors/Rectangle 26.png'
-import v9 from '../../assets/images/vendors/Rectangle 28.png'
-import v10 from '../../assets/images/vendors/Rectangle 31.png'
-import v11 from '../../assets/images/vendors/Rectangle 32.png'
-import v12 from '../../assets/images/vendors/Rectangle 34.png'
+import nonimg from '../../assets/images/null.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { app_url, img_url } from '../../config'
@@ -77,7 +66,12 @@ const Card = () => {
                                 <div className="card-body">
                                     <div className="d-flex  justify-content-between">
                                         <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
-                                            <img src={img_url + item.image?.url} alt="" />
+                                            {item.image === null ?
+                                                <img src={nonimg} alt="" />
+                                                :
+                                                <img src={img_url + item.image?.url} alt="" />
+
+                                            }
                                         </div>
                                         <div>
                                             <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
