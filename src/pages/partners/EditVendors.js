@@ -1,8 +1,20 @@
-import React, { useState } from 'react'
-import user from '../../assets/images/vendors/Rectangle 20.png'
-import { useNavigate } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import user from '../../assets/images/null.png'
+import { useNavigate, useParams } from 'react-router'
+import axios from 'axios'
+import { app_url, img_url } from '../../config'
+import toast from 'react-hot-toast'
 const EditVendors = () => {
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const [data, setdata] = useState()
+    const [CompanyName, setCompanyName] = useState('')
+    const [DiscountUpto, setDiscountUpto] = useState('')
+    const [Logo, setLogo] = useState(null)
+    const [isLoading, setisLoading] = useState('')
+    const [Desc, setDesc] = useState('')
+    const [Status, setStatus] = useState('')
     const navigate = useNavigate()
+    const { slug } = useParams()
     const backforward = () => {
         navigate(-1)
     }
@@ -11,26 +23,107 @@ const EditVendors = () => {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
-
+        const formDataimg = new FormData();
+        setisLoading(true)
+        formDataimg.append('media', event.target.files[0]);
         reader.onloadend = () => {
             setImage(reader.result);
+            axios.post(`${app_url}/api/post-media`, formDataimg, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+
+                }
+            })
+                .then(response => {
+                    // Handle successful response here
+                    console.log(response.data);
+                    setisLoading(false)
+                    setLogo(response.data.data.last_inserted_id)
+                })
+                .catch(error => {
+                    // Handle error here
+                    console.error(error);
+                    toast.error(error?.response?.data?.message)
+                    setisLoading(false)
+                });
         };
 
         if (file) {
             reader.readAsDataURL(file);
+
+
         }
     };
+    useEffect(() => {
+        axios.get(`${app_url}/api/partners/${slug}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                setdata(response.data)
+                setCompanyName(response?.data?.data?.company_name)
+                setDiscountUpto(response?.data?.data?.discount_upto)
+                setDesc(response?.data?.data?.description)
+                setStatus(response?.data?.data?.status)
+                setImage(response?.data?.data?.image ? img_url + response?.data?.data?.image.url : user)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }, [])
+
+    const addpartner = (e) => {
+        e.preventDefault();
+
+        // if (CompanyName === '' || DiscountUpto === '' || Desc === '' || Status === '' || Logo === null) {
+        //     toast.error('All Fields Are Required')
+        // } else {
+        setisLoading(true)
+        axios.put(`${app_url}/api/partners/${slug}`, { company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status }, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                toast.success(response.data.message)
+                setCompanyName('')
+                setDiscountUpto('')
+                setDesc('')
+                setStatus('')
+                setLogo(null)
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+        // }
+    }
     return (
         <>
             <div className="d-flex align-items-center">
                 <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
-                    Edit Partners
+                    Edit Partner
                 </p>
             </div>
             <div className="row mt-3">
                 <div class="card mb-3 c-card user-card" >
-                    <div className="card-body">
+                    <form onSubmit={addpartner} className="card-body">
                         <div class="row py-5 ">
                             <div class="col-md-2 text-md-start text-center position-relative">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
@@ -52,7 +145,7 @@ const EditVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" className='form-control inp shadow-sm' name="" id="" />
+                                        <input type="text" value={CompanyName} onChange={(e) => setCompanyName(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center my-3">
@@ -62,7 +155,7 @@ const EditVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" className='form-control inp shadow-sm' name="" id="" />
+                                        <input type="number" value={DiscountUpto} onChange={(e) => setDiscountUpto(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex  my-3">
@@ -72,7 +165,7 @@ const EditVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <textarea type="text" className='form-control tarea shadow-sm' name="" rows={5} id="" />
+                                        <textarea type="text" value={Desc} onChange={(e) => setDesc(e.target.value)} className='form-control tarea shadow-sm' name="" rows={5} id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex  my-3">
@@ -82,22 +175,19 @@ const EditVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                            {/* <label class="form-check-label me-3" for="flexSwitchCheckChecked">Active</label> */}
-                                            <select name="" className='form-select inp' id="">
-                                                <option value="" hidden>Select Status</option>
-                                                <option value="">Active</option>
-                                                <option value="">Inactive</option>
-                                            </select>
-
-                                    
+                                        <select name="" className='form-select inp' id="" value={Status} onChange={(e) => setStatus(e.target.value)}>
+                                            <option value="" hidden>Select Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button className='btn primary-btn px-md-5 mt-4'>Update</button>
+                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>
@@ -105,4 +195,6 @@ const EditVendors = () => {
 }
 
 export default EditVendors
+
+
 

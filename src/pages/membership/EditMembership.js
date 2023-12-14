@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import user from '../../assets/images/vendors/Image 5.png'
-import { Link, useNavigate } from 'react-router-dom'
+import user from '../../assets/images/null.png'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Ckeditor from '../../components/Ckeditor'
+import { app_url, img_url } from '../../config'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 const EditMembership = () => {
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const [title, settitle] = useState('')
+    const [desc, setdesc] = useState('')
+    const [price, setprice] = useState('')
+    const [duration, setduration] = useState('')
+    const [status, setstatus] = useState('')
+    const [Logo, setLogo] = useState(null)
+    const [editorLoaded, setEditorLoaded] = useState(false);
+    const [data, setData] = useState("");
+    const [isLoading, setisLoading] = useState(false)
+    const { slug } = useParams()
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -11,36 +25,115 @@ const EditMembership = () => {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        const reader = new FileReader();
 
+        const reader = new FileReader();
+        const formDataimg = new FormData();
+        formDataimg.append('media', event.target.files[0]);
+        setisLoading(true)
         reader.onloadend = () => {
             setImage(reader.result);
+            axios.post(`${app_url}/api/post-media`, formDataimg, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+
+                }
+            })
+                .then(response => {
+                    // Handle successful response here
+                    console.log(response.data);
+                    setisLoading(false)
+                    setLogo(response.data.data.last_inserted_id)
+                })
+                .catch(error => {
+                    // Handle error here
+                    console.error(error);
+                    toast.error(error?.response?.data?.message)
+                    setisLoading(false)
+                });
         };
 
         if (file) {
             reader.readAsDataURL(file);
         }
     };
-    const [editorLoaded, setEditorLoaded] = useState(false);
-    const [data, setData] = useState("");
 
     useEffect(() => {
         setEditorLoaded(true);
     }, []);
+    useEffect(() => {
+        axios.get(`${app_url}/api/memberships/${slug}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                settitle(response?.data?.data?.title)
+                setprice(response?.data?.data?.price)
+                setdesc(response?.data?.data?.description)
+                setduration(response?.data?.data?.duration)
+                setstatus(response?.data?.data?.status)
+                setImage(response?.data?.data?.image ? img_url + response?.data?.data?.image.url : user)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }, [])
+    const addmembershipcard = (e) => {
+        e.preventDefault()
+        if (title === '' || desc === '' || Logo === null || price === '' || duration === null || status === '') {
+            toast.error('All Fields Are Required')
+        } else {
+            setisLoading(true)
+            axios.put(`${app_url}/api/memberships/${slug}`, { title: title, description: desc, image: Logo?.toString(), price: price, duration: duration, status: status }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+
+                }
+            })
+                .then(response => {
+                    // Handle successful response here
+                    console.log(response.data);
+                    setisLoading(false)
+
+                    settitle('')
+                    setdesc('')
+                    setLogo(null)
+                    setprice('')
+                    setduration('')
+                    setstatus('')
+                    setImage(user);
+                })
+                .catch(error => {
+                    // Handle error here
+                    console.error(error);
+                    toast.error(error?.response?.data?.message)
+                    setisLoading(false)
+                });
+        }
+    }
+
     return (
         <>
             <div className="d-md-flex justify-content-between">
                 <div className='d-flex align-items-center'>
                     <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
-                        Edit Membership Detail
+                        Edit Membership
                     </p>
                 </div>
 
             </div>
             <div className="row mt-3">
                 <div class="card mb-3 c-card user-card" >
-                    <div className="card-body">
+                    <form onSubmit={addmembershipcard} className="card-body">
                         <div class="row py-5 ">
                             <div class="col-md-2 text-md-start text-center position-relative">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
@@ -61,7 +154,7 @@ const EditMembership = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" className='form-control inp' name="" id="" />
+                                        <input type="text" className='form-control inp' value={title} onChange={(e) => settitle(e.target.value)} name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
@@ -71,7 +164,7 @@ const EditMembership = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" className='form-control inp' name="" id="" />
+                                        <input type="number" className='form-control inp' value={price} onChange={(e) => setprice(e.target.value)} name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
@@ -80,29 +173,29 @@ const EditMembership = () => {
                                             Description:
                                         </p>
                                     </div>
-
-                                    <div className="col ">
+                                    <div className="col  ">
                                         <Ckeditor
+
                                             name="description"
                                             onChange={(data) => {
-                                                setData(data);
+                                                setdesc(data);
 
                                             }}
+                                            value={desc}
                                             editorLoaded={editorLoaded}
                                         />
                                     </div>
-
                                 </div>
 
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
-                                            Expires At:
+                                            Membership Duration:
                                         </p>
                                     </div>
                                     <div className="col">
 
-                                        <input type="date" className='form-control inp' name="" id="" />
+                                        <input type="number" className='form-control inp' value={duration} onChange={(e) => setduration(e.target.value)} name="" id="" />
 
                                     </div>
                                 </div>
@@ -114,16 +207,19 @@ const EditMembership = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <select name="" className='form-select inp' id="">
+                                        <select name="" className='form-select inp' id="" value={status} onChange={(e) => setstatus(e.target.value)}>
                                             <option value="" hidden>Select Status</option>
-                                            <option value="">Active</option>
-                                            <option value="">Inactive</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
                                         </select>
                                     </div>
                                 </div>
+                                <div className='w-100 text-end' >
+                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>
@@ -131,4 +227,6 @@ const EditMembership = () => {
 }
 
 export default EditMembership
+
+
 

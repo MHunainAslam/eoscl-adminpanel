@@ -64,10 +64,10 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/partner' element={<Vendors />} />
             <Route path='/addpartner' element={<AddVendors />} />
-            <Route path='/viewpartner' element={<ViewVendors />} />
+            <Route path='/viewpartner/:slug' element={<ViewVendors />} />
             <Route path='/addpartnerdiscount' element={<AddvendorsDiscount />} />
             <Route path='/editpartnerdiscount' element={<EditvendorsDiscount />} />
-            <Route path='/editpartner' element={<EditVendors />} />
+            <Route path='/editpartner/:slug' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
             <Route path='/userview' element={<Userview />} />
             <Route path='/addnewuser' element={<AddNewuser />} />
@@ -78,8 +78,8 @@ function App() {
             <Route path='/changepassword' element={<Changepassword />} />
             <Route path='/notification' element={<Notification />} />
             <Route path='/membership' element={<Membership />} />
-            <Route path='/membershipview' element={<MembershipView />} />
-            <Route path='/editmembership' element={<EditMembership />} />
+            <Route path='/membershipview/:slug' element={<MembershipView />} />
+            <Route path='/editmembership/:slug' element={<EditMembership />} />
             <Route path='/addmembership' element={<AddMembership />} />
           </Route>
 

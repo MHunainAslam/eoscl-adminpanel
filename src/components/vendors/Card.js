@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import v1 from '../../assets/images/vendors/Rectangle 12.png'
 import v2 from '../../assets/images/vendors/Rectangle 14.png'
 import v3 from '../../assets/images/vendors/Rectangle 16.png'
@@ -13,13 +13,37 @@ import v11 from '../../assets/images/vendors/Rectangle 32.png'
 import v12 from '../../assets/images/vendors/Rectangle 34.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { app_url } from '../../config'
+import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
+import Loader from '../Loader'
 
 const Card = () => {
-    const [isLoading, setisLoading] = useState(false)
+    const [isLoading, setisLoading] = useState(true)
     const [AllPartners, setAllPartners] = useState([])
+    const [isDisable, setisDisable] = useState(false)
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const updatestatus = (e) => {
+        setisDisable(true)
+        console.log(e.target.id)
+        axios.put(`${app_url}/api/partners/${e.target.id}/update-status`, { status: e.target.value }, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisDisable(false)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisDisable(false)
+
+            });
+    }
     useEffect(() => {
         axios.get(`${app_url}/api/partners`, {
             headers: {
@@ -40,397 +64,51 @@ const Card = () => {
                 toast.error(error?.response?.data?.message)
                 setisLoading(false)
             });
-    }, [])
+    }, [isDisable])
 
     return (
-        <div className="row">
-            {AllPartners?.data?.map((item, i) => (
-                <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card h-100  c-card vendorscard'>
+        <div className="row position-relative">
+            {isLoading ? <Loader /> :
+                <>
+                    {AllPartners?.data?.map((item, i) => (
+                        <div className="col-lg-4 col-md-6 mt-3">
+                            <div className='card h-100  c-card vendorscard'>
 
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={app_url + item.image?.url} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                            <input class="form-check-input mx-0" type="checkbox" checked={item.status === 'active'} role="switch" id="flexSwitchCheckChecked" />
+                                <div className="card-body">
+                                    <div className="d-flex  justify-content-between">
+                                        <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
+                                            <img src={img_url + item.image?.url} alt="" />
                                         </div>
-                                    </li>
-                                </ul>
+                                        <div>
+                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                            <ul class="dropdown-menu">
+                                                <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
+                                                <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`}>View</Link></li>
+                                                <li>
+                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
+                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p className="heading-m text-s">
+                                        {item.discount_upto}% <span className='para-lg text-black'>off</span>
+                                    </p>
+                                    <p className="para">
+                                        {item.description}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <p className="heading-m text-s">
-                            {item.discount_upto}% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            {item.description}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            ))}
 
-            {/* <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
+                    ))}
+                </>
+            }
 
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v2} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            23% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v3} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            15% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v4} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            30% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v5} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            19% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v6} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            25% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v7} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            35% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v8} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            15% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v9} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            35% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v10} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            18% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v11} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            08% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mt-3">
-                <div className='card c-card vendorscard'>
-
-                    <div className="card-body">
-                        <div className="d-flex  justify-content-between">
-                            <div className='v-logo active'>
-                                <img src={v12} alt="" />
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editpartner">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/viewpartner">View</Link></li>
-                                    <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p className="heading-m text-s">
-                            35% <span className='para-lg text-black'>off</span>
-                        </p>
-                        <p className="para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi placeat, ipsa tempore similique eveniet aliquid quaerat provident distinctio quod eos, sapiente suscipit saepe cupiditate. Ipsa odit aut reiciendis? Exercitationem.
-                        </p>
-                    </div>
-                </div>
-            </div> */}
         </div>
     )
 }

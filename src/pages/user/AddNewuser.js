@@ -8,6 +8,9 @@ const AddNewuser = () => {
         navigate(-1)
     }
     const [PkgPrice, setPkgPrice] = useState('')
+
+    
+
     return (
         <>
             <div className="d-md-flex justify-content-between">
@@ -17,7 +20,7 @@ const AddNewuser = () => {
                         Add New User
                     </p>
                 </div>
-             
+
             </div>
             <div className="row mt-3">
                 <div class="card mb-3 c-card user-card" >
@@ -37,7 +40,7 @@ const AddNewuser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                       <input type="text" className='inp form-control' name="" id="" />
+                                        <input type="text" className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
@@ -47,7 +50,7 @@ const AddNewuser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                       <input type="text" className='inp form-control' name="" id="" />
+                                        <input type="text" className='inp form-control' name="" id="" />
 
                                     </div>
                                 </div>
@@ -58,7 +61,7 @@ const AddNewuser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                    <input type="text" className='inp form-control' name="" id="" />
+                                        <input type="text" className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
@@ -68,17 +71,17 @@ const AddNewuser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                    <input type="text" className='inp form-control' name="" id="" />
+                                        <input type="text" className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
-                                        Membership Type:
+                                            Membership Type:
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <select name="" className='form-select inp' id="" onChange={(e)=> setPkgPrice(e.target.value)}>
+                                        <select name="" className='form-select inp' id="" onChange={(e) => setPkgPrice(e.target.value)}>
                                             <option value="" hidden>Select Memship Type</option>
                                             <option value="$100,000">Beginner</option>
                                             <option value="$150,000">Premier</option>
@@ -93,7 +96,7 @@ const AddNewuser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                    <input type="text" value={PkgPrice} readOnly className='inp form-control' name="" id="" />
+                                        <input type="text" value={PkgPrice} readOnly className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">

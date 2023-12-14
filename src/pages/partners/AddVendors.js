@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import user from '../../assets/images/vendors/Rectangle 20.png'
+import user from '../../assets/images/null.png'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { app_url } from '../../config'
@@ -36,7 +36,7 @@ const AddVendors = () => {
                     // Handle successful response here
                     console.log(response.data);
                     setisLoading(false)
-                    setLogo(response.data.data.file_path)
+                    setLogo(response.data.data.last_inserted_id)
                 })
                 .catch(error => {
                     // Handle error here
@@ -128,7 +128,7 @@ const AddVendors = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" value={DiscountUpto} onChange={(e) => setDiscountUpto(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
+                                        <input type="number" value={DiscountUpto} onChange={(e) => setDiscountUpto(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex  my-3">
