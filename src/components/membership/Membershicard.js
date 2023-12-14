@@ -67,7 +67,7 @@ const Membershicard = () => {
 
                                 <div className="card-body">
                                     <div className="d-flex  justify-content-between">
-                                        <div className='v-logo '>
+                                        <div className={`v-logo ${item.status === 'active' ? 'active' : ''}`}>
                                             <img src={card} alt="" />
                                         </div>
                                         <div>
@@ -78,7 +78,7 @@ const Membershicard = () => {
                                                 <li><Link class="dropdown-item" to={`/membershipview/${item.id}`}>View</Link></li>
                                                 <li>
                                                     <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                        <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
                                                         <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
                                                     </div>
                                                 </li>
