@@ -25,8 +25,17 @@ const Users = () => {
   //   { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
   //   { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
   // ])
-  const [tabledata, settabledata] = useState()
+  const [dataOnPage, setdataOnPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = dataOnPage;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const a = parseInt(itemsPerPage);
+  const b = parseInt(indexOfFirstItem);
+  const [tabledata, settabledata] = useState([])
   const [isLoading, setisLoading] = useState(true)
+  const [isDisable, setisDisable] = useState(false)
+
   useEffect(() => {
     axios.get(`${app_url}/api/users`, {
       headers: {
@@ -45,17 +54,11 @@ const Users = () => {
         setisLoading(false)
         toast.error(error?.response?.data?.message)
       });
-  }, [])
+  }, [isDisable])
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [dataOnPage, setdataOnPage] = useState(10)
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = dataOnPage;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const a = parseInt(itemsPerPage);
-  const b = parseInt(indexOfFirstItem);
+
   useEffect(() => {
     if (dataOnPage > tabledata?.length) {
       setdataOnPage(tabledata?.length)
@@ -64,6 +67,28 @@ const Users = () => {
     console.log('lol', dataOnPage, currentPage)
   }, [dataOnPage])
 
+  const updatestatus = (e) => {
+    setisDisable(true)
+    console.log(e.target.id)
+    axios.put(`${app_url}/api/users/${e.target.id}/update-status`, { status: e.target.value }, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(response => {
+        // Handle successful response here
+        console.log(response.data);
+        setisDisable(false)
+
+      })
+      .catch(error => {
+        // Handle error here
+        console.error(error);
+        toast.error(error?.response?.data?.message)
+        setisDisable(false)
+
+      });
+  }
   return (
     <>
       <div className="d-md-flex justify-content-between">
@@ -92,14 +117,14 @@ const Users = () => {
                 </div>
                 <div><input type="text" className='form-control' placeholder="Search" name="" id="" /></div>
               </div>
-              <UserTable isLoading={isLoading} tabledata={tabledata} indexOfFirstItem={indexOfFirstItem} itemsPerPage={itemsPerPage} />
+              <UserTable updatestatus={updatestatus} isDisable={isDisable} isLoading={isLoading} tabledata={tabledata?.data} indexOfFirstItem={indexOfFirstItem} itemsPerPage={itemsPerPage} />
             </div>
             <div className="card-footer">
               <Pagination
                 dataOnPage={dataOnPage}
                 currentPage={currentPage}
                 totalPages={Math.ceil(tabledata?.length / itemsPerPage)}
-                tabledata={tabledata}
+                tabledata={tabledata?.data}
                 onPageChange={handlePageChange}
                 indexOfFirstItem={indexOfFirstItem}
                 // currentData={currentData}

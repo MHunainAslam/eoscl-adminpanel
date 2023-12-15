@@ -88,7 +88,7 @@ const Edituser = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
+                console.log(response.data,'pppopp');
                 // console.log(response?.data?.data?.image?.url)
                 setuserdata(response.data.data)
                 setName(response.data.data.name)

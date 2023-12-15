@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
 
-const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading }) => {
-    const currentData = tabledata?.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
+const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updatestatus, isDisable }) => {
+    // const currentData = tabledata(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
 
     return (
         <>
@@ -23,8 +23,8 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading }) => 
                         {isLoading ? <tr> <td className='position-relative rounded-5' colSpan={6}> <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div></td></tr> : <>
-                            {currentData?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
-                                currentData?.map((item, i) => (
+                            {tabledata?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
+                                tabledata?.map((item, i) => (
                                     <tr>
                                         <td scope="row">{indexOfFirstItem + i + 1}</td>
 
@@ -35,12 +35,14 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading }) => 
                                         <td>
                                             <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                             <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/edit-user/${item.id}`}>Edit</Link></li>
+                                                <li><Link class="dropdown-item" to={`/edit-user/${item.id}`} state={item}>Edit</Link></li>
                                                 <li><Link class="dropdown-item" to={`/userview/${item.id}`}>View</Link></li>
                                                 <li>
                                                     <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                        <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                                        <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                                       
+                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
+                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+
                                                     </div>
                                                 </li>
                                             </ul>

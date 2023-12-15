@@ -21,7 +21,7 @@ const Pagination = ({
 
     const startIndex = Math.max(0, activeIndex - 2);
     const endIndex = Math.min(pageNumbers.length - 1, startIndex + 3);
-    const buttonsToDisplay = pageNumbers.slice(startIndex, endIndex + 1);
+    const buttonsToDisplay = pageNumbers?.slice(startIndex, endIndex + 1);
 
     return (
         <div className="d-sm-flex justify-content-between align-items-center mt-5 mb-3 text-center">

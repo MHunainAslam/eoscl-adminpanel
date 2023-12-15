@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import user from '../../assets/images/men/Rectangle 1.png'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import logo from '../../assets/images/vendors/Rectangle 14.png'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import cardimg from '../../assets/images/null.png'
 import { app_url, img_url } from '../../config'
 import axios from 'axios'
 import Loader from '../../components/Loader'
 import toast from 'react-hot-toast'
-const ViewVendors = () => {
+const ViewVendors = (state) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [image, setImage] = useState(user);
     const [isDisable, setisDisable] = useState(false)
@@ -17,6 +17,9 @@ const ViewVendors = () => {
     const backforward = () => {
         navigate(-1)
     }
+    const location = useLocation()
+    const logo = location.state;
+console.log(logo , 'logo');
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -101,10 +104,10 @@ const ViewVendors = () => {
                                             <div className="card-body">
                                                 <div className="d-flex  justify-content-between">
                                                     <div className='v-logo active'>
-                                                        {item.partner.image === null ?
-                                                            <img src={logo} alt="" />
+                                                        {logo === null ?
+                                                            <img src={cardimg} alt="" />
                                                             :
-                                                            <img src={img_url + item.partner.image} alt="" />
+                                                            <img src={img_url + logo?.url} alt="" />
                                                         }
                                                     </div>
                                                     <div>
