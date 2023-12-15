@@ -1,10 +1,38 @@
-import React, { useState } from 'react'
-import man from '../assets/images/avatar/Ellipse 1065.png'
+import React, { useEffect, useState } from 'react'
+import man from '../assets/images/avatar/user.webp'
 import Logout from './Logout'
 import { Link } from 'react-router-dom'
+import { app_url, img_url } from '../config'
+import toast from 'react-hot-toast'
+import axios from 'axios'
 const Header = () => {
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    const [isLoading, setisLoading] = useState(true)
+    const [data, setdata] = useState([])
+    const [isDisable, setisDisable] = useState(false)
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    useEffect(() => {
+        axios.get(`${app_url}/api/authMe`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                setdata(response.data.data)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }, [])
 
     return (
         <>
@@ -60,8 +88,8 @@ const Header = () => {
                                 <Link class="dropdown-item d-flex justify-content-center" to="/notification">
 
                                     <p className='mb-0 w-100 text-center '>
-                                        View All      
-                                        
+                                        View All
+
                                     </p>
                                 </Link>
                             </li>
@@ -70,7 +98,10 @@ const Header = () => {
                     </li>
 
                     <li className='nav-item dropdown me-3 pointer list-unstyled notiication-btn'>
-                        <img src={man} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" />
+                        {data.image === null ?
+                            <img src={man} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" /> :
+                            <img src={img_url + data.image.url} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" />
+                        }
                         <ul class="dropdown-menu">
                             <li className='my-1'><Link class="dropdown-item " to="/profile">
                                 <i class="bi bi-person-fill me-2"></i>
@@ -84,10 +115,10 @@ const Header = () => {
                     </li>
                     <div>
                         <p className="mb-0 para fw-bold">
-                            Robbert Broen
+                            {data.name}
                         </p>
                         <p className="mb-0 para-m">
-                            manager
+                            {data.role?.name}
                         </p>
                     </div>
                 </div>

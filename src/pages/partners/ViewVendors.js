@@ -111,7 +111,7 @@ const ViewVendors = () => {
                                                         <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                                         <ul class="dropdown-menu">
-                                                            <li><Link class="dropdown-item" to="/editpartnerdiscount">Edit</Link></li>
+                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
 
                                                             <li>
                                                                 <div class="form-check form-switch dropdown-item justify-content-between d-flex">

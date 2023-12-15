@@ -2,25 +2,50 @@ import React, { useEffect, useState } from 'react'
 import UserTable from '../../components/users/UserTable'
 import Pagination from '../../components/Pagination'
 import { Link } from 'react-router-dom'
+import { app_url } from '../../config'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Users = () => {
-  const [tabledata, settabledata] = useState([
-    { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
-    { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
-  ])
+  const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+  // const [tabledata, settabledata] = useState([
+  //   { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'john doe', email: 'john@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jacob', email: 'Jacob@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Mark', email: 'Mark@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
+  //   { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
+  // ])
+  const [tabledata, settabledata] = useState()
+  const [isLoading, setisLoading] = useState(true)
+  useEffect(() => {
+    axios.get(`${app_url}/api/users`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(response => {
+        // Handle successful response here
+        console.log(response.data);
+        settabledata(response?.data?.data)
+        setisLoading(false)
+      })
+      .catch(error => {
+        // Handle error here
+        console.error(error);
+        setisLoading(false)
+        toast.error(error?.response?.data?.message)
+      });
+  }, [])
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -32,8 +57,8 @@ const Users = () => {
   const a = parseInt(itemsPerPage);
   const b = parseInt(indexOfFirstItem);
   useEffect(() => {
-    if (dataOnPage > tabledata.length) {
-      setdataOnPage(tabledata.length)
+    if (dataOnPage > tabledata?.length) {
+      setdataOnPage(tabledata?.length)
       setCurrentPage(1)
     }
     console.log('lol', dataOnPage, currentPage)
@@ -67,7 +92,7 @@ const Users = () => {
                 </div>
                 <div><input type="text" className='form-control' placeholder="Search" name="" id="" /></div>
               </div>
-              <UserTable tabledata={tabledata} indexOfFirstItem={indexOfFirstItem} itemsPerPage={itemsPerPage} />
+              <UserTable isLoading={isLoading} tabledata={tabledata} indexOfFirstItem={indexOfFirstItem} itemsPerPage={itemsPerPage} />
             </div>
             <div className="card-footer">
               <Pagination

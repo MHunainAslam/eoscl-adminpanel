@@ -56,33 +56,34 @@ const AddvendorsDiscount = () => {
     }, [])
     const addpartnerdiscount = (e) => {
         e.preventDefault();
-        setisLoading(true)
         if (membership_id === '' || discount === '' || description === '' || status === '') {
             toast.error('All Fields Are Required')
-        }
-        axios.post(`${app_url}/api/partner-details`, { partner_id: slug, membership_id: membership_id, discount: discount, image: '0', description: description, status: status }, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
+        } else {
+            setisLoading(true)
+            axios.post(`${app_url}/api/partner-details`, { partner_id: slug, membership_id: membership_id, discount: discount, image: '0', description: description, status: status }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
 
-            }
-        })
-            .then(response => {
-                // Handle successful response here
-                console.log(response.data);
-                setisLoading(false)
-                toast.success(response.data.message)
-                setpartner_id('')
-                setmembership_id('')
-                setdiscount('')
-                setdescription('')
-                setstatus('')
+                }
             })
-            .catch(error => {
-                // Handle error here
-                console.error(error);
-                toast.error(error?.response?.data?.message)
-                setisLoading(false)
-            });
+                .then(response => {
+                    // Handle successful response here
+                    console.log(response.data);
+                    setisLoading(false)
+                    toast.success(response.data.message)
+                    setpartner_id('')
+                    setmembership_id('')
+                    setdiscount('')
+                    setdescription('')
+                    setstatus('')
+                })
+                .catch(error => {
+                    // Handle error here
+                    console.error(error);
+                    toast.error(error?.response?.data?.message)
+                    setisLoading(false)
+                });
+        }
     }
     return (
         <>

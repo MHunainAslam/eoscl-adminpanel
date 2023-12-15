@@ -66,12 +66,12 @@ function App() {
             <Route path='/addpartner' element={<AddVendors />} />
             <Route path='/viewpartner/:slug' element={<ViewVendors />} />
             <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount />} />
-            <Route path='/editpartnerdiscount' element={<EditvendorsDiscount />} />
+            <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount />} />
             <Route path='/editpartner/:slug' element={<EditVendors />} />
             <Route path='/users' element={<Users />} />
-            <Route path='/userview' element={<Userview />} />
+            <Route path='/userview/:slug' element={<Userview />} />
             <Route path='/addnewuser' element={<AddNewuser />} />
-            <Route path='/edit-user' element={<Edituser />} />
+            <Route path='/edit-user/:slug' element={<Edituser />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit-profile' element={<EditProfile />} />

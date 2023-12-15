@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Loader from '../Loader';
 
-const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
-    const currentData = tabledata.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
+const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading }) => {
+    const currentData = tabledata?.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
 
     return (
         <>
@@ -19,31 +20,34 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentData?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
-                            currentData?.map((item, i) => (
-                                <tr>
-                                    <td scope="row">{indexOfFirstItem + i + 1}</td>
+                        {isLoading ? <tr> <td className='position-relative rounded-5' colSpan={6}> <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div></td></tr> : <>
+                            {currentData?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
+                                currentData?.map((item, i) => (
+                                    <tr>
+                                        <td scope="row">{indexOfFirstItem + i + 1}</td>
 
-                                    <td className="text-capitalize"> {item.name}</td>
-                                    <td>{item.email}</td>
-                                    <td >{item.phone}</td>
-                                    <td className="text-capitalize">{item.status}</td>
-                                    <td>
-                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                        <ul class="dropdown-menu">
-                                            <li><Link class="dropdown-item" to="/edit-user">Edit</Link></li>
-                                            <li><Link class="dropdown-item" to="/userview">View</Link></li>
-                                            <li>
-                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                                    <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            ))}
-
+                                        <td className="text-capitalize"> {item.name}</td>
+                                        <td>{item.email}</td>
+                                        <td >{item.phone}</td>
+                                        <td className="text-capitalize">{item.status}</td>
+                                        <td>
+                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                            <ul class="dropdown-menu">
+                                                <li><Link class="dropdown-item" to={`/edit-user/${item.id}`}>Edit</Link></li>
+                                                <li><Link class="dropdown-item" to={`/userview/${item.id}`}>View</Link></li>
+                                                <li>
+                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                        <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                                                        <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                ))}
+                        </>}
 
 
 
