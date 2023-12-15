@@ -98,9 +98,9 @@ const Header = () => {
                     </li>
 
                     <li className='nav-item dropdown me-3 pointer list-unstyled notiication-btn'>
-                        {data.image === null ?
+                        {data?.image === null ?
                             <img src={man} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" /> :
-                            <img src={img_url + data.image.url} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" />
+                            <img src={img_url + data?.image?.url} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" />
                         }
                         <ul class="dropdown-menu">
                             <li className='my-1'><Link class="dropdown-item " to="/profile">
@@ -115,10 +115,10 @@ const Header = () => {
                     </li>
                     <div>
                         <p className="mb-0 para fw-bold">
-                            {data.name}
+                            {data?.name}
                         </p>
                         <p className="mb-0 para-m">
-                            {data.role?.name}
+                            {data?.role?.name}
                         </p>
                     </div>
                 </div>
