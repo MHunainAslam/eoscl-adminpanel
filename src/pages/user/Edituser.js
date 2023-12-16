@@ -98,7 +98,7 @@ const Edituser = () => {
                 setPkgPrice(response.data.data.membership.price)
                 setStatus(response.data.data.status)
                 setEmail(response.data.data.email)
-                setImage(img_url + response.data.data?.image?.url)
+                setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
             })
             .catch(error => {
                 // Handle error here

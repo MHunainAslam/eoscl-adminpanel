@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import card from '../../assets/images/vendors/Image 5.png'
+import card from '../../assets/images/null.png'
 
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { app_url } from '../../config'
+import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../Loader'
 
@@ -68,7 +68,10 @@ const Membershicard = () => {
                                 <div className="card-body">
                                     <div className="d-flex  justify-content-between">
                                         <div className={`v-logo ${item.status === 'active' ? 'active' : ''}`}>
-                                            <img src={card} alt="" />
+                                            {item.image === null ?
+                                                <img src={card} alt="" /> :
+                                                <img src={img_url + item.image.url} alt="" />
+                                            }
                                         </div>
                                         <div>
                                             <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
