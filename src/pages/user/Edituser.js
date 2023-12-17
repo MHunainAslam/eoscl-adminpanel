@@ -97,7 +97,7 @@ const Edituser = () => {
                 setMembershipId(response.data.data.membership_id)
                 setPkgPrice(response.data.data.membership.price)
                 setStatus(response.data.data.status)
-                setEmail(response.data.data.email)
+                // setEmail(response.data.data.email)
                 setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
             })
             .catch(error => {
@@ -211,7 +211,7 @@ const Edituser = () => {
                                     </div>
                                     <div className="col">
                                         <select name="" className='form-select inp' id={PkgPrice} value={MembershipId} onChange={(e) => { setMembershipId(e.target.value); membershipidandpkgprice(e); }}>
-                                            {/* <option value="" hidden>Select Memship Type</option> */}
+                                            <option value="" hidden>Select Memship Type</option>
                                             {Membershipdata?.data?.map((item, i) => (
                                                 <option value={item.id} >{item.title}</option>
                                             ))}
@@ -236,7 +236,7 @@ const Edituser = () => {
                                     </div>
                                     <div className="col">
                                         <select name="" className='form-select inp' id="" value={Status} onChange={(e) => setStatus(e.target.value)}>
-                                            <option value="" hidden>Select Status</option>
+                                            {/* <option value="" hidden>Select Status</option> */}
                                             <option value="active">Active</option>
                                             <option value="inactive">Inactive</option>
                                         </select>

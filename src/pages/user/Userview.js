@@ -114,12 +114,12 @@ const Userview = () => {
                                     <div className="d-flex">
                                         <div className="col-md-3 col-4">
                                             <p className="para fw-bold">
-                                                {data.membership?.title}
+                                               Membership Type
                                             </p>
                                         </div>
                                         <div className="col">
                                             <p className="para">
-                                                Beginner
+                                            {data.membership === null ? '--' : data.membership?.title}
                                             </p>
                                         </div>
                                     </div>

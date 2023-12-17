@@ -26,13 +26,13 @@ const Pagination = ({
     return (
         <div className="d-sm-flex justify-content-between align-items-center mt-5 mb-3 text-center">
             <p className="para mb-sm-0">
-                Showing Products  <b>{tabledata?.length > 0 ? indexOfFirstItem + 1 : 0} </b> -
+                Showing Products  <b>{tabledata?.data?.length > 0 ? indexOfFirstItem + 1 : 0} </b> -
                 <b>
-                    {a + b > tabledata?.length
-                        ? tabledata?.length
+                    {a + b > tabledata?.data?.length
+                        ? tabledata?.total
                         : a + b} &nbsp;
                 </b>
-                Of <b>{tabledata?.length}</b> Results
+                Of <b>{tabledata?.total}</b> Results
             </p>
             <div >
                 <ul className="pagination p-0 m-0 justify-content-center">

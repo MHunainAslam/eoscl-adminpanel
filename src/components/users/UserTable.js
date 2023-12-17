@@ -23,8 +23,8 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updat
                         {isLoading ? <tr> <td className='position-relative rounded-5' colSpan={6}> <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div></td></tr> : <>
-                            {tabledata?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
-                                tabledata?.map((item, i) => (
+                            {tabledata?.data?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
+                                tabledata?.data?.map((item, i) => (
                                     <tr>
                                         <td scope="row">{indexOfFirstItem + i + 1}</td>
 

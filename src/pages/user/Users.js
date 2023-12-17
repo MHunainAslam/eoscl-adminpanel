@@ -25,8 +25,9 @@ const Users = () => {
   //   { sno: 1, name: 'Alex', email: 'Alex@gmail.com', phone: '123 123 123', status: 'active' },
   //   { sno: 1, name: 'Jack', email: 'Jack@gmail.com', phone: '123 123 123', status: 'active' },
   // ])
-  const [dataOnPage, setdataOnPage] = useState(5)
+  const [dataOnPage, setdataOnPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1);
+  const [Search, setSearch] = useState('')
   const itemsPerPage = dataOnPage;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -37,16 +38,23 @@ const Users = () => {
   const [isDisable, setisDisable] = useState(false)
 
   useEffect(() => {
-    axios.get(`${app_url}/api/users`, {
+   
+
+    axios.get(`${app_url}/api/users?per_page=${dataOnPage}&page=${currentPage}&search=${Search}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
     })
       .then(response => {
         // Handle successful response here
-        console.log(response.data);
-        settabledata(response?.data?.data)
+        console.log(response.data, 'table');
+        settabledata(response?.data)
         setisLoading(false)
+        
+        // if (dataOnPage => response.data?.data?.total) {
+        //   setdataOnPage(response.data?.data?.total)
+        //   setCurrentPage(1)
+        // } 
       })
       .catch(error => {
         // Handle error here
@@ -54,18 +62,21 @@ const Users = () => {
         setisLoading(false)
         toast.error(error?.response?.data?.message)
       });
-  }, [isDisable])
+  }, [isDisable, Search, dataOnPage, currentPage])
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    setisLoading(true)
+    console.log(pageNumber);
   };
 
-  useEffect(() => {
-    if (dataOnPage > tabledata?.length) {
-      setdataOnPage(tabledata?.length)
-      setCurrentPage(1)
-    }
-    console.log('lol', dataOnPage, currentPage)
-  }, [dataOnPage])
+  // useEffect(() => {
+  //   if (dataOnPage > tabledata?.length) {
+  //     setdataOnPage(tabledata?.length)
+  //     setCurrentPage(1)
+  //   }
+  //   console.log('lol', dataOnPage, currentPage)
+  // }, [dataOnPage])
 
   const updatestatus = (e) => {
     setisDisable(true)
@@ -115,7 +126,7 @@ const Users = () => {
                   </select>
                   Entries
                 </div>
-                <div><input type="text" className='form-control' placeholder="Search" name="" id="" /></div>
+                <div><input type="text" className='form-control' value={Search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" name="" id="" /></div>
               </div>
               <UserTable updatestatus={updatestatus} isDisable={isDisable} isLoading={isLoading} tabledata={tabledata?.data} indexOfFirstItem={indexOfFirstItem} itemsPerPage={itemsPerPage} />
             </div>
@@ -123,7 +134,7 @@ const Users = () => {
               <Pagination
                 dataOnPage={dataOnPage}
                 currentPage={currentPage}
-                totalPages={Math.ceil(tabledata?.length / itemsPerPage)}
+                totalPages={Math.ceil(tabledata?.data?.total / itemsPerPage)}
                 tabledata={tabledata?.data}
                 onPageChange={handlePageChange}
                 indexOfFirstItem={indexOfFirstItem}

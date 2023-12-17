@@ -39,7 +39,7 @@ const Profile = () => {
                     Profile
                 </p>
                 <div className="d-flex h-100 col-md-6">
-                    <Link to={'/edit-profile'} className='btn w-50 primary-btn me-3'>Edit Profile</Link>
+                    <Link to={`/edit-profile/${data.id}`} className='btn w-50 primary-btn me-3'>Edit Profile</Link>
                     <Link to={'/changepassword'} className='btn w-50 primary-btn'>Change Password</Link>
                 </div>
             </div>
@@ -51,7 +51,7 @@ const Profile = () => {
                                 <div class="col-md-2 text-md-start text-center">
                                     {data.image === null ?
                                         <img src={user} class=" user-img" alt="..." /> :
-                                        <img src={img_url + data.image?.url} class=" user-img" alt="..." />
+                                        <img src={img_url + data.image?.url} class="object-fit-cover user-img" alt="..." />
                                     }
                                 </div>
                                 <div class="col-md-8 pt-4 pt-md-0">
@@ -109,6 +109,18 @@ const Profile = () => {
                                     <div className="d-flex">
                                         <div className="col-md-3 col-4">
                                             <p className="para fw-bold">
+                                               Membership Type
+                                            </p>
+                                        </div>
+                                        <div className="col">
+                                            <p className="para">
+                                            {data.membership === null ? '--' : data.membership?.title}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex">
+                                        <div className="col-md-3 col-4">
+                                            <p className="para fw-bold">
                                                 Status:
                                             </p>
                                         </div>
@@ -142,6 +154,7 @@ const Profile = () => {
                                             </p>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

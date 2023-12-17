@@ -74,7 +74,7 @@ function App() {
             <Route path='/edit-user/:slug' element={<Edituser />} />
             <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />
-            <Route path='/edit-profile' element={<EditProfile />} />
+            <Route path='/edit-profile/:slug' element={<EditProfile />} />
             <Route path='/changepassword' element={<Changepassword />} />
             <Route path='/notification' element={<Notification />} />
             <Route path='/membership' element={<Membership />} />
