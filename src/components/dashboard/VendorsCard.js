@@ -55,7 +55,7 @@ const VendorsCard = () => {
                                         <div className="d-flex align-items-center">
                                             {item.image === null ?
                                                 <img src={men1} alt="" /> :
-                                                <img src={img_url + item.image.url} alt="" />
+                                                <img src={img_url + item.image.url} className='object-fit-contain' alt="" />
                                             }
                                             <Link className='text-decoration-none text-black' to={`/viewpartner/${item.id}`}>
                                                 <p className="para-lg mb-0 text-capitalize">
@@ -63,7 +63,7 @@ const VendorsCard = () => {
                                                 </p>
                                             </Link>
                                         </div>
-                                        <p className='text-s mb-0'>{item.status}</p>
+                                        <p className='text-s mb-0 text-capitalize'>{item.status}</p>
                                     </li>
                                 ))}
                             </>
