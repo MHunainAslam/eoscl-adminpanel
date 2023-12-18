@@ -28,10 +28,13 @@ import Membership from './pages/membership/Membership'
 import MembershipView from './pages/membership/MembershipView';
 import EditMembership from './pages/membership/EditMembership';
 import AddMembership from './pages/membership/AddMembership';
+import LoadingBar from 'react-top-loading-bar';
+import { useRef, useState } from 'react';
 
 function App() {
 
 
+  const ref = useRef(null)
 
   const dispatch = useDispatch();
 
@@ -48,6 +51,7 @@ function App() {
         position="top-right"
         reverseOrder={false}
       />
+
       <BrowserRouter>
 
         <Routes>
@@ -61,6 +65,7 @@ function App() {
 
 
           <Route element={<Routeprivate />}>
+
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/partner' element={<Vendors />} />
             <Route path='/addpartner' element={<AddVendors />} />
