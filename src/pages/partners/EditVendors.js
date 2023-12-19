@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import axios from 'axios'
 import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
+import AddCatModal from './AddCatModal'
 const EditVendors = () => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [data, setdata] = useState()
@@ -13,6 +14,8 @@ const EditVendors = () => {
     const [isLoading, setisLoading] = useState('')
     const [Desc, setDesc] = useState('')
     const [Status, setStatus] = useState('')
+    const [Category, setCategory] = useState('')
+    const [Categorydata, setCategorydata] = useState('')
     const navigate = useNavigate()
     const { slug } = useParams()
     const backforward = () => {
@@ -55,6 +58,33 @@ const EditVendors = () => {
         }
     };
     useEffect(() => {
+        axios.get(`${app_url}/api/categories`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                setCategorydata(response.data)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message + 'lol')
+                setisLoading(false)
+            });
+    }, [])
+    useEffect(() => {
+        if (Category === 'addcat') {
+            console.log("jhh");
+            document.querySelector('.addcat').click()
+            setCategory('')
+        }
+    }, [Category])
+    useEffect(() => {
         axios.get(`${app_url}/api/partners/${slug}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -88,7 +118,7 @@ const EditVendors = () => {
         //     toast.error('All Fields Are Required')
         // } else {
         setisLoading(true)
-        axios.put(`${app_url}/api/partners/${slug}`, { company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status }, {
+        axios.put(`${app_url}/api/partners/${slug}`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -171,6 +201,23 @@ const EditVendors = () => {
                                 <div className="d-flex  my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
+                                            Category:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <select name="" className='form-select inp' id="" value={Category} onChange={(e) => { setCategory(e.target.value) }}>
+                                            <option value="" hidden>Select Category</option>
+                                            {Categorydata?.data?.map((item, i) => (
+                                                <option value={item.id}>{item.name}</option>
+                                            ))}
+                                            <option value={'addcat'}> Add Category</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="d-flex  my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
                                             Status:
                                         </p>
                                     </div>
@@ -190,6 +237,7 @@ const EditVendors = () => {
                     </form>
                 </div>
             </div>
+            <AddCatModal />
         </>
     )
 }

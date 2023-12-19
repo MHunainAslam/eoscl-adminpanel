@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import user from '../../assets/images/null.png'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { app_url } from '../../config'
 import toast from 'react-hot-toast'
+import AddCatModal from './AddCatModal'
 const AddVendors = () => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [CompanyName, setCompanyName] = useState('')
@@ -12,6 +13,8 @@ const AddVendors = () => {
     const [isLoading, setisLoading] = useState('')
     const [Desc, setDesc] = useState('')
     const [Status, setStatus] = useState('')
+    const [Category, setCategory] = useState('')
+    const [Categorydata, setCategorydata] = useState('')
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -57,11 +60,11 @@ const AddVendors = () => {
     const addpartner = (e) => {
         e.preventDefault();
 
-        if (CompanyName === '' || DiscountUpto === '' || Desc === '' || Status === '' || Logo === null) {
+        if (CompanyName === '' || DiscountUpto === '' || Desc === '' || Status === '' || Logo === null || Category === '') {
             toast.error('All Fields Are Required')
         } else {
             setisLoading(true)
-            axios.post(`${app_url}/api/partners`, { company_name: CompanyName, discount_upto: DiscountUpto, image: Logo.toString(), description: Desc, status: Status }, {
+            axios.post(`${app_url}/api/partners`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo.toString(), description: Desc, status: Status }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
 
@@ -86,6 +89,35 @@ const AddVendors = () => {
                 });
         }
     }
+
+    useEffect(() => {
+        axios.get(`${app_url}/api/categories`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                setCategorydata(response.data)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message + 'lol')
+                setisLoading(false)
+            });
+    }, [])
+    useEffect(() => {
+        if (Category === 'addcat') {
+            console.log("jhh");
+            document.querySelector('.addcat').click()
+            setCategory('')
+        }
+    }, [Category])
     return (
         <>
             <div className="d-flex align-items-center">
@@ -144,6 +176,23 @@ const AddVendors = () => {
                                 <div className="d-flex  my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
+                                            Category:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <select name="" className='form-select inp' id="" value={Category} onChange={(e) => { setCategory(e.target.value) }}>
+                                            <option value="" hidden>Select Category</option>
+                                            {Categorydata?.data?.map((item, i) => (
+                                                <option value={item.id}>{item.name}</option>
+                                            ))}
+                                            <option value={'addcat'}> Add Category</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="d-flex  my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
                                             Status:
                                         </p>
                                     </div>
@@ -163,6 +212,7 @@ const AddVendors = () => {
                     </form>
                 </div>
             </div>
+            <AddCatModal />
         </>
     )
 }
