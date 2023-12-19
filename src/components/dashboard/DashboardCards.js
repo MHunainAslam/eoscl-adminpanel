@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import user from '../../assets/images/avatar/Icon awesome-user-alt.png'
 import Vendoricon from './icons/Vendoricon'
 import Usericon from './icons/Usericon'
 import Sales from './icons/Sales'
+import axios from 'axios'
+import { app_url } from '../../config'
+import toast from 'react-hot-toast'
 const DashboardCards = () => {
+    const [isLoading, setisLoading] = useState(true)
+    const [data, setdata] = useState([])
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    useEffect(() => {
+        axios.get(`${app_url}/api/dashboard-analytics`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                setdata(response.data)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }, [])
     return (
         <div className="row">
             <div className="col-lg-4 col-md-6 mt-3">
@@ -12,7 +39,7 @@ const DashboardCards = () => {
                         <div className="img mx-auto mb-3">
                             <Usericon />
                         </div>
-                        <p className="heading-m mb-1">600 +</p>
+                        <p className="heading-m mb-1">{data?.data?.user_count} +</p>
                         <p className="heading-sm">Number of Users</p>
                     </div>
                 </div>
@@ -24,8 +51,8 @@ const DashboardCards = () => {
                             <Vendoricon />
                         </div>
                         {/* <p className="heading-m mb-1">200<sup> <span className='heading-sm'>+</span></sup></p> */}
-                        <p className="heading-m mb-1">200 +</p>
-                        <p className="heading-sm">Number of Vendors</p>
+                        <p className="heading-m mb-1">{data?.data?.vendor_count} +</p>
+                        <p className="heading-sm">Number of Partners</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +62,7 @@ const DashboardCards = () => {
                         <div className="img mx-auto mb-3">
                             <Sales />
                         </div>
-                        <p className="heading-m mb-1">500 +</p>
+                        <p className="heading-m mb-1">{data?.data?.sale_count} +</p>
                         <p className="heading-sm">Number of Sales</p>
                     </div>
                 </div>
