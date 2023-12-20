@@ -30,6 +30,8 @@ import EditMembership from './pages/membership/EditMembership';
 import AddMembership from './pages/membership/AddMembership';
 import LoadingBar from 'react-top-loading-bar';
 import { useRef, useState } from 'react';
+import VendorsByCat from './pages/partners/VendorsByCat';
+import Allvendors from './pages/partners/Allvendors';
 
 function App() {
 
@@ -67,7 +69,9 @@ function App() {
           <Route element={<Routeprivate />}>
 
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/allpartners' element={<Allvendors />} />
             <Route path='/partner' element={<Vendors />} />
+            <Route path='/partner/:slug' element={<VendorsByCat />} />
             <Route path='/addpartner' element={<AddVendors />} />
             <Route path='/viewpartner/:slug' element={<ViewVendors />} />
             <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount />} />

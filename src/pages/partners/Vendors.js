@@ -1,18 +1,21 @@
 import React from 'react'
 import Card from '../../components/vendors/Card'
 import { Link } from 'react-router-dom'
+import PartnerCategory from '../../components/vendors/PartnerCategory'
+import AddCatModal from './AddCatModal'
 
 const Vendors = () => {
   return (
     <>
       <div className="d-flex justify-content-between">
         <p className="heading-m">
-          Partners
+          Category
         </p>
-        <Link className='btn primary-btn  h-100' to={'/addpartner'}>Add New Partner</Link>
+        <button className='btn primary-btn  h-100' data-bs-toggle="modal" data-bs-target="#AddCategory">Add New Category</button>
       </div>
 
-      <Card />
+      <PartnerCategory />
+      <AddCatModal />
     </>
   )
 }

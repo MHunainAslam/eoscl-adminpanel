@@ -120,12 +120,8 @@ body {
   background-color: var(--secondary) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -137,19 +133,13 @@ body {
 }
 
 .primary-btn {
-  background: linear-gradient(
-    -125deg,
-    #e7b879 0%,
-    var(--primary) 50%
-  ) !important;
+  background: linear-gradient(-125deg,
+      #e7b879 0%,
+      var(--primary) 50%) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -164,12 +154,8 @@ body {
   background: transparent;
   color: var(--primary) !important;
   border-radius: 50px !important;
-  padding-inline: calc(
-    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
-  padding-block: calc(
-    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
   transition: 0.8s !important;
   border: 2px solid var(--primary) !important;
   font-weight: 600 !important;
@@ -180,11 +166,9 @@ body {
   scale: 1.04;
   transition: 0.9s;
   color: white !important;
-  background: linear-gradient(
-    -125deg,
-    #e7b879 0%,
-    var(--primary) 50%
-  ) !important;
+  background: linear-gradient(-125deg,
+      #e7b879 0%,
+      var(--primary) 50%) !important;
 }
 
 .header {
@@ -259,11 +243,13 @@ body {
   content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi fw-bold bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>') !important;
   background-image: unset !important;
   font-weight: 800;
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 
 .accordion-button:hover::after {
-  display: block;
+  /* display: block; */
+  visibility: visible;
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -284,10 +270,18 @@ body {
 .sidebar-ul li a {
   color: rgba(255, 255, 255, 0.803);
   text-decoration: none;
+  padding: 10px;
+  border-radius: 30px;
+  width: 100%;
+  display: inline-block;
 }
 
+
 .sidebar-ul .active {
+
+
   color: white;
+  background-color: #ffffff38 !important;
 }
 
 .m-card {
@@ -308,11 +302,9 @@ body {
 
 .m-card .card-body::before {
   content: "";
-  background-image: radial-gradient(
-    white -87%,
-    var(--primary) 34%,
-    var(--primary) 0%
-  ) !important;
+  background-image: radial-gradient(white -87%,
+      var(--primary) 34%,
+      var(--primary) 0%) !important;
   transition: 0.3s;
   height: 100%;
   position: absolute;
@@ -523,9 +515,7 @@ table {
   border-radius: 0 !important;
   padding-inline: 10px !important;
   padding-block: 15px !important;
-  font-size: calc(
-    12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))
-  ) !important;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))) !important;
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
@@ -702,6 +692,29 @@ table {
   align-items: center;
   min-height: 100px;
 }
+
+.cat-hov {
+  position: relative;
+  text-decoration: none !important;
+}
+
+.cat-hov::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  background-color: var(--primary);
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+.cat-hov:hover::after {
+  /* text-decoration: underline; */
+  transition: 0.3s;
+  width: 100%;
+}
+
 
 @media (min-width: 992px) {
   .offcanva-custome {

@@ -6,7 +6,7 @@ import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../Loader'
 
-const Card = () => {
+const AllVendorsCard = () => {
     const [isLoading, setisLoading] = useState(true)
     const [AllPartners, setAllPartners] = useState([])
     const [isDisable, setisDisable] = useState(false)
@@ -35,7 +35,7 @@ const Card = () => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partners?category_id=${slug}`, {
+        axios.get(`${app_url}/api/partners`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -108,4 +108,4 @@ const Card = () => {
     )
 }
 
-export default Card
+export default AllVendorsCard
