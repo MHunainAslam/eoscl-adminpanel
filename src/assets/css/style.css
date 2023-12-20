@@ -198,7 +198,7 @@ body {
 
 .sidebar-logo {
   margin-inline: auto;
-  width: calc(100px + (150 - 100) * ((100vw - 320px) / (1920 - 320)));
+  width: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
 }
 
 .side-bar-dd .accordion-header {

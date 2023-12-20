@@ -5,7 +5,7 @@ const Footer = () => {
         <>
             <div className="footer bg-white py-3 text-center">
                 <p className="para text-black mb-0 ">
-                    © 2023 Copyrights. EOSCL. All Rights Reserved
+                    © {new Date().getFullYear()}  Copyrights. EOSCL. All Rights Reserved
                 </p>
             </div>
         </>
