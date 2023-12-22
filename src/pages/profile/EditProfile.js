@@ -24,6 +24,7 @@ const EditProfile = () => {
     const [isLoading, setisLoading] = useState('')
     const [Membershipdata, setMembershipdata] = useState('')
     const [userdata, setuserdata] = useState('')
+    const [Roleid, setRoleid] = useState('')
     const [image, setImage] = useState(user);
     const [userimg, setuserimg] = useState()
 
@@ -79,6 +80,7 @@ const EditProfile = () => {
                 setMembershipId(response?.data?.data?.membership_id)
                 setPkgPrice(response?.data?.data?.membership?.price)
                 setEmail(response?.data?.data?.email)
+                setRoleid(response?.data?.data?.role?.id)
                 setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
             })
             .catch(error => {
@@ -119,7 +121,7 @@ const EditProfile = () => {
         e.preventDefault();
 
         setisLoading(true)
-        axios.patch(`${app_url}/api/user/${slug}`, { name: Name, status: Status, email: userdata?.email, role_id: '3', phone: Phone, image: userimg?.toString(), address: Address, membership_id: MembershipId }, {
+        axios.patch(`${app_url}/api/user/${slug}`, { name: Name, status: Status, email: userdata?.email, role_id: Roleid, phone: Phone, image: userimg?.toString(), address: Address, membership_id: MembershipId }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 

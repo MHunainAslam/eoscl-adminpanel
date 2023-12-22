@@ -32,6 +32,7 @@ import LoadingBar from 'react-top-loading-bar';
 import { useRef, useState } from 'react';
 import VendorsByCat from './pages/partners/VendorsByCat';
 import Allvendors from './pages/partners/Allvendors';
+import Discounts from './pages/discounts/Discounts';
 
 function App() {
 
@@ -90,6 +91,7 @@ function App() {
             <Route path='/membershipview/:slug' element={<MembershipView />} />
             <Route path='/editmembership/:slug' element={<EditMembership />} />
             <Route path='/addmembership' element={<AddMembership />} />
+            <Route path='/discounts' element={<Discounts />} />
           </Route>
 
 
