@@ -57,7 +57,7 @@ const Discounts = (state) => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details?membership_id=10`, {
+        axios.get(`${app_url}/api/partner-details`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -120,10 +120,9 @@ const Discounts = (state) => {
 
 
                     <>
-                        {role?.data?.map((item, i) => (
                             <div className="heading-m mb-0 text-p">
-                                {item.title}
-                                <div className="row my-4">
+                                
+                                <div className="row ">
                                     {data?.data?.length === 0 ?
                                         <p className='heading-sm my-5 text-center'>No Discounts Found!</p>
                                         : <>
@@ -172,7 +171,7 @@ const Discounts = (state) => {
                                 </div>
                             </div>
 
-                        ))}
+      
 
                     </>
                 }

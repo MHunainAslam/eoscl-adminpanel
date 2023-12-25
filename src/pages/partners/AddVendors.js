@@ -158,11 +158,11 @@ const AddVendors = () => {
                                 <div className="d-flex align-items-center my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
-                                            Company Name:
+                                            Company Email:
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="text" value={email} onChange={(e) => setemail(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
+                                        <input type="email" value={email} onChange={(e) => setemail(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center my-3">
@@ -217,7 +217,7 @@ const AddVendors = () => {
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Submit {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>

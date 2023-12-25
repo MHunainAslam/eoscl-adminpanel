@@ -19,7 +19,7 @@ const Allvendors = () => {
                     Partner
                 </p>
                 {user?.role?.name === "Admin" ?
-                    <Link className='btn primary-btn  h-100' to={'/addpartner'}>Add New Partner</Link> : ""}
+                    <Link className='btn primary-btn  h-100'  to={'/addpartner'}>Add New Partner</Link> : ""}
             </div>
 
             <AllVendorsCard />

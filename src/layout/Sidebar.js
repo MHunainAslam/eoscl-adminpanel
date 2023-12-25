@@ -38,7 +38,7 @@ const Sidebar = () => {
                             </div>
 
                         </div>
-                        {userdata?.role?.name != "User" ?
+                        {userdata?.role?.name === "Admin" ?
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">

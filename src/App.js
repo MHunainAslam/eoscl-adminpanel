@@ -122,10 +122,6 @@ function App() {
               <>
                 <Route path='/membership' element={<Membership authme={authme?.data} />} />
                 <Route path='/membershipview/:slug' element={<MembershipView />} />
-                <Route path='/allpartners' element={<Allvendors />} />
-                <Route path='/partner' element={<Vendors />} />
-                <Route path='/partner/:slug' element={<VendorsByCat />} />
-                <Route path='/viewpartner/:slug' element={<ViewVendors />} />
                 <Route path='/notification' element={<Notification />} />
                 <Route path='/mydiscounts' element={<MyDiscounts authme={authme?.data} />} />
                 <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount />} />

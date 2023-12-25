@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import user from '../../assets/images/vendors/Rectangle 20.png'
-import { useNavigate, useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import { app_url } from '../../config'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-const EditvendorsDiscount = () => {
+const EditvendorsDiscount = ({ state }) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [partner_id, setpartner_id] = useState('')
     const [membership_id, setmembership_id] = useState('')
@@ -21,7 +21,8 @@ const EditvendorsDiscount = () => {
         navigate(-1)
     }
     const [image, setImage] = useState(user);
-
+    const location = useLocation()
+    console.log(location.state);
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -86,7 +87,7 @@ const EditvendorsDiscount = () => {
             toast.error('All Fields Are Required')
         } else {
             setisLoading(true)
-            axios.put(`${app_url}/api/partner-details/${slug}`, { partner_id: slug, membership_id: membership_id, discount: discount, image: '0', description: description, status: status }, {
+            axios.put(`${app_url}/api/partner-details/${slug}`, { partner_id: location.state, membership_id: membership_id, discount: discount, image: '0', description: description, status: status }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
 
@@ -97,11 +98,7 @@ const EditvendorsDiscount = () => {
                     console.log(response.data);
                     setisLoading(false)
                     toast.success(response.data.message)
-                    setpartner_id('')
-                    setmembership_id('')
-                    setdiscount('')
-                    setdescription('')
-                    setstatus('')
+           
                 })
                 .catch(error => {
                     // Handle error here
@@ -144,7 +141,7 @@ const EditvendorsDiscount = () => {
                                     </div>
                                     <div className="col">
                                         <select name="" className='form-select inp' id="" value={membership_id} onChange={(e) => setmembership_id(e.target.value)}>
-                                            
+
                                             {data?.data?.map((item, i) => (
                                                 <option value={item.id}>{item.title}</option>
                                             ))}

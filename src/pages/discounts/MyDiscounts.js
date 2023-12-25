@@ -58,7 +58,7 @@ const MyDiscounts = ({ state, authme }) => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details?membership_id=10`, {
+        axios.get(`${app_url}/api/partner-details?membership_id=5`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 

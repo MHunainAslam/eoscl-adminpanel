@@ -81,7 +81,8 @@ const AllVendorsCard = () => {
                                             <ul class="dropdown-menu">
                                                 {user?.role?.name === "Admin" ?
                                                     <>
-                                                        <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
+                                                        <li><Link class="dropdown-item" to={`/editpartner/${item.id}`} >Edit</Link></li>
+                                                        <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
 
                                                         <li>
                                                             <div class="form-check form-switch dropdown-item justify-content-between d-flex">
