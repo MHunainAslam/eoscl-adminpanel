@@ -10,6 +10,8 @@ const Discounts = (state) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [image, setImage] = useState(user);
     const [isDisable, setisDisable] = useState(false)
+    const [membershipid, setmembershipid] = useState('')
+
     const [isLoading, setisLoading] = useState(true);
     const [data, setdata] = useState([]);
     const [role, setrole] = useState([]);
@@ -57,7 +59,7 @@ const Discounts = (state) => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details`, {
+        axios.get(`${app_url}/api/partner-details?membership_id=${membershipid}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -73,10 +75,10 @@ const Discounts = (state) => {
             .catch(error => {
                 // Handle error here
                 console.error(error);
-                toast.error(error?.response?.data?.message + 'lol')
+                toast.error(error?.response?.data?.message)
                 setisLoading(false)
             });
-    }, [isDisable])
+    }, [isDisable, membershipid])
 
 
     useEffect(() => {
@@ -111,34 +113,41 @@ const Discounts = (state) => {
                         Discounts
                     </p>
                 </div>
-                {/* <div className="d-flex justify-content-end h-100  col-md-6">
-                    <Link to={`/addpartnerdiscount/${slug}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
-                </div> */}
+                <div className="d-flex justify-content-end h-100  col-md-6">
+                    <select name="" className='slct-back form-select w-auto ' id="" value={membershipid} onChange={(e) => setmembershipid(e.target.value)}>
+                        <option value={''} hidden selected>Sort By</option>
+                        <option value={''} >All</option>
+                        {role?.data?.map((item, i) => (
+
+                            <option value={item.id}>{item.title}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
             <div className="row position-relative mt-4">
                 {isLoading ? <Loader /> :
 
 
                     <>
-                            <div className="heading-m mb-0 text-p">
-                                
-                                <div className="row ">
-                                    {data?.data?.length === 0 ?
-                                        <p className='heading-sm my-5 text-center'>No Discounts Found!</p>
-                                        : <>
-                                            {data?.data?.map((item, i) => (
-                                                <div className="col-lg-4 col-md-6 mt-3" key={i}>
-                                                    <div className='card c-card vendorscard'>
-                                                        <div className="card-body">
-                                                            <div className="d-flex  justify-content-between">
-                                                                <div className='v-logo active'>
-                                                                    {logo === null ?
-                                                                        <img src={cardimg} alt="" />
-                                                                        :
-                                                                        <img src={img_url + logo?.url} alt="" />
-                                                                    }
-                                                                </div>
-                                                                {/* <div>
+                        <div className="heading-m mb-0 text-p">
+
+                            <div className="row ">
+                                {data?.data?.length === 0 ?
+                                    <p className='heading-sm my-5 text-center'>No Discounts Found!</p>
+                                    : <>
+                                        {data?.data?.map((item, i) => (
+                                            <div className="col-lg-4 col-md-6 mt-3" key={i}>
+                                                <div className='card c-card vendorscard'>
+                                                    <div className="card-body">
+                                                        <div className="d-flex  justify-content-between">
+                                                            <div className='v-logo active'>
+                                                                {item.image === null ?
+                                                                    <img src={cardimg} alt="" />
+                                                                    :
+                                                                    <img src={img_url + item?.image?.url} alt="" />
+                                                                }
+                                                            </div>
+                                                            {/* <div>
                                                                     <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                                                     <ul class="dropdown-menu">
@@ -152,26 +161,26 @@ const Discounts = (state) => {
                                                                         </li>
                                                                     </ul>
                                                                 </div> */}
-                                                            </div>
-                                                            <p className="heading-m text-s">
-                                                                {item.discount}%
-                                                                <span className='para-lg text-black'>off</span>
-                                                            </p>
-                                                            <p className="heading-m text-s">
-                                                                {item.partner?.company_name}
-                                                            </p>
-                                                            <p className="para text-capitalize">
-                                                                {item.description}
-                                                            </p>
                                                         </div>
+                                                        <p className="heading-m text-s">
+                                                            {item.discount}%
+                                                            <span className='para-lg text-black'>off</span>
+                                                        </p>
+                                                        <p className="heading-m text-s">
+                                                            {item.partner?.company_name}
+                                                        </p>
+                                                        <p className="para text-capitalize">
+                                                            {item.description}
+                                                        </p>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </>}
-                                </div>
+                                            </div>
+                                        ))}
+                                    </>}
                             </div>
+                        </div>
 
-      
+
 
                     </>
                 }

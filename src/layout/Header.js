@@ -89,7 +89,7 @@ const Header = () => {
                                 </>
                                 :
                                 <>
-                                {/* <li>
+                                    {/* <li>
                                     <Link class="dropdown-item d-flex" href="#">
                                         <div className="noti-btn-icon me-3">
                                             <i class="bi bi-bell-fill"></i>
@@ -101,14 +101,14 @@ const Header = () => {
                                         </p>
                                     </Link>
                                 </li> */}
-                                <li>
-                                    <Link class="dropdown-item d-flex justify-content-center px-5" href="#">
-                                     
-                                        <p className='mb-0 text-l para-m text-center'>
-                                           0 New Notifications!
-                                        </p>
-                                    </Link>
-                                </li>
+                                    <li>
+                                        <Link class="dropdown-item d-flex justify-content-center px-5" href="#">
+
+                                            <p className='mb-0 text-l para-m text-center'>
+                                                0 New Notifications!
+                                            </p>
+                                        </Link>
+                                    </li>
                                 </>
                             }
                             {/* <li>
@@ -145,7 +145,7 @@ const Header = () => {
                             {data?.name}
                         </p>
                         <p className="mb-0 para-m">
-                            {data?.role?.name}
+                            {data?.role?.name === 'Vendor' ? 'Partner' : data?.role?.name}
                         </p>
                     </div>
                 </div>

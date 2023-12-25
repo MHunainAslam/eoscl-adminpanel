@@ -120,8 +120,12 @@ body {
   background-color: var(--secondary) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -133,13 +137,19 @@ body {
 }
 
 .primary-btn {
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
   color: white !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 0 !important;
 }
@@ -154,8 +164,12 @@ body {
   background: transparent;
   color: var(--primary) !important;
   border-radius: 50px !important;
-  padding-inline: calc(10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))) !important;
-  padding-block: calc(9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   transition: 0.8s !important;
   border: 2px solid var(--primary) !important;
   font-weight: 600 !important;
@@ -166,9 +180,44 @@ body {
   scale: 1.04;
   transition: 0.9s;
   color: white !important;
-  background: linear-gradient(-125deg,
-      #e7b879 0%,
-      var(--primary) 50%) !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
+}
+.slct-back {
+  background: transparent;
+  color: var(--primary) !important;
+  border-radius: 50px !important;
+  padding-inline: calc(
+    10px + (35 - 10) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  padding-block: calc(
+    9px + (12 - 9) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
+  transition: 0.8s !important;
+  border: 2px solid var(--primary) !important;
+  font-weight: 600 !important;
+  --bs-form-select-bg-img: none !important;
+}
+
+.slct-back:hover {
+  /* background: linear-gradient(-225deg, #f5d2a3 0%, var(--primary) 50%) !important; */
+  padding-inline: 0;
+  transition: 0.9s;
+  color: white !important;
+  background: linear-gradient(
+    -125deg,
+    #e7b879 0%,
+    var(--primary) 50%
+  ) !important;
+}
+.slct-back option {
+  color: var(--primary);
+  padding: 0 !important;
+  margin:  0 !important;
+  text-align: left;
 }
 
 .header {
@@ -276,10 +325,7 @@ body {
   display: inline-block;
 }
 
-
 .sidebar-ul .active {
-
-
   color: white;
   background-color: #ffffff38 !important;
 }
@@ -302,9 +348,11 @@ body {
 
 .m-card .card-body::before {
   content: "";
-  background-image: radial-gradient(white -87%,
-      var(--primary) 34%,
-      var(--primary) 0%) !important;
+  background-image: radial-gradient(
+    white -87%,
+    var(--primary) 34%,
+    var(--primary) 0%
+  ) !important;
   transition: 0.3s;
   height: 100%;
   position: absolute;
@@ -515,7 +563,9 @@ table {
   border-radius: 0 !important;
   padding-inline: 10px !important;
   padding-block: 15px !important;
-  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))) !important;
+  font-size: calc(
+    12px + (14 - 12) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
 
@@ -699,7 +749,7 @@ table {
 }
 
 .cat-hov::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0%;
   height: 3px;
@@ -733,7 +783,8 @@ table {
 .m-modal label {
   font-weight: 500;
 }
-.m-modal .inp, .m-modal .tarea{
+.m-modal .inp,
+.m-modal .tarea {
   padding-inline: 10px !important;
 }
 .steps {

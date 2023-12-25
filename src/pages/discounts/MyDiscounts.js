@@ -58,7 +58,7 @@ const MyDiscounts = ({ state, authme }) => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details?membership_id=5`, {
+        axios.get(`${app_url}/api/partner-details/27/parent`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -95,7 +95,8 @@ const MyDiscounts = ({ state, authme }) => {
                     </p>
                 </div>
                 <div className="d-flex justify-content-end h-100  col-md-6">
-                    <Link to={`/addpartnerdiscount/${authme?.data?.id}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
+                    <Link to={`/addpartnerdiscount/27`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
+                    {/* ${authme?.data?.id} */}
                 </div>
             </div>
             <div className="row position-relative ">
@@ -116,17 +117,17 @@ const MyDiscounts = ({ state, authme }) => {
                                                     <div className="card-body">
                                                         <div className="d-flex  justify-content-between">
                                                             <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
-                                                                {logo === null ?
+                                                                {authme?.data?.image === null ?
                                                                     <img src={cardimg} alt="" />
                                                                     :
-                                                                    <img src={img_url + logo?.url} alt="" />
+                                                                    <img src={img_url + authme?.data?.image?.url} alt="" />
                                                                 }
                                                             </div>
                                                             <div>
                                                                 <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                                                 <ul class="dropdown-menu">
-                                                                    <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
+                                                                    <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
 
                                                                     <li>
                                                                         <div class="form-check form-switch dropdown-item justify-content-between d-flex">

@@ -106,7 +106,7 @@ const ViewVendors = (state) => {
                                         <div className='card c-card vendorscard'>
                                             <div className="card-body">
                                                 <div className="d-flex  justify-content-between">
-                                                    <div className='v-logo active'>
+                                                    <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
                                                         {logo === null ?
                                                             <img src={cardimg} alt="" />
                                                             :
