@@ -715,6 +715,39 @@ table {
   width: 100%;
 }
 
+.m-modal {
+  background: linear-gradient(180deg, #f5d2a3 0%, white 70%);
+}
+
+.m-modal .inp,
+.m-modal .tarea {
+  background: transparent;
+  border-color: var(--primary) !important;
+}
+
+.m-modal .inp:focus,
+.m-modal .tarea:focus {
+  background: transparent;
+}
+
+.m-modal label {
+  font-weight: 500;
+}
+.m-modal .inp, .m-modal .tarea{
+  padding-inline: 10px !important;
+}
+.steps {
+  width: 10px !important;
+  height: 10px !important;
+  background: #80808061;
+  border-radius: 100%;
+  padding: 0 !important;
+  margin-inline: 3px;
+}
+
+.steps.complete {
+  background: grey;
+}
 
 @media (min-width: 992px) {
   .offcanva-custome {

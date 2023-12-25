@@ -12,6 +12,7 @@ const Sidebar = () => {
     const closeaccordion = () => {
 
     }
+    console.log(userdata, 'ven')
     return (
         <>
 
@@ -37,23 +38,25 @@ const Sidebar = () => {
                             </div>
 
                         </div>
-                        {userdata?.role?.name === "Admin" ?
-                            <>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                            Partners
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body py-0">
-                                            <ul className='sidebar-ul bg-transparent p-0'>
-                                                <li className='list-unstyled'><NavLink to={'/allpartners'} onClick={closesidebar}>All Partners</NavLink></li>
-                                                <li className='list-unstyled'><NavLink to={'/partner'} onClick={closesidebar}>By Category</NavLink></li>
-                                            </ul>
-                                        </div>
+                        {userdata?.role?.name != "User" ?
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Partners
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body py-0">
+                                        <ul className='sidebar-ul bg-transparent p-0'>
+                                            <li className='list-unstyled'><NavLink to={'/allpartners'} onClick={closesidebar}>All Partners</NavLink></li>
+                                            <li className='list-unstyled'><NavLink to={'/partner'} onClick={closesidebar}>By Category</NavLink></li>
+                                        </ul>
                                     </div>
                                 </div>
+                            </div> : ''}
+                        {userdata?.role?.name === "Admin" ?
+                            <>
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button onClick={() => navigate('/users')} className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-users" aria-expanded="false" aria-controls="flush-users">
@@ -92,6 +95,19 @@ const Sidebar = () => {
 
                             </div>
                             : ''}
+                        {userdata?.role ?
+                            ''
+                            : <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onClick={() => navigate('/mydiscounts')} className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-Mydiscounts" aria-expanded="false" aria-controls="flush-Mydiscounts">
+                                        My Discounts
+                                    </button>
+                                </h2>
+                                <div id="flush-Mydiscounts" class="d-none accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+
+                                </div>
+
+                            </div>}
 
                     </div>
                 </div>

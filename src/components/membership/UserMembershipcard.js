@@ -7,12 +7,11 @@ import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../Loader'
 
-const Membershicard = () => {
+const UserMembershipcard = ({ authme }) => {
     const [isLoading, setisLoading] = useState(true)
     const [isDisable, setisDisable] = useState(false)
     const [data, setdata] = useState([])
-    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
-    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data
 
 
     const updatestatus = (e) => {
@@ -20,7 +19,7 @@ const Membershicard = () => {
         console.log(e.target.id)
         axios.put(`${app_url}/api/memberships/${e.target.id}/update-status`, { status: e.target.value }, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${token?.token}`,
             }
         })
             .then(response => {
@@ -38,71 +37,68 @@ const Membershicard = () => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/memberships`, {
+        console.log(authme?.data?.membership_id)
+        axios.get(`${app_url}/api/memberships/${authme?.data?.membership_id}`, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${token?.token}`,
 
             }
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
+                console.log(response.data, 'lolpl');
                 setisLoading(false)
-                setdata(response.data)
+                setdata(response.data.data)
 
             })
             .catch(error => {
                 // Handle error here
                 console.error(error);
-                toast.error(error?.response?.data?.message)
+                // toast.error(error?.response?.data?.message)
                 setisLoading(false)
             });
-    }, [isDisable])
+    }, [isDisable, authme])
     return (
         <div className="row position-relative">
             {isLoading ? <Loader /> :
                 <>
-                    {data?.data?.map((item, i) => (
-                        <div className="col-lg-4 col-md-6 mt-3">
-                            <div className='card c-card vendorscard h-100'>
+                    {/* {data?.data?.map((item, i) => ( */}
+                    <div className="col-lg-4 col-md-6 mt-3">
+                        <div className='card c-card vendorscard h-100'>
 
-                                <div className="card-body">
-                                    <div className="d-flex  justify-content-between">
-                                        <div className={`v-logo ${item.status === 'active' ? 'active' : ''}`}>
-                                            {item.image === null ?
-                                                <img src={card} alt="" /> :
-                                                <img src={img_url + item.image.url} alt="" />
-                                            }
-                                        </div>
-                                        <div>
-                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            <div className="card-body">
+                                <div className="d-flex  justify-content-between">
+                                    <div className={`v-logo ${data?.status === 'active' ? 'active' : ''}`}>
+                                        {data?.image === null ?
+                                            <img src={card} alt="" /> :
+                                            <img src={img_url + data?.image?.url} alt="" />
+                                        }
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                            <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/membershipview/${item.id}`}>View</Link></li>
-                                                {user?.role?.name === 'Admin' ?
-                                                    <>
-                                                        <li><Link class="dropdown-item" to={`/editmembership/${item.id}`}>Edit</Link></li>
-                                                        <li>
-                                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                                <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
-                                                            </div>
-                                                        </li>
-                                                    </>
-                                                    : ''}
-                                            </ul>
-                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><Link class="dropdown-item" to={`/membershipview/${data?.id}`}>View</Link></li>
+                                            {/* <li><Link class="dropdown-item" to={`/editmembership/${data?.id}`}>Edit</Link></li>
+                                            <li>
+                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                    <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{data?.status}</label>
+                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={data?.status === 'active'} id={data?.id} value={data?.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                </div>
+                                            </li> */}
+                                        </ul>
                                     </div>
-                                    <p className="heading-m text-s">
-                                        {item.title}
-                                    </p>
-                                    <p className='para-lg text-black'>${item.price}</p>
-                                    <div className="para" dangerouslySetInnerHTML={{ __html: item.description }}>
-                                    </div>
+                                </div>
+                                <p className="heading-m text-s">
+                                    {data?.title}
+                                </p>
+                                <p className='para-lg text-black'>${data?.price}</p>
+                                <div className="para" dangerouslySetInnerHTML={{ __html: data?.description }}>
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
+                    {/* ))} */}
                 </>
             }
             {/* <div className="col-lg-4 col-md-6 mt-3">
@@ -176,4 +172,5 @@ const Membershicard = () => {
     )
 }
 
-export default Membershicard
+export default UserMembershipcard
+

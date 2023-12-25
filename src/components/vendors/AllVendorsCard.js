@@ -12,6 +12,7 @@ const AllVendorsCard = () => {
     const [isDisable, setisDisable] = useState(false)
     const { slug } = useParams()
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
     const updatestatus = (e) => {
         setisDisable(true)
         console.log(e.target.id)
@@ -78,14 +79,20 @@ const AllVendorsCard = () => {
                                             <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
                                             <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
-                                                <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
-                                                <li>
-                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
-                                                    </div>
-                                                </li>
+                                                {user?.role?.name === "Admin" ?
+                                                    <>
+                                                        <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
+
+                                                        <li>
+                                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
+                                                                <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                            </div>
+                                                        </li>
+                                                    </>
+                                                    :
+                                                    <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
+                                                }
                                             </ul>
                                         </div>
                                     </div>

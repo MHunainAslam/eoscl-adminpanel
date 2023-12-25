@@ -29,12 +29,16 @@ import MembershipView from './pages/membership/MembershipView';
 import EditMembership from './pages/membership/EditMembership';
 import AddMembership from './pages/membership/AddMembership';
 import LoadingBar from 'react-top-loading-bar';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import VendorsByCat from './pages/partners/VendorsByCat';
 import Allvendors from './pages/partners/Allvendors';
 import Discounts from './pages/discounts/Discounts';
+import { app_url } from './config';
+import axios from 'axios';
+import MyDiscounts from './pages/discounts/MyDiscounts';
 
 function App() {
+  const [authme, setauthme] = useState('')
 
 
   const ref = useRef(null)
@@ -47,6 +51,24 @@ function App() {
   if (usertoken) {
     dispatch({ type: "LOGIN", payload: getuser.token });
   }
+  useEffect(() => {
+    axios.get(`${app_url}/api/authMe`, {
+      headers: {
+        'Authorization': `Bearer ${usertoken?.data?.token}`,
+
+      }
+    })
+      .then(response => {
+        // Handle successful response here
+        console.log('zZxXz', response.data);
+        setauthme(response)
+
+      })
+      .catch(error => {
+        // Handle error here
+        console.error(error);
+      });
+  }, [])
   return (
     <>
 
@@ -68,30 +90,65 @@ function App() {
 
 
           <Route element={<Routeprivate />}>
-
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/allpartners' element={<Allvendors />} />
-            <Route path='/partner' element={<Vendors />} />
-            <Route path='/partner/:slug' element={<VendorsByCat />} />
-            <Route path='/addpartner' element={<AddVendors />} />
-            <Route path='/viewpartner/:slug' element={<ViewVendors />} />
-            <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount />} />
-            <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount />} />
-            <Route path='/editpartner/:slug' element={<EditVendors />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/userview/:slug' element={<Userview />} />
-            <Route path='/addnewuser' element={<AddNewuser />} />
-            <Route path='/edit-user/:slug' element={<Edituser />} />
-            <Route path='/orders' element={<Orders />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit-profile/:slug' element={<EditProfile />} />
             <Route path='/changepassword' element={<Changepassword />} />
-            <Route path='/notification' element={<Notification />} />
-            <Route path='/membership' element={<Membership />} />
-            <Route path='/membershipview/:slug' element={<MembershipView />} />
-            <Route path='/editmembership/:slug' element={<EditMembership />} />
-            <Route path='/addmembership' element={<AddMembership />} />
-            <Route path='/discounts' element={<Discounts />} />
+            {authme?.data?.data?.role?.name === 'Admin' ?
+              <>
+                <Route path='/membership' element={<Membership authme={authme?.data} />} />
+                <Route path='/membershipview/:slug' element={<MembershipView />} />
+                <Route path='/editmembership/:slug' element={<EditMembership />} />
+                <Route path='/addmembership' element={<AddMembership />} />
+                <Route path='/allpartners' element={<Allvendors />} />
+                <Route path='/partner' element={<Vendors />} />
+                <Route path='/partner/:slug' element={<VendorsByCat />} />
+                <Route path='/addpartner' element={<AddVendors />} />
+                <Route path='/viewpartner/:slug' element={<ViewVendors />} />
+                <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount />} />
+                <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount />} />
+                <Route path='/editpartner/:slug' element={<EditVendors />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/userview/:slug' element={<Userview />} />
+                <Route path='/addnewuser' element={<AddNewuser />} />
+                <Route path='/edit-user/:slug' element={<Edituser />} />
+                <Route path='/orders' element={<Orders />} />
+
+                <Route path='/notification' element={<Notification />} />
+              </>
+              : ''
+            }
+            {authme?.data?.data?.role?.name === 'Vendor' ?
+              <>
+                <Route path='/membership' element={<Membership authme={authme?.data} />} />
+                <Route path='/membershipview/:slug' element={<MembershipView />} />
+                <Route path='/allpartners' element={<Allvendors />} />
+                <Route path='/partner' element={<Vendors />} />
+                <Route path='/partner/:slug' element={<VendorsByCat />} />
+                <Route path='/viewpartner/:slug' element={<ViewVendors />} />
+                <Route path='/notification' element={<Notification />} />
+                <Route path='/mydiscounts' element={<MyDiscounts authme={authme?.data} />} />
+                <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount />} />
+                <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount authme={authme?.data} />} />
+              </>
+              : ''
+            }
+            {authme?.data?.data?.role?.name === 'User' ?
+              <>
+                <Route path='/discounts' element={<Discounts authme={authme?.data} />} />
+                <Route path='/membership' element={<Membership authme={authme?.data} />} />
+                <Route path='/membershipview/:slug' element={<MembershipView />} />
+
+              </>
+              : ''
+            }
+
+
+
+
+
+
+
           </Route>
 
 

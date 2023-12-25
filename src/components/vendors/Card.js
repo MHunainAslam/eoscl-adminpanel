@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import Loader from '../Loader'
 
 const Card = () => {
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
     const [isLoading, setisLoading] = useState(true)
     const [AllPartners, setAllPartners] = useState([])
     const [isDisable, setisDisable] = useState(false)
@@ -60,46 +61,58 @@ const Card = () => {
         <div className="row position-relative">
             {isLoading ? <Loader /> :
                 <>
-                    {AllPartners?.data?.map((item, i) => (
-                        <div className="col-lg-4 col-md-6 mt-3">
-                            <div className='card h-100  c-card vendorscard'>
+                    {AllPartners?.data?.length === 0 ?
+                        <p className='heading-sm my-5 text-center'>No Discounts Found!</p> :
 
-                                <div className="card-body">
-                                    <div className="d-flex  justify-content-between">
-                                        <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
-                                            {item.image === null ?
-                                                <img src={nonimg} alt="" />
-                                                :
-                                                <img src={img_url + item.image?.url} alt="" />
 
-                                            }
-                                        </div>
-                                        <div>
-                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <>
 
-                                            <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
-                                                <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
-                                                <li>
-                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
-                                                    </div>
-                                                </li>
-                                            </ul>
+
+                            {AllPartners?.data?.map((item, i) => (
+                                <div className="col-lg-4 col-md-6 mt-3">
+                                    <div className='card h-100  c-card vendorscard'>
+
+                                        <div className="card-body">
+                                            <div className="d-flex  justify-content-between">
+                                                <div className={`v-logo ${item.status === 'active' ? 'active' : ''} `}>
+                                                    {item.image === null ?
+                                                        <img src={nonimg} alt="" />
+                                                        :
+                                                        <img src={img_url + item.image?.url} alt="" />
+
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu">
+                                                        <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
+                                                        {user?.role?.name === "Admin" ?
+                                                            <>
+                                                                <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
+                                                                <li>
+                                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
+                                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                    </div>
+                                                                </li>
+                                                            </>
+                                                            : ''}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p className="heading-m text-s">
+                                                {item.discount_upto}% <span className='para-lg text-black'>off</span>
+                                            </p>
+                                            <p className="para">
+                                                {item.description}
+                                            </p>
                                         </div>
                                     </div>
-                                    <p className="heading-m text-s">
-                                        {item.discount_upto}% <span className='para-lg text-black'>off</span>
-                                    </p>
-                                    <p className="para">
-                                        {item.description}
-                                    </p>
                                 </div>
-                            </div>
-                        </div>
 
-                    ))}
+                            ))}
+                        </>
+                    }
                 </>
             }
 

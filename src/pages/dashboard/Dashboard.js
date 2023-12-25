@@ -4,6 +4,8 @@ import RevenueChart from '../../components/dashboard/charts/RevenueChart'
 import VendorsCard from '../../components/dashboard/VendorsCard'
 
 const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
+
   return (
     <>
       <p className="heading-m">
@@ -14,7 +16,7 @@ const Dashboard = () => {
         <div className="col-lg-8 mt-3">
           <RevenueChart />
         </div>
-        <div className="col-lg-4 mt-3">
+        <div className={` col-lg-4 mt-3`}>
           <VendorsCard />
         </div>
       </div>

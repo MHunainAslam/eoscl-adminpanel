@@ -14,6 +14,7 @@ const AddVendors = () => {
     const [Desc, setDesc] = useState('')
     const [Status, setStatus] = useState('')
     const [Category, setCategory] = useState('')
+    const [email, setemail] = useState('')
     const [Categorydata, setCategorydata] = useState('')
     const navigate = useNavigate()
     const backforward = () => {
@@ -60,11 +61,11 @@ const AddVendors = () => {
     const addpartner = (e) => {
         e.preventDefault();
 
-        if (CompanyName === '' || DiscountUpto === '' || Desc === '' || Status === '' || Logo === null || Category === '') {
+        if (CompanyName === '' || DiscountUpto === '' || Desc === '' || Status === '' || Logo === null || Category === '' || email === '') {
             toast.error('All Fields Are Required')
         } else {
             setisLoading(true)
-            axios.post(`${app_url}/api/partners`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo.toString(), description: Desc, status: Status }, {
+            axios.post(`${app_url}/api/partners`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status, email: email }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
 
@@ -79,6 +80,7 @@ const AddVendors = () => {
                     setDiscountUpto('')
                     setDesc('')
                     setStatus('')
+                    setemail('')
                     setLogo(null)
                 })
                 .catch(error => {
@@ -151,6 +153,16 @@ const AddVendors = () => {
                                     </div>
                                     <div className="col">
                                         <input type="text" value={CompanyName} onChange={(e) => setCompanyName(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-center my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Company Name:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" value={email} onChange={(e) => setemail(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center my-3">

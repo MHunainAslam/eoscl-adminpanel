@@ -14,6 +14,7 @@ const EditVendors = () => {
     const [isLoading, setisLoading] = useState('')
     const [Desc, setDesc] = useState('')
     const [Status, setStatus] = useState('')
+    const [email, setemail] = useState('')
     const [Category, setCategory] = useState('')
     const [Categorydata, setCategorydata] = useState('')
     const navigate = useNavigate()
@@ -118,7 +119,7 @@ const EditVendors = () => {
         //     toast.error('All Fields Are Required')
         // } else {
         setisLoading(true)
-        axios.put(`${app_url}/api/partners/${slug}`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status }, {
+        axios.put(`${app_url}/api/partners/${slug}`, { category_id: Category, company_name: CompanyName, discount_upto: DiscountUpto, image: Logo?.toString(), description: Desc, status: Status, email: email }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -176,6 +177,16 @@ const EditVendors = () => {
                                     </div>
                                     <div className="col">
                                         <input type="text" value={CompanyName} onChange={(e) => setCompanyName(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-center my-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold mb-0">
+                                            Company Name:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" value={email} onChange={(e) => setemail(e.target.value)} className='form-control inp shadow-sm' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center my-3">

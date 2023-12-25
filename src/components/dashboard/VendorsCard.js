@@ -15,12 +15,12 @@ const VendorsCard = () => {
     const [isLoading, setisLoading] = useState(true)
     const [AllPartners, setAllPartners] = useState([])
     const [isDisable, setisDisable] = useState(false)
-    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
 
     useEffect(() => {
         axios.get(`${app_url}/api/partners`, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${user?.token}`,
 
             }
         })
@@ -57,11 +57,17 @@ const VendorsCard = () => {
                                                 <img src={men1} alt="" /> :
                                                 <img src={img_url + item.image.url} className='object-fit-contain' alt="" />
                                             }
-                                            <Link className='text-decoration-none text-black' to={`/viewpartner/${item.id}`}>
+                                            {user?.role?.name != 'User' ?
+                                                <Link className='text-decoration-none text-black' to={`/viewpartner/${item.id}`}>
+                                                    <p className="para-lg mb-0 text-capitalize">
+                                                        {item.company_name}
+                                                    </p>
+                                                </Link>
+                                                :
                                                 <p className="para-lg mb-0 text-capitalize">
                                                     {item.company_name}
                                                 </p>
-                                            </Link>
+                                            }
                                         </div>
                                         <p className='text-s mb-0 text-capitalize'>{item.status}</p>
                                     </li>

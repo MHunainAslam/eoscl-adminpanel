@@ -12,6 +12,7 @@ const Discounts = (state) => {
     const [isDisable, setisDisable] = useState(false)
     const [isLoading, setisLoading] = useState(true);
     const [data, setdata] = useState([]);
+    const [role, setrole] = useState([]);
     const { slug } = useParams()
     const navigate = useNavigate()
     const backforward = () => {
@@ -19,7 +20,7 @@ const Discounts = (state) => {
     }
     const location = useLocation()
     const logo = location.state;
-console.log(logo , 'logo');
+    console.log(logo, 'logo');
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -56,7 +57,7 @@ console.log(logo , 'logo');
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details/1/parent?membership_id=10`, {
+        axios.get(`${app_url}/api/partner-details?membership_id=10`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -76,6 +77,30 @@ console.log(logo , 'logo');
                 setisLoading(false)
             });
     }, [isDisable])
+
+
+    useEffect(() => {
+        axios.get(`${app_url}/api/memberships`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                console.log(response.data);
+                setisLoading(false)
+                setrole(response.data)
+
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }, [isDisable])
+
+
+
     return (
         <>
             <div className="d-md-flex justify-content-between">
@@ -90,56 +115,65 @@ console.log(logo , 'logo');
                     <Link to={`/addpartnerdiscount/${slug}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
                 </div> */}
             </div>
-            <div className="row position-relative">
+            <div className="row position-relative mt-4">
                 {isLoading ? <Loader /> :
 
 
                     <>
-                        {data.data.length === 0 ?
-                            <p className='heading-sm my-5 text-center'>No Discounts Found!</p>
-                            : <>
-                                {data.data.map((item, i) => (
-                                    <div className="col-lg-4 col-md-6 mt-3" key={i}>
-                                        <div className='card c-card vendorscard'>
-                                            <div className="card-body">
-                                                <div className="d-flex  justify-content-between">
-                                                    <div className='v-logo active'>
-                                                        {logo === null ?
-                                                            <img src={cardimg} alt="" />
-                                                            :
-                                                            <img src={img_url + logo?.url} alt="" />
-                                                        }
-                                                    </div>
-                                                    <div>
-                                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-
-                                                        <ul class="dropdown-menu">
-                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
-
-                                                            <li>
-                                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                    <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
-                                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                        {role?.data?.map((item, i) => (
+                            <div className="heading-m mb-0 text-p">
+                                {item.title}
+                                <div className="row my-4">
+                                    {data?.data?.length === 0 ?
+                                        <p className='heading-sm my-5 text-center'>No Discounts Found!</p>
+                                        : <>
+                                            {data?.data?.map((item, i) => (
+                                                <div className="col-lg-4 col-md-6 mt-3" key={i}>
+                                                    <div className='card c-card vendorscard'>
+                                                        <div className="card-body">
+                                                            <div className="d-flex  justify-content-between">
+                                                                <div className='v-logo active'>
+                                                                    {logo === null ?
+                                                                        <img src={cardimg} alt="" />
+                                                                        :
+                                                                        <img src={img_url + logo?.url} alt="" />
+                                                                    }
                                                                 </div>
-                                                            </li>
-                                                        </ul>
+                                                                {/* <div>
+                                                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
+
+                                                                        <li>
+                                                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                                <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
+                                                                                <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div> */}
+                                                            </div>
+                                                            <p className="heading-m text-s">
+                                                                {item.discount}%
+                                                                <span className='para-lg text-black'>off</span>
+                                                            </p>
+                                                            <p className="heading-m text-s">
+                                                                {item.partner?.company_name}
+                                                            </p>
+                                                            <p className="para text-capitalize">
+                                                                {item.description}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <p className="heading-m text-s">
-                                                    {item.discount}%
-                                                    <span className='para-lg text-black'>off</span>
-                                                </p>
-                                                <p className="heading-m text-s">
-                                                    {item.partner?.company_name}
-                                                </p>
-                                                <p className="para text-capitalize">
-                                                    {item.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </>}
+                                            ))}
+                                        </>}
+                                </div>
+                            </div>
+
+                        ))}
+
                     </>
                 }
 

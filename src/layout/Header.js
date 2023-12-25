@@ -11,11 +11,11 @@ const Header = () => {
     const [isLoading, setisLoading] = useState(true)
     const [data, setdata] = useState([])
     const [isDisable, setisDisable] = useState(false)
-    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
     useEffect(() => {
         axios.get(`${app_url}/api/authMe`, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${user?.token}`,
 
             }
         })
@@ -48,43 +48,70 @@ const Header = () => {
                         </a>
                         <ul class="dropdown-menu">
                             <p className="heading-sm text-center">Notification</p>
-                            <li>
-                                <Link class="dropdown-item d-flex" href="#">
-                                    <div className="noti-btn-icon me-3">
-                                        <i class="bi bi-bell-fill"></i>
-                                    </div>
-                                    <p className='mb-0 '>
-                                        New user has been registered on the platform
-                                        <br />
-                                        <span className='text-l para-m'> {date} 10:20 am</span>
-                                    </p>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link class="dropdown-item d-flex" href="#">
-                                    <div className="noti-btn-icon me-3">
-                                        <i class="bi bi-bell-fill"></i>
-                                    </div>
-                                    <p className='mb-0 '>
-                                        New user has been registered on the platform
-                                        <br />
-                                        <span className='text-l para-m'> {date} 10:20 am</span>
-                                    </p>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link class="dropdown-item d-flex" href="#">
-                                    <div className="noti-btn-icon me-3">
-                                        <i class="bi bi-bell-fill"></i>
-                                    </div>
-                                    <p className='mb-0 '>
-                                        New user has been registered on the platform
-                                        <br />
-                                        <span className='text-l para-m'> {date} 10:20 am</span>
-                                    </p>
-                                </Link>
-                            </li>
-                            <li>
+                            {user?.role?.name != 'User' ?
+                                <>
+                                    <li>
+                                        <Link class="dropdown-item d-flex" href="#">
+                                            <div className="noti-btn-icon me-3">
+                                                <i class="bi bi-bell-fill"></i>
+                                            </div>
+                                            <p className='mb-0 '>
+                                                New user has been registered on the platform
+                                                <br />
+                                                <span className='text-l para-m'> {date} 10:20 am</span>
+                                            </p>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link class="dropdown-item d-flex" href="#">
+                                            <div className="noti-btn-icon me-3">
+                                                <i class="bi bi-bell-fill"></i>
+                                            </div>
+                                            <p className='mb-0 '>
+                                                New user has been registered on the platform
+                                                <br />
+                                                <span className='text-l para-m'> {date} 10:20 am</span>
+                                            </p>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link class="dropdown-item d-flex" href="#">
+                                            <div className="noti-btn-icon me-3">
+                                                <i class="bi bi-bell-fill"></i>
+                                            </div>
+                                            <p className='mb-0 '>
+                                                New user has been registered on the platform
+                                                <br />
+                                                <span className='text-l para-m'> {date} 10:20 am</span>
+                                            </p>
+                                        </Link>
+                                    </li>
+                                </>
+                                :
+                                <>
+                                {/* <li>
+                                    <Link class="dropdown-item d-flex" href="#">
+                                        <div className="noti-btn-icon me-3">
+                                            <i class="bi bi-bell-fill"></i>
+                                        </div>
+                                        <p className='mb-0 '>
+                                            Your Subscription Expires Soon
+                                            <br />
+                                            <span className='text-l para-m'> {date} {new Date().toLocaleTimeString()} am</span>
+                                        </p>
+                                    </Link>
+                                </li> */}
+                                <li>
+                                    <Link class="dropdown-item d-flex justify-content-center px-5" href="#">
+                                     
+                                        <p className='mb-0 text-l para-m text-center'>
+                                           0 New Notifications!
+                                        </p>
+                                    </Link>
+                                </li>
+                                </>
+                            }
+                            {/* <li>
                                 <Link class="dropdown-item d-flex justify-content-center" to="/notification">
 
                                     <p className='mb-0 w-100 text-center '>
@@ -92,7 +119,7 @@ const Header = () => {
 
                                     </p>
                                 </Link>
-                            </li>
+                            </li> */}
 
                         </ul>
                     </li>

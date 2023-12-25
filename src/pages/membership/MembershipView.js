@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import user from '../../assets/images/vendors/Image 5.png'
+import card from '../../assets/images/vendors/Image 5.png'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { app_url } from '../../config'
+import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../../components/Loader'
+import RenewMembership from '../../components/membership/RenewMembership'
 const MembershipView = () => {
+    const [PkgName, setPkgName] = useState('')
+    const [Pkgid, setPkgid] = useState('')
+    const [PkgPrice, setPkgPrice] = useState('')
+
+    const BeginnerModal = (title, price, id) => {
+        setPkgName(title)
+        setPkgPrice(`${price}`)
+        setPkgid(id)
+    }
     const navigate = useNavigate()
     const backforward = () => {
         navigate(-1)
@@ -14,6 +24,7 @@ const MembershipView = () => {
     const [isLoading, setisLoading] = useState(true)
     const [data, setdata] = useState([])
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
     useEffect(() => {
         axios.get(`${app_url}/api/memberships/${slug}`, {
             headers: {
@@ -67,6 +78,9 @@ const MembershipView = () => {
                         Membership Detail
                     </p>
                 </div>
+                {user?.role?.name === 'User' ?
+                    <Link href='#' className='btn primary-btn  h-100' data-bs-toggle="modal" data-bs-target="#VendorModal" onClick={() => BeginnerModal(data?.title, data?.price, data?.id)} >Renew Membership</Link>
+                    : ''}
 
             </div>
             <div className="row position-relative mt-3">
@@ -75,7 +89,10 @@ const MembershipView = () => {
                         <div className="card-body">
                             <div class="row py-5 ">
                                 <div class="col-md-2 text-md-start text-center">
-                                    <img src={user} class="rounded-0 object-fit-contain user-img" alt="..." />
+                                    {data.image === null ?
+                                        <img src={card} class="rounded-0 object-fit-contain user-img" alt="..." /> :
+                                        <img src={img_url + data?.image?.url} class="rounded-0 object-fit-contain user-img" alt="..." />
+                                    }
                                 </div>
                                 <div class="col-md-8 pt-4 pt-md-0">
 
@@ -153,6 +170,9 @@ const MembershipView = () => {
                     </div>
                 }
             </div>
+
+
+            <RenewMembership PkgName={PkgName} Pkgid={Pkgid} PkgPrice={PkgPrice}/>
         </>
     )
 }

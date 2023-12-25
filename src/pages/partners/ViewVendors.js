@@ -8,6 +8,7 @@ import Loader from '../../components/Loader'
 import toast from 'react-hot-toast'
 const ViewVendors = (state) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
     const [image, setImage] = useState(user);
     const [isDisable, setisDisable] = useState(false)
     const [isLoading, setisLoading] = useState(true);
@@ -19,7 +20,7 @@ const ViewVendors = (state) => {
     }
     const location = useLocation()
     const logo = location.state;
-console.log(logo , 'logo');
+    console.log(logo, 'logo');
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -86,9 +87,11 @@ console.log(logo , 'logo');
                         Partners Detail
                     </p>
                 </div>
-                <div className="d-flex justify-content-end h-100  col-md-6">
-                    <Link to={`/addpartnerdiscount/${slug}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
-                </div>
+                {user?.role?.name === 'Admin' ?
+                    <div className="d-flex justify-content-end h-100  col-md-6">
+                        <Link to={`/addpartnerdiscount/${slug}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
+                    </div>
+                    : ''}
             </div>
             <div className="row position-relative">
                 {isLoading ? <Loader /> :
@@ -110,20 +113,21 @@ console.log(logo , 'logo');
                                                             <img src={img_url + logo?.url} alt="" />
                                                         }
                                                     </div>
-                                                    <div>
-                                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    {user?.role?.name === 'Admin' ?
+                                                        <div>
+                                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                            <ul class="dropdown-menu">
+                                                                <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
 
-                                                        <ul class="dropdown-menu">
-                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`}>Edit</Link></li>
-
-                                                            <li>
-                                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                    <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
-                                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                                <li>
+                                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                        <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
+                                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        : ''}
                                                 </div>
                                                 <p className="heading-m text-s">
                                                     {item.discount}%
