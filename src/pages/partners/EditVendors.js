@@ -101,6 +101,7 @@ const EditVendors = () => {
                 setDiscountUpto(response?.data?.data?.discount_upto)
                 setDesc(response?.data?.data?.description)
                 setStatus(response?.data?.data?.status)
+                setemail(response?.data?.data?.email)
                 setImage(response?.data?.data?.image ? img_url + response?.data?.data?.image.url : user)
 
             })
@@ -130,11 +131,7 @@ const EditVendors = () => {
                 console.log(response.data);
                 setisLoading(false)
                 toast.success(response.data.message)
-                setCompanyName('')
-                setDiscountUpto('')
-                setDesc('')
-                setStatus('')
-                setLogo(null)
+              
             })
             .catch(error => {
                 // Handle error here
@@ -160,7 +157,7 @@ const EditVendors = () => {
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
                                 <label htmlFor='userimg' className="user-img ">
 
-                                    {image && <img class="w-100 h-100 object-fit-cover rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
+                                    {image && <img class="w-100 h-100 object-fit-contain rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
                                     <div className="cam-img-change-2 pointer mx-auto" >
                                         <i class="bi bi-camera-fill "></i>
                                     </div>
@@ -182,7 +179,7 @@ const EditVendors = () => {
                                 <div className="d-flex align-items-center my-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold mb-0">
-                                            Company Name:
+                                            Company Email:
                                         </p>
                                     </div>
                                     <div className="col">

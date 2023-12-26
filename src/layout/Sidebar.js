@@ -95,9 +95,8 @@ const Sidebar = () => {
 
                             </div>
                             : ''}
-                        {userdata?.role ?
-                            ''
-                            : <div class="accordion-item">
+                        {userdata?.role?.name === 'Vendor' ?
+                            <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button onClick={() => navigate('/mydiscounts')} className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-Mydiscounts" aria-expanded="false" aria-controls="flush-Mydiscounts">
                                         My Discounts
@@ -107,7 +106,8 @@ const Sidebar = () => {
 
                                 </div>
 
-                            </div>}
+                            </div>
+                            : ''}
 
                     </div>
                 </div>

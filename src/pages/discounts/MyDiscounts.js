@@ -8,6 +8,7 @@ import Loader from '../../components/Loader'
 import toast from 'react-hot-toast'
 const MyDiscounts = ({ state, authme }) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+    const userdata = JSON.parse(localStorage.getItem('EosclDashboard')).data
 
     const [image, setImage] = useState(user);
     const [isDisable, setisDisable] = useState(false)
@@ -58,7 +59,7 @@ const MyDiscounts = ({ state, authme }) => {
             });
     }
     useEffect(() => {
-        axios.get(`${app_url}/api/partner-details/27/parent`, {
+        axios.get(`${app_url}/api/partner-details/${userdata?.partner_id}/parent`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -95,7 +96,7 @@ const MyDiscounts = ({ state, authme }) => {
                     </p>
                 </div>
                 <div className="d-flex justify-content-end h-100  col-md-6">
-                    <Link to={`/addpartnerdiscount/27`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
+                    <Link to={`/addpartnerdiscount/${userdata?.partner_id}`} className='btn w-50 primary-btn me-3'>Add Discount</Link>
                     {/* ${authme?.data?.id} */}
                 </div>
             </div>
