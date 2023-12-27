@@ -88,36 +88,27 @@ const EditMembership = () => {
     }, [])
     const addmembershipcard = (e) => {
         e.preventDefault()
-        if (title === '' || desc === '' || Logo === null || price === '' || duration === null || status === '') {
-            toast.error('All Fields Are Required')
-        } else {
-            setisLoading(true)
-            axios.put(`${app_url}/api/memberships/${slug}`, { title: title, description: desc, image: Logo?.toString(), price: price, duration: duration, status: status }, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
 
-                }
+        setisLoading(true)
+        axios.put(`${app_url}/api/memberships/${slug}`, { title: title, description: desc, image: Logo?.toString(), price: price, duration: duration, status: status }, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+                setisLoading(false)
+                toast.success(response?.data?.message)
             })
-                .then(response => {
-                    // Handle successful response here
-                    console.log(response.data);
-                    setisLoading(false)
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
 
-                    settitle('')
-                    setdesc('')
-                    setLogo(null)
-                    setprice('')
-                    setduration('')
-                    setstatus('')
-                    setImage(user);
-                })
-                .catch(error => {
-                    // Handle error here
-                    console.error(error);
-                    toast.error(error?.response?.data?.message)
-                    setisLoading(false)
-                });
-        }
     }
 
     return (
@@ -190,7 +181,7 @@ const EditMembership = () => {
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
-                                            Membership Duration:
+                                            Membership Duration (Days):
                                         </p>
                                     </div>
                                     <div className="col">

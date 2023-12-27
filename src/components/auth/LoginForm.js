@@ -5,11 +5,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { app_url } from '../../config'
 import { useDispatch } from 'react-redux'
 
-const LoginForm = () => {
+const LoginForm = ({ authme }) => {
     const [Name, setName] = useState('')
     const [Password, setPassword] = useState('')
     const [showPass, setshowPass] = useState(false)
     const [isLoading, setisLoading] = useState(false)
+    const [who, setwho] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const Login = async (e) => {
@@ -42,8 +43,17 @@ const LoginForm = () => {
 
                 const user = await response.json();
                 localStorage.setItem("EosclDashboard", JSON.stringify(user));
-                navigate("/dashboard");
+                if (user?.data?.role?.name === 'Admin') {
+                    navigate("/dashboard")
+                } else if (user?.data?.role?.name === 'Vendor') {
+                    navigate("/mydiscounts")
+                } else {
+                    navigate("/membership")
+                }
 
+
+
+                console.log(user, 'loggg');
                 toast.success(user.message);
                 setisLoading(false)
                 dispatch({ type: "LOGIN", payload: user });

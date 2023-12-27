@@ -27,33 +27,35 @@ const Sidebar = () => {
                     </div>
                     <div class="accordion accordion-flush mt-5 side-bar-dd" id="accordionFlushExample">
 
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button onClick={() => navigate('/dashboard')} className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-dashboard" aria-expanded="false" aria-controls="flush-dashboard">
-                                    Dashboard
-                                </button>
-                            </h2>
-                            <div id="flush-dashboard" class="d-none accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-
-                            </div>
-
-                        </div>
                         {userdata?.role?.name === "Admin" ?
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Partners
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body py-0">
-                                        <ul className='sidebar-ul bg-transparent p-0'>
-                                            <li className='list-unstyled'><NavLink to={'/allpartners'} onClick={closesidebar}>All Partners</NavLink></li>
-                                            <li className='list-unstyled'><NavLink to={'/partner'} onClick={closesidebar}>By Category</NavLink></li>
-                                        </ul>
+                            <>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button onClick={() => navigate('/dashboard')} className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-dashboard" aria-expanded="false" aria-controls="flush-dashboard">
+                                            Dashboard
+                                        </button>
+                                    </h2>
+                                    <div id="flush-dashboard" class="d-none accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+
+                                    </div>
+
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Partners
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body py-0">
+                                            <ul className='sidebar-ul bg-transparent p-0'>
+                                                <li className='list-unstyled'><NavLink to={'/allpartners'} onClick={closesidebar}>All Partners</NavLink></li>
+                                                <li className='list-unstyled'><NavLink to={'/partner'} onClick={closesidebar}>By Category</NavLink></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> : ''}
+                            </> : ''}
                         {userdata?.role?.name === "Admin" ?
                             <>
 

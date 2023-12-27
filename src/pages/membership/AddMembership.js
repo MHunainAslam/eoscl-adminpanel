@@ -163,7 +163,7 @@ const AddMembership = () => {
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
                                         <p className="para fw-bold">
-                                            Membership Duration:
+                                            Membership Duration (Days):
                                         </p>
                                     </div>
                                     <div className="col">

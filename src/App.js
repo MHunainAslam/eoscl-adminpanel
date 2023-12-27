@@ -84,18 +84,18 @@ function App() {
 
 
 
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<Login authme={authme?.data}/>} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/forget' element={<Forget />} />
 
 
           <Route element={<Routeprivate />}>
-            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit-profile/:slug' element={<EditProfile />} />
             <Route path='/changepassword' element={<Changepassword />} />
             {authme?.data?.data?.role?.name === 'Admin' ?
               <>
+                <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/membership' element={<Membership authme={authme?.data} />} />
                 <Route path='/membershipview/:slug' element={<MembershipView />} />
                 <Route path='/editmembership/:slug' element={<EditMembership />} />

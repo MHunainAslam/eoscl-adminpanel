@@ -4,7 +4,7 @@ import back2 from '../../assets/images/61fa370baa75264321c10ccf_cricket.jpg'
 import logo from '../../assets/images/logo/eoscl-logo.png'
 import LoginForm from '../../components/auth/LoginForm'
 
-const Login = () => {
+const Login = ({ authme }) => {
     return (
         <>
             <section className='login-bg'>
@@ -16,7 +16,7 @@ const Login = () => {
                             </div>
                             <div className="col-lg-6 my-auto login-right text-center">
                                 <img src={logo} className='' alt="" />
-                                <LoginForm />
+                                <LoginForm authme={authme} />
                             </div>
                         </div>
                     </div>

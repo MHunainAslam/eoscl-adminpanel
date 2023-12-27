@@ -61,7 +61,7 @@ body {
 }
 
 .para-lg {
-  font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+  font-size: calc(13px + (16 - 13) * ((100vw - 320px) / (1920 - 320)));
   font-family: "Rubik", sans-serif;
   font-weight: 500;
 }
@@ -87,14 +87,14 @@ body {
 }
 
 .heading-m {
-  font-size: calc(20px + (35 - 20) * ((100vw - 320px) / (1920 - 320)));
+  font-size: calc(17px + (25 - 17) * ((100vw - 320px) / (1920 - 320)));
   font-family: "Inter", sans-serif;
   color: black;
   font-weight: 700;
 }
 
 .heading-sm {
-  font-size: calc(14px + (25 - 14) * ((100vw - 320px) / (1920 - 320)));
+  font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
   font-family: "Inter", sans-serif;
   color: black !important;
   font-weight: 700;
@@ -137,6 +137,9 @@ body {
 }
 
 .primary-btn {
+  font-size: calc(
+    12px + (16 - 12) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
   background: linear-gradient(
     -125deg,
     #e7b879 0%,
@@ -216,7 +219,7 @@ body {
 .slct-back option {
   color: var(--primary);
   padding: 0 !important;
-  margin:  0 !important;
+  margin: 0 !important;
   text-align: left;
 }
 
@@ -247,7 +250,7 @@ body {
 
 .sidebar-logo {
   margin-inline: auto;
-  width: calc(80px + (120 - 80) * ((100vw - 320px) / (1920 - 320)));
+  width: calc(70px + (100 - 70) * ((100vw - 320px) / (1920 - 320)));
 }
 
 .side-bar-dd .accordion-header {
@@ -280,7 +283,10 @@ body {
   border-radius: 30px !important;
   box-shadow: none !important;
   text-decoration: none;
-  padding-block: 15px !important;
+  padding-block: 12px !important;
+  font-size: calc(
+    14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))
+  ) !important;
 }
 
 .side-bar-dd .accordion-item {
@@ -389,8 +395,8 @@ body {
 
 .m-card .img {
   background-color: var(--secondary);
-  width: calc(60px + (100 - 60) * ((100vw - 320px) / (1920 - 320)));
-  height: calc(60px + (100 - 60) * ((100vw - 320px) / (1920 - 320)));
+  width: calc(40px + (80 - 40) * ((100vw - 320px) / (1920 - 320)));
+  height: calc(40px + (80 - 40) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -428,7 +434,7 @@ body {
 
 .Vendors-Active ul {
   padding: 0;
-  height: 500px;
+  height: 300px;
   overflow: auto;
   background-image: linear-gradient(to bottom, #ffffff, rgb(255 255 255)),
     linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)),
@@ -799,7 +805,14 @@ table {
 .steps.complete {
   background: grey;
 }
-
+.sortby {
+  border: 1px solid black !important;
+  border-radius: 30px !important;
+}
+.sortby:focus {
+  box-shadow: none !important;
+  border-color: black !important;
+}
 @media (min-width: 992px) {
   .offcanva-custome {
     width: 100% !important;

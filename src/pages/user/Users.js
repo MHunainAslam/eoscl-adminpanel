@@ -102,9 +102,9 @@ const Users = () => {
   }
   return (
     <>
-      <div className="d-md-flex justify-content-between">
+      <div className="d-md-flex justify-content-between mb-4 align-items-center">
 
-        <p className="heading-m">
+        <p className="heading-m mb-0">
           Users
         </p>
         <div className="d-flex justify-content-end h-100 col-md-6">

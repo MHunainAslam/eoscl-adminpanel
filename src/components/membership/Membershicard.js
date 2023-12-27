@@ -97,7 +97,7 @@ const Membershicard = () => {
                                         {item.title}
                                     </p>
                                     <p className='para-lg text-black'>${item.price}</p>
-                                    <div className="para" dangerouslySetInnerHTML={{ __html: item.description }}>
+                                    <div className="para mb-0" dangerouslySetInnerHTML={{ __html: item.description }}>
                                     </div>
                                 </div>
                             </div>

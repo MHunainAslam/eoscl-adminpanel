@@ -60,7 +60,7 @@ const PartnerCategory = () => {
             {isLoading ? <Loader /> :
                 <>
                     {AllPartners?.data?.map((item, i) => (
-                        <div className="col-lg-4 col-md-6 mt-3">
+                        <div className="col-lg-3 col-md-4 col-6 mt-3">
                             <div className='card h-100  c-card vendorscard'>
 
                                 <div className="card-body  text-center">

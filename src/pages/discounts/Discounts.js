@@ -114,7 +114,7 @@ const Discounts = (state) => {
                     </p>
                 </div>
                 <div className="d-flex justify-content-end h-100  col-md-6">
-                    <select name="" className='slct-back form-select w-auto ' id="" value={membershipid} onChange={(e) => setmembershipid(e.target.value)}>
+                    <select name="" className='sortby form-select w-auto ' id="" value={membershipid} onChange={(e) => setmembershipid(e.target.value)}>
                         <option value={''} hidden selected>Sort By</option>
                         <option value={''} >All</option>
                         {role?.data?.map((item, i) => (
@@ -141,10 +141,10 @@ const Discounts = (state) => {
                                                     <div className="card-body">
                                                         <div className="d-flex  justify-content-between">
                                                             <div className='v-logo active'>
-                                                                {item.image === null ?
+                                                                {item.partner?.image === null ?
                                                                     <img src={cardimg} alt="" />
                                                                     :
-                                                                    <img src={img_url + item?.image?.url} alt="" />
+                                                                    <img src={img_url + item?.partner?.image?.url} alt="" />
                                                                 }
                                                             </div>
                                                             {/* <div>
