@@ -677,12 +677,12 @@ table {
 }
 
 .noti-btn-icon-lg {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--primary) !important;
+  color: white !important;
   width: calc(35px + (50 - 35) * ((100vw - 320px) / (1920 - 320)));
   height: calc(35px + (50 - 35) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 100%;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }

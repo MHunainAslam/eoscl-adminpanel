@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import { app_url } from '../../config'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-const AddvendorsDiscount = () => {
+const AddvendorsDiscount = ({ authme }) => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [partner_id, setpartner_id] = useState('')
     const [membership_id, setmembership_id] = useState('')
@@ -56,11 +56,11 @@ const AddvendorsDiscount = () => {
     }, [])
     const addpartnerdiscount = (e) => {
         e.preventDefault();
-        if (membership_id === '' || discount === '' || description === '' || status === '') {
+        if (membership_id === '' || discount === '' || description === '' ) {
             toast.error('All Fields Are Required')
         } else {
             setisLoading(true)
-            axios.post(`${app_url}/api/partner-details`, { partner_id: slug, membership_id: membership_id, discount: discount, image: '0', description: description, status: status }, {
+            axios.post(`${app_url}/api/partner-details`, { partner_id: slug, membership_id: membership_id, discount: discount, image: '0', description: description, status: 'inactive' }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
 
@@ -147,20 +147,22 @@ const AddvendorsDiscount = () => {
                                         <textarea type="text" className='form-control tarea shadow-sm' name="" rows={5} id="" value={description} onChange={(e) => setdescription(e.target.value)} />
                                     </div>
                                 </div>
-                                <div className="d-flex align-items-center my-3">
-                                    <div className="col-md-3 col-4">
-                                        <p className="para fw-bold mb-0">
-                                            Status:
-                                        </p>
+                                {authme?.data?.role?.name === 'Admin' ?
+                                    <div className="d-flex align-items-center my-3">
+                                        <div className="col-md-3 col-4">
+                                            <p className="para fw-bold mb-0">
+                                                Status:
+                                            </p>
+                                        </div>
+                                        <div className="col">
+                                            <select name="" className='form-select inp' id="" value={status} onChange={(e) => setstatus(e.target.value)} >
+                                                <option value="" hidden>Select Status</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="col">
-                                        <select name="" className='form-select inp' id="" value={status} onChange={(e) => setstatus(e.target.value)} >
-                                            <option value="" hidden>Select Status</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                    : ''}
                                 <div className='w-100 text-end' >
                                     <button type='submit' className='btn primary-btn px-md-5 mt-4'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>

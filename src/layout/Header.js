@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import man from '../assets/images/avatar/user.webp'
 import Logout from './Logout'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { app_url, img_url } from '../config'
 import toast from 'react-hot-toast'
 import axios from 'axios'
@@ -10,8 +10,10 @@ const Header = () => {
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const [isLoading, setisLoading] = useState(true)
     const [data, setdata] = useState([])
+    const [notidata, setnotidata] = useState([])
     const [isDisable, setisDisable] = useState(false)
     const user = JSON.parse(localStorage.getItem('EosclDashboard')).data
+    const navigate = useNavigate()
     useEffect(() => {
         axios.get(`${app_url}/api/authMe`, {
             headers: {
@@ -23,7 +25,7 @@ const Header = () => {
                 // Handle successful response here
                 console.log(response.data);
                 setisLoading(false)
-                setdata(response.data.data)
+                setdata(response?.data?.data)
 
             })
             .catch(error => {
@@ -34,6 +36,48 @@ const Header = () => {
             });
     }, [])
 
+    const getnoti = () => {
+        axios.get(`${app_url}/api/notifications?receiver_id=${data?.id}&is_read=false`, {
+            headers: {
+                'Authorization': `Bearer ${user?.token}`,
+
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log('noti', response?.data?.data);
+                setisLoading(false)
+                setnotidata(response?.data?.data)
+
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+                setisLoading(false)
+            });
+    }
+    useEffect(() => {
+        getnoti()
+    }, [data])
+    const readnoti = (e) => {
+        navigate('/notification')
+        axios.get(`${app_url}/api/notifications/${e}`, {
+            headers: {
+                'Authorization': `Bearer ${user?.token}`,
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                toast.error(error?.response?.data?.message)
+
+            });
+    }
     return (
         <>
             <div className="header">
@@ -42,7 +86,7 @@ const Header = () => {
 
 
 
-                    <li class="nav-item dropdown notiication-btn">
+                    <li class="nav-item dropdown notiication-btn" onClick={getnoti}>
                         <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-bell me-3 fs-4"></i>
                         </a>
@@ -50,42 +94,30 @@ const Header = () => {
                             <p className="heading-sm text-center">Notification</p>
                             {user?.role?.name != 'User' ?
                                 <>
-                                    <li>
-                                        <Link class="dropdown-item d-flex" href="#">
-                                            <div className="noti-btn-icon me-3">
-                                                <i class="bi bi-bell-fill"></i>
-                                            </div>
-                                            <p className='mb-0 '>
-                                                New user has been registered on the platform
-                                                <br />
-                                                <span className='text-l para-m'> {date} 10:20 am</span>
-                                            </p>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link class="dropdown-item d-flex" href="#">
-                                            <div className="noti-btn-icon me-3">
-                                                <i class="bi bi-bell-fill"></i>
-                                            </div>
-                                            <p className='mb-0 '>
-                                                New user has been registered on the platform
-                                                <br />
-                                                <span className='text-l para-m'> {date} 10:20 am</span>
-                                            </p>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link class="dropdown-item d-flex" href="#">
-                                            <div className="noti-btn-icon me-3">
-                                                <i class="bi bi-bell-fill"></i>
-                                            </div>
-                                            <p className='mb-0 '>
-                                                New user has been registered on the platform
-                                                <br />
-                                                <span className='text-l para-m'> {date} 10:20 am</span>
-                                            </p>
-                                        </Link>
-                                    </li>
+                                    {notidata?.data?.map((item, i) => {
+                                        const date = new Date(item.created_at);
+                                        const formattedDate = date.toLocaleString();
+
+                                        return (
+                                            <>
+
+                                                <li key={i} onClick={() => readnoti(item.id)}>
+                                                    <Link class="dropdown-item d-flex" href="/notification" >
+                                                        <div className="noti-btn-icon me-3">
+                                                            <i class="bi bi-bell-fill"></i>
+                                                        </div>
+                                                        <p className='mb-0 '>
+                                                            {item.body}
+                                                            <br />
+                                                            <span className='text-l para-m'>  {formattedDate}</span>
+                                                        </p>
+                                                    </Link>
+                                                </li>
+                                            </>
+                                        )
+                                    })}
+
+
                                 </>
                                 :
                                 <>

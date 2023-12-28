@@ -125,18 +125,25 @@ const MyDiscounts = ({ state, authme }) => {
                                                                 }
                                                             </div>
                                                             <div>
-                                                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                                {item.status === 'requested' ?
+                                                                    <p className="para mb-0 text-l para-m">Pending</p> :
+                                                                    item.status === 'declined' ? <p className="para mb-0 text-l para-m">Declined</p> 
+                                                                    :
+                                                                    <>
+                                                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                                                <ul class="dropdown-menu">
-                                                                    <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
+                                                                        <ul class="dropdown-menu">
+                                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
 
-                                                                    <li>
-                                                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                            <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
-                                                                            <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                                                            <li>
+                                                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                                    <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
+                                                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </>
+                                                                }
                                                             </div>
                                                         </div>
                                                         <p className="heading-m text-s">
