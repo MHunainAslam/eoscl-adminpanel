@@ -1,4 +1,4 @@
 module.exports = {
-    app_url: 'https://api.designingstudiollc.com',
-    img_url: 'https://api.designingstudiollc.com/storage'
+    app_url: 'https://designingstudiollc.com',
+    img_url: 'https://designingstudiollc.com/storage'
 }
