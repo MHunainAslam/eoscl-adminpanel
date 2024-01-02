@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/images/logo/logo.png'
+import logo from '../assets/images/logo/white-logo.png'
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {

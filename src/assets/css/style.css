@@ -4,8 +4,10 @@
 
 :root {
   --dark: #707070;
-  --secondary: #26a4dd;
-  --primary: #ef971f;
+  /* --secondary: #26a4dd; */
+  --secondary: #b58a2c;
+  /* --primary: #ef971f; */
+  --primary: #26235a;
 }
 
 body {
@@ -142,7 +144,7 @@ body {
   ) !important;
   background: linear-gradient(
     -125deg,
-    #e7b879 0%,
+    #5a54bf 0%,
     var(--primary) 50%
   ) !important;
   color: white !important;
@@ -185,7 +187,7 @@ body {
   color: white !important;
   background: linear-gradient(
     -125deg,
-    #e7b879 0%,
+    #5a54bf 0%,
     var(--primary) 50%
   ) !important;
 }
@@ -212,7 +214,7 @@ body {
   color: white !important;
   background: linear-gradient(
     -125deg,
-    #e7b879 0%,
+    #5a54bf 0%,
     var(--primary) 50%
   ) !important;
 }
@@ -355,7 +357,7 @@ body {
 .m-card .card-body::before {
   content: "";
   background-image: radial-gradient(
-    white -87%,
+    #5a54bf -87%,
     var(--primary) 34%,
     var(--primary) 0%
   ) !important;
