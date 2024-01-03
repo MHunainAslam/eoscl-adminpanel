@@ -61,7 +61,7 @@ const AllVendorsCard = () => {
         <div className="row position-relative">
             {isLoading ? <Loader /> :
                 <>
-                    {AllPartners?.data?.map((item, i) => (
+                    {AllPartners?.data?.reverse()?.map((item, i) => (
                         <div className="col-lg-4 col-md-6 mt-3">
                             <div className='card h-100  c-card vendorscard'>
 

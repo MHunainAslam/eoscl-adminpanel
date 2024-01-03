@@ -62,7 +62,7 @@ const Membershicard = () => {
         <div className="row position-relative">
             {isLoading ? <Loader /> :
                 <>
-                    {data?.data?.map((item, i) => (
+                    {data?.data?.reverse()?.map((item, i) => (
                         <div className="col-lg-4 col-md-6 mt-3">
                             <div className='card c-card vendorscard h-100'>
 
