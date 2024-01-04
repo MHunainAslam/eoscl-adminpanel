@@ -88,12 +88,27 @@ const Header = () => {
 
                     <li class="nav-item dropdown notiication-btn" onClick={getnoti}>
                         <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-bell me-3 fs-4"></i>
+                            <i class={`bi bi-bell me-3 fs-4 position-relative ${notidata?.data?.length > 0 ? 'notiication-btn-active' : 0} `}></i>
                         </a>
                         <ul class="dropdown-menu">
                             <p className="heading-sm text-center">Notification</p>
                             {user?.role?.name != 'User' ?
                                 <>
+                                    <>
+                                        {notidata?.data?.length === 0 ?
+                                            <li className='bg-light' >
+                                                <Link class="dropdown-item d-flex" href="/notification" >
+                                                    <div className="noti-btn-icon me-3">
+                                                        <i class="bi bi-bell-fill"></i>
+                                                    </div>
+                                                    <p className='mb-0 pe-md-5'>
+                                                        No Request Found!
+                                                        <br />
+                                                    </p>
+                                                </Link>
+                                            </li>
+                                            : ''}
+                                    </>
                                     {notidata?.data?.map((item, i) => {
                                         const date = new Date(item.created_at);
                                         const formattedDate = date.toLocaleString();
@@ -101,7 +116,7 @@ const Header = () => {
                                         return (
                                             <>
 
-                                                <li key={i} onClick={() => readnoti(item.id)}>
+                                                <li key={i} onClick={() => readnoti(item.id)} className='bg-light'>
                                                     <Link class="dropdown-item d-flex" href="/notification" >
                                                         <div className="noti-btn-icon me-3">
                                                             <i class="bi bi-bell-fill"></i>
