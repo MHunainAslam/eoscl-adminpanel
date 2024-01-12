@@ -67,7 +67,7 @@ const EditCatModal = ({ getcat, name, id }) => {
                         </div>
                         <div class="modal-footer border-0 justify-content-center my-4">
                             <button type="button" class="btn px-md-4 btn-outline-light rounded-5 closecatmodal" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn px-md-4 btn-light  rounded-5">Add {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                            <button type="submit" class="btn px-md-4 btn-light  rounded-5">Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                         </div>
                     </form>
                 </div>
