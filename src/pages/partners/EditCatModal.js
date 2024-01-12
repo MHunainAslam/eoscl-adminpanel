@@ -1,24 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { app_url } from '../../config'
 import axios from 'axios'
 
-const AddCatModal = ({getcat}) => {
+const EditCatModal = ({ getcat, name, id }) => {
     const [CatValue, setCatValue] = useState('')
     const [CatName, setCatName] = useState('')
     const [isLoading, setisLoading] = useState(false)
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
 
+    console.log(name, CatName)
+    useEffect(() => {
+        setCatName(name)
+        console.log(name, 'll')
+    }, [name])
 
 
-    const addcat = (e) => {
+    const editcat = (e) => {
         e.preventDefault();
 
         if (CatName === '') {
             toast.error('All Fields Are Required')
         } else {
             setisLoading(true)
-            axios.post(`${app_url}/api/categories`, { name: CatName, slug: CatName }, {
+            axios.put(`${app_url}/api/categories/${id}`, { name: CatName, slug: CatName }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
 
@@ -43,17 +48,17 @@ const AddCatModal = ({getcat}) => {
     }
     return (
         <>
-            <button type="button" class="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#AddCategory">
+            <button type="button" class="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#EditCategory">
                 Launch demo modal
             </button>
 
-            <div class="modal fade logout-modal " id="AddCategory" tabindex="-1" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+            <div class="modal fade logout-modal " id="EditCategory" tabindex="-1" aria-labelledby="EditCategoryLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <form onSubmit={addcat} class="modal-content back-p">
+                    <form onSubmit={editcat} class="modal-content back-p">
 
                         <div class="modal-body">
                             <p className="heading-m text-white text-center my-3">
-                                Add Category
+                                Edit Category
                             </p>
                             <label htmlFor="" className='para text-white'>Name</label>
                             <input type="text" className='inp form-control py-2' value={CatName} onChange={(e) => setCatName(e.target.value)} placeholder='Ex: All Rounder' name="" id="" />
@@ -71,4 +76,6 @@ const AddCatModal = ({getcat}) => {
     )
 }
 
-export default AddCatModal
+export default EditCatModal
+
+

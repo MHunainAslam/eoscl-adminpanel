@@ -5,16 +5,17 @@ import axios from 'axios'
 import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../Loader'
+import EditCatModal from '../../pages/partners/EditCatModal'
 
-const PartnerCategory = () => {
-    const [isLoading, setisLoading] = useState(true)
-    const [AllPartners, setAllPartners] = useState([])
+const PartnerCategory = ({ getcat, AllPartners, isLoading }) => {
+
     const [isDisable, setisDisable] = useState(false)
+    const [Name, setName] = useState('')
+    const [id, setid] = useState('')
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
-    const updatestatus = (e) => {
+    const deletecat = (e) => {
         setisDisable(true)
-        console.log(e.target.id)
-        axios.put(`${app_url}/api/partners/${e.target.id}/update-status`, { status: e.target.value }, {
+        axios.delete(`${app_url}/api/categories/${e}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
@@ -33,50 +34,53 @@ const PartnerCategory = () => {
 
             });
     }
+
+
     useEffect(() => {
-        axios.get(`${app_url}/api/categories`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-
-            }
-        })
-            .then(response => {
-                // Handle successful response here
-                console.log(response.data);
-                setisLoading(false)
-                setAllPartners(response.data)
-
-            })
-            .catch(error => {
-                // Handle error here
-                console.error(error);
-                toast.error(error?.response?.data?.message)
-                setisLoading(false)
-            });
+        getcat()
     }, [isDisable])
-
+    const editdetail = (title, id) => {
+        setName(title)
+        setid(id)
+    }
     return (
-        <div className="row position-relative">
-            {isLoading ? <Loader /> :
-                <>
-                    {AllPartners?.data?.map((item, i) => (
-                        <div className="col-lg-3 col-md-4 col-6 mt-3">
-                            <div className='card h-100  c-card vendorscard'>
+        <>
+            <div className="row position-relative">
+                {isLoading ? <Loader /> :
+                    <>
+                        {AllPartners?.data?.map((item, i) => (
+                            <div className="col-lg-3 col-md-4 col-6 mt-3">
+                                <div className='card h-100  c-card vendorscard'>
 
-                                <div className="card-body  text-center">
-                                    <Link to={`/partner/${item.id}`} className="heading-m cat-hov  text-capitalize  mb-0 text-p">
-                                        {item.name}
-                                    </Link>
+                                    <div className="card-body  text-center">
+                                        <div className='d-flex justify-content-between'>
+                                            <Link to={`/partner/${item.id}`} className="heading-m cat-hov  text-capitalize  mb-0 text-p">
+                                                {item.name}
+                                            </Link>
+                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                                            <ul class="dropdown-menu">
+
+                                                <>
+                                                    <li class="dropdown-item pointer" onClick={() => editdetail(item.name, item.id)} data-bs-toggle="modal" data-bs-target="#EditCategory">Edit</li>
+                                                    <li onClick={(e) => deletecat(item.id)} class="dropdown-item pointer">Delete</li>
+
+
+                                                </>
+
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    ))}
-                </>
-            }
+                        ))}
+                    </>
+                }
 
-
-        </div>
+            </div>
+            <EditCatModal getcat={getcat} name={Name} id={id} />
+        </>
     )
 }
 
