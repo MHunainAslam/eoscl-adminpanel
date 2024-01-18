@@ -84,7 +84,7 @@ function App() {
 
 
 
-          <Route path='/' element={<Login authme={authme?.data}/>} />
+          <Route path='/' element={<Login authme={authme?.data} />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/forget' element={<Forget />} />
 
@@ -114,7 +114,7 @@ function App() {
                 <Route path='/edit-user/:slug' element={<Edituser />} />
                 <Route path='/orders' element={<Orders />} />
 
-                <Route path='/notification' element={<Notification authme={authme?.data}/>} />
+                <Route path='/notification' element={<Notification authme={authme?.data} />} />
               </>
               : ''
             }
@@ -124,7 +124,7 @@ function App() {
                 <Route path='/membershipview/:slug' element={<MembershipView />} />
                 <Route path='/notification' element={<Notification authme={authme?.data} />} />
                 <Route path='/mydiscounts' element={<MyDiscounts authme={authme?.data} />} />
-                <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount authme={authme?.data}/>} />
+                <Route path='/editpartnerdiscount/:slug' element={<EditvendorsDiscount authme={authme?.data} />} />
                 <Route path='/addpartnerdiscount/:slug' element={<AddvendorsDiscount authme={authme?.data} />} />
               </>
               : ''
@@ -133,7 +133,7 @@ function App() {
               <>
                 <Route path='/discounts' element={<Discounts authme={authme?.data} />} />
                 <Route path='/membership' element={<Membership authme={authme?.data} />} />
-                <Route path='/membershipview/:slug' element={<MembershipView />} />
+                <Route path='/membershipview/:slug' element={<MembershipView authme={authme?.data} />} />
 
               </>
               : ''

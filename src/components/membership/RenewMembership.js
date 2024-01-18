@@ -10,7 +10,7 @@ import PyamentModal from './PyamentModal';
 import StripeModal from './StripeModal';
 import { app_url } from '../../config';
 import SquareModal from './SquareModal';
-const RenewMembership = ({ PkgName, PkgPrice, Pkgid }) => {
+const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
     const [activeComponent, setActiveComponent] = useState('step2');
     const [completedSteps, setCompletedSteps] = useState([]);
     const [PaymentMethod, setPaymentMethod] = useState('')
@@ -41,7 +41,7 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid }) => {
         handleComponentChange('step1');
 
     };
-
+    console.log('object', authme);
     const MoveStep2 = () => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isValidEmail = emailPattern.test(Email);
@@ -95,31 +95,31 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid }) => {
     const stripePromise = loadStripe('pk_test_51O7lG8G7P2PzfPo57bZpXzvFZf85D04PLUXKts0HyXZVasYXlBlBMjs95tUFz4Y34dodcvAQJazbEvZ4djz6flK8000nnH1lHv');
 
     const purchasemembership = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
-        if (Name === '' || !Email || Phone === '' || Message === '' || UserName === '') {
-            toast.error('All Fields Are Required')
-        } else {
-            setisLoading(true)
-            axios.post(`${app_url}/api/memberships-submission`, { name: Name, username: UserName, email: Email, phone_number: Phone, message: Message, membership_id: Pkgid, payment_type: PaymentMethod, transaction_id: transaction_id }, {
-                headers: {
-                    'Content-Type': 'application/json', // Specify the content type if needed.
-                }
+        // if (Name === '' || !Email || Phone === '' || Message === '' || UserName === '') {
+        //     toast.error('All Fields Are Required')
+        // } else {
+        setisLoading(true)
+        axios.post(`${app_url}/api/memberships-submission`, { name: authme?.data?.name, username: authme?.data?.username, email: authme?.data?.email, phone_number: authme?.data?.phone, message: 'Renew Membership', membership_id: Pkgid, payment_type: PaymentMethod, transaction_id: e }, {
+            headers: {
+                'Content-Type': 'application/json', // Specify the content type if needed.
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log('formsubmit', response.data);
+                toast.success(response?.data?.message)
+                setisLoading(false)
+
             })
-                .then(response => {
-                    // Handle successful response here
-                    console.log('formsubmit', response.data);
-                    toast.success(response?.data?.message)
-                    setisLoading(false)
-
-                })
-                .catch(error => {
-                    // Handle error here
-                    console.error(error);
-                    setisLoading(false)
-                    toast.error(error?.response?.data?.message)
-                });
-        }
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+                setisLoading(false)
+                toast.error(error?.response?.data?.message)
+            });
+        // }
     }
     return (
         <>
@@ -131,7 +131,7 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid }) => {
                             <button type="button" className="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close" onClick={MoveStep1}></button>
                         </div>
                         <div className="modal-body pb-4">
-                            <form action="" onSubmit={purchasemembership}>
+                            <form action="" >
                                 <div className="row">
                                     <p className="heading-m text-center text-p">
                                         Membership
@@ -193,16 +193,25 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid }) => {
                                     }
                                     {activeComponent === 'step4' && <>
                                         {PaymentMethod === 'paypal' ?
-                                            <PyamentModal settransaction_id={settransaction_id} PkgPrice={PkgPrice} />
+                                            <PyamentModal settransaction_id={settransaction_id} PkgPrice={PkgPrice} purchasemembership={purchasemembership} />
                                             : 'square' ?
                                                 // <Elements stripe={stripePromise}>
                                                 //     <StripeModal settransaction_id={settransaction_id} PkgPrice={PkgPrice} />
                                                 // </Elements>
-                                                <SquareModal settransaction_id={settransaction_id} PkgPrice={PkgPrice} />
+                                                <SquareModal settransaction_id={settransaction_id} PkgPrice={PkgPrice} setisLoading={setisLoading} purchasemembership={purchasemembership} />
                                                 : ''}
                                         <div className="modal-footer mt-4 border-0 justify-content-end">
                                             <button type="button" className="btn primary-btn" onClick={MoveStep3} >Previous</button>
-                                            <button type="submit" className="btn primary-btn" >Submit</button>
+                                            {/* <button type="submit" className="btn primary-btn" >Submit</button> */}
+                                            {PaymentMethod === 'paypal' ?
+                                                // <button type="submit" className="btn  primary-btn" >Submit</button>
+                                                <></>
+                                                :
+                                                <>
+                                                    <button type="button" className="btn  primary-btn" id="pay" onClick={() => setisLoading(true)}>Pay Now {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                                    <button type="submit" className="btn  primary-btn d-none" id="submit-membership" >submit {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                                </>
+                                            }
                                         </div>
                                     </>
                                     }

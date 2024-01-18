@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import * as Square from '@square/web-sdk';
 import toast from 'react-hot-toast';
-const SquareModal = ({ settransaction_id }) => {
-    const applicationId = 'sandbox-sq0idb-lybe_WkfKNAbb3WklswmwA';
-    const locationId = 'LKYXSPGPXK05M';
+const SquareModal = ({ settransaction_id, setisLoading, purchasemembership }) => {
+    const applicationId = 'sandbox-sq0idb-8ngIOJuiCX7twSR1K3qwrw';
+    const locationId = 'L5JECG1CPDXKW';
 
     useEffect(() => {
         async function startSquarePayment() {
@@ -14,18 +14,25 @@ const SquareModal = ({ settransaction_id }) => {
                 await card.attach('#card');
 
                 document.querySelector('#pay').addEventListener('click', async () => {
+
                     try {
+                        setisLoading(false)
                         const result = await card.tokenize();
-                        console.log('Tokenized payment result:', result);
-                        settransaction_id(result?.details?.token)
-                        toast.success('Payment Successfull')
+                        console.log('Tokenized payment result:', result, result?.token);
+                        settransaction_id(result?.token)
+                        purchasemembership(result.token)
                         // TODO: Send result.token to your backend for payment processing
                     } catch (ex) {
-                        console.error('Error during tokenization:', ex);
+                        setisLoading(false)
+                        toast.error('Payment Not Successful')
+                        console.error('Error during tokenization', ex);
+                        setisLoading(false)
                     }
                 });
             } catch (error) {
+                setisLoading(false)
                 console.error('Square payment initialization error:', error);
+                toast.error('Payment Not Successful')
             }
         }
 
@@ -34,7 +41,7 @@ const SquareModal = ({ settransaction_id }) => {
     return (
         <>
             <div id="card"></div>
-            <button type='button' className='btn primary-btn w-auto px-5 py-2 mx-auto' id="pay">Pay</button>
+            {/* <button type='button' className='btn primary-btn w-auto px-5 py-2 mx-auto' >Pay</button> */}
         </>
     )
 }

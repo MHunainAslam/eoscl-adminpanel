@@ -6,7 +6,7 @@ import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import Loader from '../../components/Loader'
 import RenewMembership from '../../components/membership/RenewMembership'
-const MembershipView = () => {
+const MembershipView = ({ authme }) => {
     const [PkgName, setPkgName] = useState('')
     const [Pkgid, setPkgid] = useState('')
     const [PkgPrice, setPkgPrice] = useState('')
@@ -172,7 +172,7 @@ const MembershipView = () => {
             </div>
 
 
-            <RenewMembership PkgName={PkgName} Pkgid={Pkgid} PkgPrice={PkgPrice}/>
+            <RenewMembership PkgName={PkgName} Pkgid={Pkgid} PkgPrice={PkgPrice} authme={authme} />
         </>
     )
 }
