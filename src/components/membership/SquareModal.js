@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 const SquareModal = ({ settransaction_id, setisLoading, purchasemembership }) => {
     const applicationId = `${process.env.REACT_APP_square_application}`;
     const locationId = `${process.env.REACT_APP_square_locationId}`;
-   
+
     useEffect(() => {
         async function startSquarePayment() {
             try {
@@ -24,7 +24,6 @@ const SquareModal = ({ settransaction_id, setisLoading, purchasemembership }) =>
                         // TODO: Send result.token to your backend for payment processing
                     } catch (ex) {
                         setisLoading(false)
-                        toast.error('Payment Not Successful')
                         console.error('Error during tokenization', ex);
                         setisLoading(false)
                     }
