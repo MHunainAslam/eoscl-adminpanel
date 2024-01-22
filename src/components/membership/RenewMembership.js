@@ -29,6 +29,7 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
     const [membership_id, setmembership_id] = useState('')
     const [payment_type, setpayment_type] = useState('')
 
+    console.log(process.env.REACT_APP_SECRET_NAME, 'anv')
     const handleComponentChange = (componentName) => {
         setActiveComponent(componentName);
         if (!completedSteps.includes(componentName)) {

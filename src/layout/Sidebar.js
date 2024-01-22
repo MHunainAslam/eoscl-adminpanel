@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../assets/images/logo/white-logo.png'
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom'
 
@@ -13,6 +13,10 @@ const Sidebar = () => {
 
     }
     console.log(userdata, 'ven')
+    useEffect(() => {
+        document.querySelector('.btn-close').click()
+    }, [navigate])
+
     return (
         <>
 

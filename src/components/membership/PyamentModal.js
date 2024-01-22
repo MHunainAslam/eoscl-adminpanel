@@ -45,7 +45,6 @@ const PyamentModal = ({ PkgPrice, settransaction_id }) => {
     //             });
     //     }
     // };
-
     const handleError = (err) => {
         console.log('Payment error:', err);
     };
@@ -54,7 +53,7 @@ const PyamentModal = ({ PkgPrice, settransaction_id }) => {
 
 
 
-            <PayPalScriptProvider options={{ "client-id": 'AY_Wql-Q_GmPwBxin8-cg-EhrH3dxYH5XbfBou9RwfZVCdJiOCBtaOIUPjJOi72lTDR4WEdPi2GegIcT' }}>
+            <PayPalScriptProvider options={{ "client-id": `${process.env.REACT_APP_pay_pal}` }}>
                 <PayPalButtons
                     createOrder={(data, actions) => {
                         // Define the order creation logic here

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import * as Square from '@square/web-sdk';
 import toast from 'react-hot-toast';
 const SquareModal = ({ settransaction_id, setisLoading, purchasemembership }) => {
-    const applicationId = 'sandbox-sq0idb-8ngIOJuiCX7twSR1K3qwrw';
-    const locationId = 'L5JECG1CPDXKW';
-
+    const applicationId = `${process.env.REACT_APP_square_application}`;
+    const locationId = `${process.env.REACT_APP_square_locationId}`;
+   
     useEffect(() => {
         async function startSquarePayment() {
             try {
