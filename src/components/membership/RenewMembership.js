@@ -26,6 +26,8 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
     const [Message, setMessage] = useState('')
     const [transaction_id, settransaction_id] = useState('')
     const [isLoading, setisLoading] = useState(false)
+    const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
+
     const [membership_id, setmembership_id] = useState('')
     const [payment_type, setpayment_type] = useState('')
 
@@ -102,8 +104,9 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
         //     toast.error('All Fields Are Required')
         // } else {
         setisLoading(true)
-        axios.post(`${app_url}/api/memberships-submission`, { name: authme?.data?.name, username: authme?.data?.username, email: authme?.data?.email, phone_number: authme?.data?.phone, message: 'Renew Membership', membership_id: Pkgid, payment_type: PaymentMethod, transaction_id: e }, {
+        axios.post(`${app_url}/api/renew-memberships`, {  membership_id: Pkgid, payment_type: PaymentMethod, transaction_id: e }, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json', // Specify the content type if needed.
             }
         })
@@ -112,6 +115,7 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
                 console.log('formsubmit', response.data);
                 toast.success(response?.data?.message)
                 setisLoading(false)
+                document.getElementById('close-mem-modal').click()
 
             })
             .catch(error => {
@@ -129,7 +133,7 @@ const RenewMembership = ({ PkgName, PkgPrice, Pkgid, authme }) => {
                 <div className="modal-dialog  modal-dialog-centered">
                     <div className="modal-content m-modal ">
                         <div className="modal-header border-0">
-                            <button type="button" className="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close" onClick={MoveStep1}></button>
+                            <button type="button" className="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close" id='close-mem-modal' onClick={MoveStep2}></button>
                         </div>
                         <div className="modal-body pb-4">
                             <form action="" >

@@ -1,13 +1,18 @@
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import React from 'react'
+import toast from 'react-hot-toast';
 
-const PyamentModal = ({ PkgPrice, settransaction_id }) => {
+const PyamentModal = ({ PkgPrice, settransaction_id, purchasemembership }) => {
     console.log(PkgPrice)
     const handleApprove = async (data, actions) => {
         const order = await actions.order.capture();
         console.log('done', actions.order.capture())
+        toast.success('Please Wait')
         if (order) {
-            
+            setTimeout(() => {
+
+                purchasemembership(order?.value?.id)
+            }, 3000);
             settransaction_id(order?.value?.id)
         }
     }
