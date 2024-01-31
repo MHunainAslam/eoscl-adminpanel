@@ -17,7 +17,6 @@ const Membershicard = () => {
 
     const updatestatus = (e) => {
         setisDisable(true)
-        console.log(e.target.id)
         axios.put(`${app_url}/api/memberships/${e.target.id}/update-status`, { status: e.target.value }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -25,7 +24,6 @@ const Membershicard = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisDisable(false)
 
             })
@@ -46,7 +44,6 @@ const Membershicard = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setdata(response.data)
 
@@ -63,7 +60,7 @@ const Membershicard = () => {
             {isLoading ? <Loader /> :
                 <>
                     {data?.data?.map((item, i) => (
-                        <div className="col-lg-4 col-md-6 mt-3">
+                        <div className="col-lg-4 col-md-6 mt-3" key={i}>
                             <div className='card c-card vendorscard h-100'>
 
                                 <div className="card-body">
@@ -75,17 +72,17 @@ const Membershicard = () => {
                                             }
                                         </div>
                                         <div>
-                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                            <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                            <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/membershipview/${item.id}`}>View</Link></li>
+                                            <ul className="dropdown-menu">
+                                                <li><Link className="dropdown-item" to={`/membershipview/${item.id}`}>View</Link></li>
                                                 {user?.role?.name === 'Admin' ?
                                                     <>
-                                                        <li><Link class="dropdown-item" to={`/editmembership/${item.id}`}>Edit</Link></li>
+                                                        <li><Link className="dropdown-item" to={`/editmembership/${item.id}`}>Edit</Link></li>
                                                         <li>
-                                                            <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                                <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                            <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                <label className="form-check-label text-capitalize" htmlFor="flexSwitchCheckChecked">{item.status}</label>
+                                                                <input className="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
                                                             </div>
                                                         </li>
                                                     </>
@@ -114,15 +111,15 @@ const Membershicard = () => {
                                 <img src={card} alt="" />
                             </div>
                             <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editmembership">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/membershipview">View</Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/editmembership">Edit</Link></li>
+                                    <li><Link className="dropdown-item" to="/membershipview">View</Link></li>
                                     <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                        <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                            <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Active</label>
+                                            <input className="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                                         </div>
                                     </li>
                                 </ul>
@@ -147,15 +144,15 @@ const Membershicard = () => {
                                 <img src={card} alt="" />
                             </div>
                             <div>
-                                <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                <ul class="dropdown-menu">
-                                    <li><Link class="dropdown-item" to="/editmembership">Edit</Link></li>
-                                    <li><Link class="dropdown-item" to="/membershipview">View</Link></li>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/editmembership">Edit</Link></li>
+                                    <li><Link className="dropdown-item" to="/membershipview">View</Link></li>
                                     <li>
-                                        <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
-                                            <input class="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                        <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                            <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Active</label>
+                                            <input className="form-check-input mx-0" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                                         </div>
                                     </li>
                                 </ul>

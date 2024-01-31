@@ -43,7 +43,6 @@ const Edituser = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     setuserimg(response.data.data.last_inserted_id)
                 })
@@ -70,7 +69,6 @@ const Edituser = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setMembershipdata(response.data)
 
             })
@@ -88,8 +86,7 @@ const Edituser = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data,'pppopp');
-                // console.log(response?.data?.data?.image?.url)
+           
                 setuserdata(response.data.data)
                 setName(response.data.data.name)
                 setPhone(response.data.data.phone)
@@ -111,7 +108,6 @@ const Edituser = () => {
         // setMembershipId(e.target.value)
         const selectedId = Number(e.target.value);
         const selectedData = Membershipdata?.data.find(item => item.id === selectedId);
-        console.log(selectedData.price, selectedId);
         setPkgPrice(selectedData.price)
     }
 
@@ -127,7 +123,6 @@ const Edituser = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 toast.success(response.data.message)
 
@@ -145,7 +140,7 @@ const Edituser = () => {
         <>
             <div className="d-md-flex justify-content-between">
                 <div className='d-flex align-items-center'>
-                    <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
                         Edit User
                     </p>
@@ -153,24 +148,24 @@ const Edituser = () => {
 
             </div>
             <div className="row mt-3">
-                <div class="card mb-3 c-card user-card" >
+                <div className="card mb-3 c-card user-card" >
                     <form onSubmit={Edituser} className="card-body">
-                        <div class="row py-5 ">
-                            <div class="col-md-2 text-md-start text-center">
+                        <div className="row py-5 ">
+                            <div className="col-md-2 text-md-start text-center">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
                                 <label htmlFor='userimg' className="user-img ">
 
-                                    {image && <img class=" user-img object-fit-cover" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
+                                    {image && <img className=" user-img object-fit-cover" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
 
                                     <div className="cam-img-change-2 pointer mx-auto" >
-                                        <i class="bi bi-camera-fill "></i>
+                                        <i className="bi bi-camera-fill "></i>
                                     </div>
                                 </label>
 
                             </div>
-                            <div class="col-md-8 pt-4 pt-md-0">
+                            <div className="col-md-8 pt-4 pt-md-0">
 
-                                <p class="heading-sm">
+                                <p className="heading-sm">
                                     User Information</p>
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
@@ -213,7 +208,7 @@ const Edituser = () => {
                                         <select name="" className='form-select inp' id={PkgPrice} value={MembershipId} onChange={(e) => { setMembershipId(e.target.value); membershipidandpkgprice(e); }}>
                                             <option value="" hidden>Select Memship Type</option>
                                             {Membershipdata?.data?.map((item, i) => (
-                                                <option value={item.id} >{item.title}</option>
+                                                <option value={item.id} key={i}>{item.title}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -243,7 +238,7 @@ const Edituser = () => {
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button type='submit' className='btn primary-btn px-md-5 mt-4'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                    <button type='submit' className='btn primary-btn px-md-5 mt-4'>Update {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>

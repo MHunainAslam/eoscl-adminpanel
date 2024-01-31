@@ -22,7 +22,6 @@ const PartnerCategory = ({ getcat, AllPartners, isLoading }) => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisDisable(false)
 
             })
@@ -49,7 +48,7 @@ const PartnerCategory = ({ getcat, AllPartners, isLoading }) => {
                 {isLoading ? <Loader /> :
                     <>
                         {AllPartners?.data?.map((item, i) => (
-                            <div className="col-lg-3 col-md-4 col-6 mt-3">
+                            <div className="col-lg-3 col-md-4 col-6 mt-3" key={i}>
                                 <div className='card h-100  c-card vendorscard'>
 
                                     <div className="card-body  text-center">
@@ -57,13 +56,13 @@ const PartnerCategory = ({ getcat, AllPartners, isLoading }) => {
                                             <Link to={`/partner/${item.id}`} className="heading-m cat-hov  text-capitalize  mb-0 text-p">
                                                 {item.name}
                                             </Link>
-                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                            <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                            <ul class="dropdown-menu">
+                                            <ul className="dropdown-menu">
 
                                                 <>
-                                                    <li class="dropdown-item pointer" onClick={() => editdetail(item.name, item.id)} data-bs-toggle="modal" data-bs-target="#EditCategory">Edit</li>
-                                                    <li onClick={(e) => deletecat(item.id)} class="dropdown-item pointer">Delete</li>
+                                                    <li className="dropdown-item pointer" onClick={() => editdetail(item.name, item.id)} data-bs-toggle="modal" data-bs-target="#EditCategory">Edit</li>
+                                                    <li onClick={(e) => deletecat(item.id)} className="dropdown-item pointer">Delete</li>
 
 
                                                 </>

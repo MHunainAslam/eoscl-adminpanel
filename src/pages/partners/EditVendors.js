@@ -40,7 +40,6 @@ const EditVendors = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     setLogo(response.data.data.last_inserted_id)
                 })
@@ -66,7 +65,6 @@ const EditVendors = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setCategorydata(response.data)
 
@@ -80,7 +78,6 @@ const EditVendors = () => {
     }, [])
     useEffect(() => {
         if (Category === 'addcat') {
-            console.log("jhh");
             document.querySelector('.addcat').click()
             setCategory('')
         }
@@ -94,7 +91,6 @@ const EditVendors = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setdata(response.data)
                 setCompanyName(response?.data?.data?.company_name)
@@ -128,7 +124,6 @@ const EditVendors = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 toast.success(response.data.message)
               
@@ -144,26 +139,26 @@ const EditVendors = () => {
     return (
         <>
             <div className="d-flex align-items-center">
-                <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
                     Edit Partner
                 </p>
             </div>
             <div className="row mt-3">
-                <div class="card mb-3 c-card user-card" >
+                <div className="card mb-3 c-card user-card" >
                     <form onSubmit={addpartner} className="card-body">
-                        <div class="row py-5 ">
-                            <div class="col-md-2 text-md-start text-center position-relative">
+                        <div className="row py-5 ">
+                            <div className="col-md-2 text-md-start text-center position-relative">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
                                 <label htmlFor='userimg' className="user-img ">
 
-                                    {image && <img class="w-100 h-100 object-fit-contain rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
+                                    {image && <img className="w-100 h-100 object-fit-contain rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
                                     <div className="cam-img-change-2 pointer mx-auto" >
-                                        <i class="bi bi-camera-fill "></i>
+                                        <i className="bi bi-camera-fill "></i>
                                     </div>
                                 </label>
                             </div>
-                            <div class="col-md-8 pt-4 pt-md-0">
+                            <div className="col-md-8 pt-4 pt-md-0">
 
 
                                 <div className="d-flex align-items-center my-3">
@@ -216,7 +211,7 @@ const EditVendors = () => {
                                         <select name="" className='form-select inp' id="" value={Category} onChange={(e) => { setCategory(e.target.value) }}>
                                             <option value="" hidden>Select Category</option>
                                             {Categorydata?.data?.map((item, i) => (
-                                                <option value={item.id}>{item.name}</option>
+                                                <option value={item.id} key={i}>{item.name}</option>
                                             ))}
                                             <option value={'addcat'}> Add Category</option>
 
@@ -238,7 +233,7 @@ const EditVendors = () => {
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>

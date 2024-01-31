@@ -49,7 +49,7 @@ function App() {
   const getuser = localStorage.getItem("EosclDashboard");
   const usertoken = JSON.parse(getuser);
   if (usertoken) {
-    dispatch({ type: "LOGIN", payload: getuser.token });
+    dispatch({ type: "LOGIN", payload: getuser?.token });
   }
   useEffect(() => {
     axios.get(`${app_url}/api/authMe`, {
@@ -60,7 +60,6 @@ function App() {
     })
       .then(response => {
         // Handle successful response here
-        console.log('zZxXz', response.data);
         setauthme(response)
 
       })

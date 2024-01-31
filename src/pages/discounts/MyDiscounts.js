@@ -22,7 +22,6 @@ const MyDiscounts = ({ state, authme }) => {
     }
     const location = useLocation()
     const logo = location.state;
-    console.log(authme, 'logo');
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -38,7 +37,6 @@ const MyDiscounts = ({ state, authme }) => {
     };
     const updatestatus = (e) => {
         setisDisable(true)
-        console.log(e.target.id)
         axios.put(`${app_url}/api/partner-details/${e.target.id}/update-status`, { status: e.target.value }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -46,7 +44,6 @@ const MyDiscounts = ({ state, authme }) => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisDisable(false)
 
             })
@@ -67,7 +64,6 @@ const MyDiscounts = ({ state, authme }) => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setdata(response.data)
 
@@ -90,7 +86,7 @@ const MyDiscounts = ({ state, authme }) => {
             <div className="d-md-flex justify-content-between">
 
                 <div className="d-flex align-items-center">
-                    {/* <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i> */}
+                    {/* <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i> */}
                     <p className="heading-m mb-0">
                         My  Discounts
                     </p>
@@ -130,15 +126,15 @@ const MyDiscounts = ({ state, authme }) => {
                                                                     item.status === 'declined' ? <p className="para mb-0 text-l para-m">Declined</p> 
                                                                     :
                                                                     <>
-                                                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                                        <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
+                                                                        <ul className="dropdown-menu">
+                                                                            <li><Link className="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
 
                                                                             <li>
-                                                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                                    <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
-                                                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                                <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                                    <label className="form-check-label text-capitalize" htmlFor={item.id}>{item.status}</label>
+                                                                                    <input className="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
                                                                                 </div>
                                                                             </li>
                                                                         </ul>

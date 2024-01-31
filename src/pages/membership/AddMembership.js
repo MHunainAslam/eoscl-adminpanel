@@ -36,7 +36,6 @@ const AddMembership = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     setLogo(response.data.data.last_inserted_id)
                 })
@@ -73,7 +72,6 @@ const AddMembership = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
 
                     settitle('')
@@ -97,7 +95,7 @@ const AddMembership = () => {
         <>
             <div className="d-md-flex justify-content-between">
                 <div className='d-flex align-items-center'>
-                    <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
                         Add New Membership
                     </p>
@@ -105,20 +103,20 @@ const AddMembership = () => {
 
             </div>
             <div className="row mt-3">
-                <div class="card mb-3 c-card user-card" >
+                <div className="card mb-3 c-card user-card" >
                     <form onSubmit={addmembershipcard} className="card-body">
-                        <div class="row py-5 ">
-                            <div class="col-md-2 text-md-start text-center position-relative">
+                        <div className="row py-5 ">
+                            <div className="col-md-2 text-md-start text-center position-relative">
                                 <input type="file" className='d-none' name="" id="userimg" onChange={handleImageChange} />
                                 <label htmlFor='userimg' className="user-img ">
 
-                                    {image && <img class="w-100 h-100 object-fit-contain rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
+                                    {image && <img className="w-100 h-100 object-fit-contain rounded-0" src={image} alt="Uploaded" style={{ maxWidth: '300px' }} />}
                                     <div className="cam-img-change-2 pointer mx-auto" >
-                                        <i class="bi bi-camera-fill "></i>
+                                        <i className="bi bi-camera-fill "></i>
                                     </div>
                                 </label>
                             </div>
-                            <div class="col-md-8 pt-4 pt-md-0">
+                            <div className="col-md-8 pt-4 pt-md-0">
 
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
@@ -188,7 +186,7 @@ const AddMembership = () => {
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                    <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,6 @@ const Card = () => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const updatestatus = (e) => {
         setisDisable(true)
-        console.log(e.target.id)
         axios.put(`${app_url}/api/partners/${e.target.id}/update-status`, { status: e.target.value }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -23,7 +22,6 @@ const Card = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisDisable(false)
 
             })
@@ -44,7 +42,6 @@ const Card = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setAllPartners(response.data)
 
@@ -69,7 +66,7 @@ const Card = () => {
 
 
                             {AllPartners?.data?.map((item, i) => (
-                                <div className="col-lg-4 col-md-6 mt-3">
+                                <div className="col-lg-4 col-md-6 mt-3" key={i}>
                                     <div className='card h-100  c-card vendorscard'>
 
                                         <div className="card-body">
@@ -83,16 +80,16 @@ const Card = () => {
                                                     }
                                                 </div>
                                                 <div>
-                                                    <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                                    <ul class="dropdown-menu">
-                                                        <li><Link class="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
+                                                    <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul className="dropdown-menu">
+                                                        <li><Link className="dropdown-item" to={`/viewpartner/${item.id}`} state={item.image}>View</Link></li>
                                                         {user?.role?.name === "Admin" ?
                                                             <>
-                                                                <li><Link class="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
+                                                                <li><Link className="dropdown-item" to={`/editpartner/${item.id}`}>Edit</Link></li>
                                                                 <li>
-                                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                    <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                        <label className="form-check-label text-capitalize" htmlFor="flexSwitchCheckChecked">{item.status}</label>
+                                                                        <input className="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
                                                                     </div>
                                                                 </li>
                                                             </>

@@ -19,7 +19,6 @@ const DashboardCards = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log('loloololoii', response);
                 setisLoading(false)
                 setdata(response.data)
 

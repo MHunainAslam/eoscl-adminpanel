@@ -14,7 +14,7 @@ const VendorsByCat = () => {
 
             <div className="d-flex justify-content-between">
                 <div className="d-flex align-items-center">
-                    <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
                         Partner
                     </p>

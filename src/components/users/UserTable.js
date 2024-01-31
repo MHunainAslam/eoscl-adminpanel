@@ -8,7 +8,7 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updat
     return (
         <>
             <div className="table-responsive">
-                <table class="table table-striped usertable text-center">
+                <table className="table table-striped usertable text-center">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -20,12 +20,19 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updat
                         </tr>
                     </thead>
                     <tbody>
-                        {isLoading ? <tr> <td className='position-relative rounded-5' colSpan={6}> <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div></td></tr> : <>
-                            {tabledata?.data?.length === 0 ? <><td colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td> </> :
-                                tabledata?.data?.map((item, i) => (
-                                    <tr>
+                        {isLoading ?
+                            <tr>
+                                <td className='position-relative rounded-5' colSpan={6}>
+                                    <div className="spinner-border" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                </td>
+                            </tr> :
+                            <>
+                                {tabledata?.data?.length === 0 ? <>
+                                    <tr><td className='position-relative rounded-5 py-0' colSpan={10}><p className="text-center heading-m mt-3"> No Result Found!</p></td></tr>
+                                </> : tabledata?.data?.map((item, i) => (
+                                    <tr key={i}>
                                         <td scope="row">{indexOfFirstItem + i + 1}</td>
 
                                         <td className="text-capitalize"> {item.name}</td>
@@ -33,15 +40,15 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updat
                                         <td >{item.phone}</td>
                                         <td className="text-capitalize">{item.status}</td>
                                         <td>
-                                            <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                            <ul class="dropdown-menu">
-                                                <li><Link class="dropdown-item" to={`/edit-user/${item.id}`} state={item}>Edit</Link></li>
-                                                <li><Link class="dropdown-item" to={`/userview/${item.id}`}>View</Link></li>
+                                            <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                            <ul className="dropdown-menu">
+                                                <li><Link className="dropdown-item" to={`/edit-user/${item.id}`} state={item}>Edit</Link></li>
+                                                <li><Link className="dropdown-item" to={`/userview/${item.id}`}>View</Link></li>
                                                 <li>
-                                                    <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                       
-                                                        <label class="form-check-label text-capitalize" for="flexSwitchCheckChecked">{item.status}</label>
-                                                        <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                    <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+
+                                                        <label className="form-check-label text-capitalize" htmlFor="flexSwitchCheckChecked">{item.status}</label>
+                                                        <input className="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
 
                                                     </div>
                                                 </li>
@@ -49,7 +56,8 @@ const UserTable = ({ tabledata, indexOfFirstItem, itemsPerPage, isLoading, updat
                                         </td>
                                     </tr>
                                 ))}
-                        </>}
+                            </>
+                        }
 
 
 

@@ -22,7 +22,6 @@ const Userview = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setdata(response?.data?.data)
                 setisLoading(false)
             })
@@ -38,7 +37,7 @@ const Userview = () => {
         <>
             <div className="d-md-flex justify-content-between">
                 <div className='d-flex align-items-center'>
-                    <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
                         User Profile
                     </p>
@@ -49,19 +48,19 @@ const Userview = () => {
             </div>
             <div className="row mt-3 position-relative">
                 {isLoading ? <Loader /> :
-                    <div class="card mb-3 c-card user-card " >
+                    <div className="card mb-3 c-card user-card " >
                         <div className="card-body">
-                            <div class="row py-5 ">
-                                <div class="col-md-2 text-md-start text-center">
+                            <div className="row py-5 ">
+                                <div className="col-md-2 text-md-start text-center">
                                     {data.image === null ?
-                                        <img src={user} class=" user-img" alt="..." />
+                                        <img src={user} className=" user-img" alt="..." />
                                         :
-                                        <img src={img_url + data.image.url} class="object-fit-cover user-img" alt="..." />
+                                        <img src={img_url + data.image.url} className="object-fit-cover user-img" alt="..." />
                                     }
                                 </div>
-                                <div class="col-md-8 pt-4 pt-md-0">
+                                <div className="col-md-8 pt-4 pt-md-0">
 
-                                    <p class="heading-sm">
+                                    <p className="heading-sm">
                                         User Information</p>
                                     <div className="d-flex">
                                         <div className="col-md-3 col-4">
