@@ -77,7 +77,7 @@ function App() {
         reverseOrder={false}
       />
 
-      <BrowserRouter>
+      <BrowserRouter basename="/adminpanel">
 
         <Routes>
 
