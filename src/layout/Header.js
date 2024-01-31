@@ -23,7 +23,6 @@ const Header = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setdata(response?.data?.data)
 
@@ -45,7 +44,6 @@ const Header = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log('noti', response?.data?.data);
                 setisLoading(false)
                 setnotidata(response?.data?.data)
 
@@ -69,7 +67,6 @@ const Header = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
             })
             .catch(error => {
                 // Handle error here
@@ -81,25 +78,25 @@ const Header = () => {
     return (
         <>
             <div className="header">
-                <i class="bi bi-list fs-3 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#SidebarCanva" aria-controls="SidebarCanva"></i>
+                <i className="bi bi-list fs-3 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#SidebarCanva" aria-controls="SidebarCanva"></i>
                 <div className='ms-auto d-flex align-items-center'>
 
 
 
-                    <li class="nav-item dropdown notiication-btn" onClick={getnoti}>
-                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class={`bi bi-bell me-3 fs-4 position-relative ${notidata?.data?.length > 0 ? 'notiication-btn-active' : 0} `}></i>
+                    <li className="nav-item dropdown notiication-btn" onClick={getnoti}>
+                        <a className="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i className={`bi bi-bell me-3 fs-4 position-relative ${notidata?.data?.length > 0 ? 'notiication-btn-active' : 0} `}></i>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul className="dropdown-menu">
                             <p className="heading-sm text-center">Notification</p>
                             {user?.role?.name != 'User' ?
                                 <>
                                     <>
                                         {notidata?.data?.length === 0 ?
                                             <li className='bg-light' >
-                                                <Link class="dropdown-item d-flex" href="/notification" >
+                                                <Link className="dropdown-item d-flex" href="/notification" >
                                                     <div className="noti-btn-icon me-3">
-                                                        <i class="bi bi-bell-fill"></i>
+                                                        <i className="bi bi-bell-fill"></i>
                                                     </div>
                                                     <p className='mb-0 pe-md-5'>
                                                         No Request Found!
@@ -117,9 +114,9 @@ const Header = () => {
                                             <>
 
                                                 <li key={i} onClick={() => readnoti(item.id)} className='bg-light'>
-                                                    <Link class="dropdown-item d-flex" href="/notification" >
+                                                    <Link className="dropdown-item d-flex" href="/notification" >
                                                         <div className="noti-btn-icon me-3">
-                                                            <i class="bi bi-bell-fill"></i>
+                                                            <i className="bi bi-bell-fill"></i>
                                                         </div>
                                                         <p className='mb-0 '>
                                                             {item.body}
@@ -137,9 +134,9 @@ const Header = () => {
                                 :
                                 <>
                                     {/* <li>
-                                    <Link class="dropdown-item d-flex" href="#">
+                                    <Link className="dropdown-item d-flex" href="#">
                                         <div className="noti-btn-icon me-3">
-                                            <i class="bi bi-bell-fill"></i>
+                                            <i className="bi bi-bell-fill"></i>
                                         </div>
                                         <p className='mb-0 '>
                                             Your Subscription Expires Soon
@@ -149,7 +146,7 @@ const Header = () => {
                                     </Link>
                                 </li> */}
                                     <li>
-                                        <Link class="dropdown-item d-flex justify-content-center px-5" href="#">
+                                        <Link className="dropdown-item d-flex justify-content-center px-5" href="#">
 
                                             <p className='mb-0 text-l para-m text-center'>
                                                 0 New Notifications!
@@ -159,7 +156,7 @@ const Header = () => {
                                 </>
                             }
                             {/* <li>
-                                <Link class="dropdown-item d-flex justify-content-center" to="/notification">
+                                <Link className="dropdown-item d-flex justify-content-center" to="/notification">
 
                                     <p className='mb-0 w-100 text-center '>
                                         View All
@@ -176,13 +173,13 @@ const Header = () => {
                             <img src={man} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" /> :
                             <img src={img_url + data?.image?.url} alt="" className='dropdown-toggle nav-link  man' data-bs-toggle="dropdown" aria-expanded="false" />
                         }
-                        <ul class="dropdown-menu">
-                            <li className='my-1'><Link class="dropdown-item " to="/profile">
-                                <i class="bi bi-person-fill me-2"></i>
+                        <ul className="dropdown-menu">
+                            <li className='my-1'><Link className="dropdown-item " to="/profile">
+                                <i className="bi bi-person-fill me-2"></i>
                                 Profile
                             </Link></li>
-                            <li className='my-1'><Link class="dropdown-item " to="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">
-                                <i class="bi bi-power me-2 "></i>
+                            <li className='my-1'><Link className="dropdown-item " to="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">
+                                <i className="bi bi-power me-2 "></i>
                                 Logout
                             </Link></li>
                         </ul>

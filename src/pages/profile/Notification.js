@@ -23,7 +23,6 @@ const Notification = ({ state, authme }) => {
     }
     const location = useLocation()
     const logo = location.state;
-    console.log(authme.data.id, 'logo');
 
 
 
@@ -36,7 +35,6 @@ const Notification = ({ state, authme }) => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log('notikk', response?.data?.data);
                 setisLoading(false)
                 setdata(response?.data)
 
@@ -53,7 +51,6 @@ const Notification = ({ state, authme }) => {
     }, [notistatus])
     const updatestatus = (e) => {
         setisDisable(true)
-        console.log(e.target.id)
         axios.put(`${app_url}/api/partner-details/${e.target.id}/update-status`, { status: e.target.value }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -61,7 +58,6 @@ const Notification = ({ state, authme }) => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data, e.target.value);
                 setisDisable(false)
                 setnotistatus(!notistatus)
             })
@@ -86,7 +82,7 @@ const Notification = ({ state, authme }) => {
             <div className="d-md-flex justify-content-between">
 
                 <div className="d-flex align-items-center">
-                    <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                     <p className="heading-m mb-0">
                         Notifications
                     </p>
@@ -121,15 +117,15 @@ const Notification = ({ state, authme }) => {
                                                                 {item.status === 'requested' ?
                                                                     <p className="para mb-0 text-l para-m">Requested</p> :
                                                                     <>
-                                                                        <i class="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                                        <i className="bi bi-three-dots-vertical fs-3 nav-link" data-bs-toggle="dropdown" aria-expanded="false"></i>
 
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><Link class="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
+                                                                        <ul className="dropdown-menu">
+                                                                            <li><Link className="dropdown-item" to={`/editpartnerdiscount/${item.id}`} state={item.partner_id}>Edit</Link></li>
 
                                                                             <li>
-                                                                                <div class="form-check form-switch dropdown-item justify-content-between d-flex">
-                                                                                    <label class="form-check-label text-capitalize" for={item.id}>{item.status}</label>
-                                                                                    <input class="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
+                                                                                <div className="form-check form-switch dropdown-item justify-content-between d-flex">
+                                                                                    <label className="form-check-label text-capitalize" htmlFor={item.id}>{item.status}</label>
+                                                                                    <input className="form-check-input mx-0" disabled={isDisable} checked={item.status === 'active'} id={item.id} value={item.status === 'active' ? 'inactive' : 'active'} onChange={updatestatus} type="checkbox" role="switch" />
                                                                                 </div>
                                                                             </li>
                                                                         </ul>
@@ -185,37 +181,37 @@ export default Notification
 // <div className="row mt-3">
 //     <div className="card c-card">
 //         <div className="card-body px-0">
-//             <div class="card my-4 bg-transpatent border-0" >
-//                 <div class="d-flex justify-content-center g-0">
-//                     <div class="col-md-2x">
+//             <div className="card my-4 bg-transpatent border-0" >
+//                 <div className="d-flex justify-content-center g-0">
+//                     <div className="col-md-2x">
 //                         <div className="noti-btn-icon-lg mt-2 me-3 " >
-//                             <i class="bi bi-bell-fill fs-5"></i>
+//                             <i className="bi bi-bell-fill fs-5"></i>
 //                         </div>
 //                     </div>
-//                     <div class="col-md c-card user-card">
-//                         <div class="card-body ">
-//                             <p class="card-text text-d para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin tis gravida dolor sit amet is to accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
+//                     <div className="col-md c-card user-card">
+//                         <div className="card-body ">
+//                             <p className="card-text text-d para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin tis gravida dolor sit amet is to accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
 //                             <div className='d-flex justify-content-between'>
-//                                 <span class="para-m text-l">Read</span>
-//                                 <span class="para-m text-l">Last updated 3 mins ago</span>
+//                                 <span className="para-m text-l">Read</span>
+//                                 <span className="para-m text-l">Last updated 3 mins ago</span>
 //                             </div>
 //                         </div>
 //                     </div>
 //                 </div>
 //             </div>
-//             <div class="card my-4 bg-transpatent border-0" >
-//                 <div class="d-flex justify-content-center g-0">
-//                     <div class="col-md-2x">
+//             <div className="card my-4 bg-transpatent border-0" >
+//                 <div className="d-flex justify-content-center g-0">
+//                     <div className="col-md-2x">
 //                         <div className="noti-btn-icon-lg mt-2 me-3 " >
-//                             <i class="bi bi-bell-fill fs-5"></i>
+//                             <i className="bi bi-bell-fill fs-5"></i>
 //                         </div>
 //                     </div>
-//                     <div class="col-md c-card user-card">
-//                         <div class="card-body ">
-//                             <p class="card-text text-d para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin tis gravida dolor sit amet is to accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
+//                     <div className="col-md c-card user-card">
+//                         <div className="card-body ">
+//                             <p className="card-text text-d para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin tis gravida dolor sit amet is to accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
 //                             <div className='d-flex justify-content-between'>
-//                                 <span class="para-m ">Unread</span>
-//                                 <span class="para-m text-l">Last updated 3 mins ago</span>
+//                                 <span className="para-m ">Unread</span>
+//                                 <span className="para-m text-l">Last updated 3 mins ago</span>
 //                             </div>
 //                         </div>
 //                     </div>

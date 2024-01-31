@@ -26,7 +26,6 @@ const VendorsCard = () => {
         })
             .then(response => {
                 // Handle successful response here
-                console.log(response.data);
                 setisLoading(false)
                 setAllPartners(response.data)
 
@@ -51,7 +50,7 @@ const VendorsCard = () => {
                         {isLoading ? <li> <Loader /> </li> :
                             <>
                                 {AllPartners?.data?.map((item, i) => (
-                                    <li>
+                                    <li key={i}>
                                         <div className="d-flex align-items-center">
                                             {item.image === null ?
                                                 <img src={men1} alt="" /> :

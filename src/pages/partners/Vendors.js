@@ -21,7 +21,6 @@ const Vendors = () => {
     })
       .then(response => {
         // Handle successful response here
-        console.log(response.data);
         setisLoading(false)
         setAllPartners(response.data)
 

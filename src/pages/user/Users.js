@@ -47,14 +47,10 @@ const Users = () => {
     })
       .then(response => {
         // Handle successful response here
-        console.log(response.data, 'table');
         settabledata(response?.data)
         setisLoading(false)
         
-        // if (dataOnPage => response.data?.data?.total) {
-        //   setdataOnPage(response.data?.data?.total)
-        //   setCurrentPage(1)
-        // } 
+   
       })
       .catch(error => {
         // Handle error here
@@ -67,7 +63,6 @@ const Users = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     setisLoading(true)
-    console.log(pageNumber);
   };
 
   // useEffect(() => {
@@ -80,7 +75,6 @@ const Users = () => {
 
   const updatestatus = (e) => {
     setisDisable(true)
-    console.log(e.target.id)
     axios.put(`${app_url}/api/users/${e.target.id}/update-status`, { status: e.target.value }, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -88,7 +82,6 @@ const Users = () => {
     })
       .then(response => {
         // Handle successful response here
-        console.log(response.data);
         setisDisable(false)
 
       })
@@ -117,8 +110,8 @@ const Users = () => {
             <div className="card-body">
               <div className="d-flex justify-content-between mb-5 mt-3">
                 <div className='para d-flex align-items-center'>
-                  Show
-                  <select className='form-select mx-3' name="" id="" onChange={(e) => setdataOnPage(e.target.value)}>
+                  Show 
+                  <select className='form-select mx-3' name="" id="" value={dataOnPage} onChange={(e) => setdataOnPage(e.target.value)}>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>

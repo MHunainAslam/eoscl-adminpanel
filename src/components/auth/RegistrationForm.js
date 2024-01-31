@@ -29,13 +29,13 @@ const RegistrationForm = () => {
                 <div className="col-md-6">
                     <div className="position-relative d-flex align-items-center mt-3">
                         <input type={showPass ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={Password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Password' name="" id="" />
-                        <i class={`bi eye-pass ${showPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass(!showPass)}></i>
+                        <i className={`bi eye-pass ${showPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass(!showPass)}></i>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="position-relative d-flex align-items-center mt-3">
                         <input type={showPass2 ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={CPassword} onChange={(e) => { setCPassword(e.target.value) }} placeholder='Confirm Password' name="" id="" />
-                        <i class={`bi eye-pass ${showPass2 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass2(!showPass2)}></i>
+                        <i className={`bi eye-pass ${showPass2 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass2(!showPass2)}></i>
                     </div>
                 </div>
             </div>

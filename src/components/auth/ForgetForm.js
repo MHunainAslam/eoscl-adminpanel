@@ -32,7 +32,6 @@ const ForgetForm = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     handleComponentChange('OTP')
                     setisLoading(false)
                 })
@@ -58,7 +57,6 @@ const ForgetForm = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     handleComponentChange('NewPassword')
                     setisLoading(false)
                 })
@@ -87,7 +85,6 @@ const ForgetForm = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     Navigate('/')
                     setisLoading(false)
                     toast.success(response?.data?.message)
@@ -122,7 +119,7 @@ const ForgetForm = () => {
                         Enter Your Registered Email
                     </p>
                     <input type="email" className='form-control shadow-sm mt-5 inp px-2 py-3' value={Email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' name="" id="" />
-                    <button className='btn primary-btn py-2 w-100 mt-5 mb-3' type='submit'> Send OTP {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                    <button className='btn primary-btn py-2 w-100 mt-5 mb-3' type='submit'> Send OTP {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                     <Link className='para link-hov text-p mt-3 text-end ms-auto' onClick={cancel} to={'/'}>Cancel</Link>
                 </form>
             </>}
@@ -132,7 +129,7 @@ const ForgetForm = () => {
                 </p>
                 <form action="" onSubmit={submitotp}>
                     <input type="text" className='form-control shadow-sm mt-5 inp px-2 py-3' value={OTP} onChange={(e) => setOTP(e.target.value)} placeholder='OTP' name="" id="" />
-                    <button type='submit' className='btn primary-btn py-2 w-100 mt-5 mb-3' > Submit OTP {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                    <button type='submit' className='btn primary-btn py-2 w-100 mt-5 mb-3' > Submit OTP {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                 </form>
                 <Link className='para link-hov text-p mt-3 text-end ms-auto' onClick={changeemail} to={'#'}>Change Email</Link>
             </>}
@@ -143,15 +140,15 @@ const ForgetForm = () => {
                 <form action="" onSubmit={changepass}>
                     <div className="position-relative d-flex align-items-center mt-3">
                         <input type={showPass ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={Password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Password' name="" id="" />
-                        <i class={`bi eye-pass ${showPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass(!showPass)}></i>
+                        <i className={`bi eye-pass ${showPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass(!showPass)}></i>
 
                     </div>
                     <div className="position-relative d-flex align-items-center mt-3">
                         <input type={CshowPass ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={CPassword} onChange={(e) => { setCPassword(e.target.value) }} placeholder='Confirm Password' name="" id="" />
-                        <i class={`bi eye-pass ${CshowPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setCshowPass(!CshowPass)}></i>
+                        <i className={`bi eye-pass ${CshowPass ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setCshowPass(!CshowPass)}></i>
 
                     </div>
-                    <button className='btn primary-btn py-2 w-100 mt-5 mb-3' type="submit" > Submit {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''} </button>
+                    <button className='btn primary-btn py-2 w-100 mt-5 mb-3' type="submit" > Submit {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''} </button>
                     <Link className='para link-hov text-p mt-3 text-end ms-auto' onClick={cancel} to={'/'}>Cancel</Link>
                 </form>
             </>}

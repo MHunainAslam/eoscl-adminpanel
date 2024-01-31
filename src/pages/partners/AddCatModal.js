@@ -26,7 +26,6 @@ const AddCatModal = ({getcat}) => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     toast.success(response?.data?.data)
                     document.querySelector('.closecatmodal').click()
@@ -43,15 +42,15 @@ const AddCatModal = ({getcat}) => {
     }
     return (
         <>
-            <button type="button" class="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#AddCategory">
+            <button type="button" className="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#AddCategory">
                 Launch demo modal
             </button>
 
-            <div class="modal fade logout-modal " id="AddCategory" tabindex="-1" aria-labelledby="AddCategoryLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <form onSubmit={addcat} class="modal-content back-p">
+            <div className="modal fade logout-modal " id="AddCategory" tabIndex="-1" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <form onSubmit={addcat} className="modal-content back-p">
 
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <p className="heading-m text-white text-center my-3">
                                 Add Category
                             </p>
@@ -60,9 +59,9 @@ const AddCatModal = ({getcat}) => {
                             {/* <label htmlFor="" className='para text-white mt-3'>Value</label>
                             <input type="text" className='inp form-control py-2' placeholder='Ex: All-Rounder' value={CatValue} onChange={(e) => setCatValue(e.target.value.replace(/\s/g, ''))} name="" id="" /> */}
                         </div>
-                        <div class="modal-footer border-0 justify-content-center my-4">
-                            <button type="button" class="btn px-md-4 btn-outline-light rounded-5 closecatmodal" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn px-md-4 btn-light  rounded-5">Add {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                        <div className="modal-footer border-0 justify-content-center my-4">
+                            <button type="button" className="btn px-md-4 btn-outline-light rounded-5 closecatmodal" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" className="btn px-md-4 btn-light  rounded-5">Add {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                         </div>
                     </form>
                 </div>

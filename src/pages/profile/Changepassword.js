@@ -33,7 +33,6 @@ const Changepassword = () => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     toast.success(response.data.message)
                     setcurrentpass('')
@@ -52,17 +51,17 @@ const Changepassword = () => {
     return (
         <>
             <div className="d-flex align-items-center">
-                <i class="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
                 <p className="heading-m mb-0">
                     Change Password
                 </p>
             </div>
             <div className="row mt-3">
-                <div class="card mb-3 c-card user-card" >
+                <div className="card mb-3 c-card user-card" >
                     <form onSubmit={changepass} className="card-body">
-                        <div class="row py-5 ">
+                        <div className="row py-5 ">
 
-                            <div class="col-md-8 pt-4 pt-md-0">
+                            <div className="col-md-8 pt-4 pt-md-0">
 
 
                                 <div className="d-flex align-items-center my-4">
@@ -74,7 +73,7 @@ const Changepassword = () => {
                                     <div className="col">
                                         <div className="position-relative d-flex align-items-center mt-3">
                                             <input type={showPass1 ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' value={currentpass} onChange={(e) => setcurrentpass(e.target.value)} placeholder='Password' name="" id="" />
-                                            <i class={`bi eye-pass fs-4 pointer ${showPass1 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass1(!showPass1)}></i>
+                                            <i className={`bi eye-pass fs-4 pointer ${showPass1 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass1(!showPass1)}></i>
 
                                         </div>
                                     </div>
@@ -89,7 +88,7 @@ const Changepassword = () => {
 
                                         <div className="position-relative d-flex align-items-center mt-3">
                                             <input type={showPass2 ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' placeholder='Password' name="" id="" value={newpass} onChange={(e) => setnewpass(e.target.value)} />
-                                            <i class={`bi eye-pass fs-4 pointer ${showPass2 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass2(!showPass2)}></i>
+                                            <i className={`bi eye-pass fs-4 pointer ${showPass2 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass2(!showPass2)}></i>
 
                                         </div>
 
@@ -106,7 +105,7 @@ const Changepassword = () => {
 
                                         <div className="position-relative d-flex align-items-center mt-3">
                                             <input type={showPass3 ? 'text' : 'password'} className='form-control  px-2 py-3 shadow-sm  inp' placeholder='Password' name="" id="" value={Cnewpass} onChange={(e) => setCnewpass(e.target.value)} />
-                                            <i class={`bi eye-pass fs-4 pointer ${showPass3 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass3(!showPass3)}></i>
+                                            <i className={`bi eye-pass fs-4 pointer ${showPass3 ? ' bi-eye-fill' : 'bi-eye-slash-fill'} `} onClick={(e) => setshowPass3(!showPass3)}></i>
 
                                         </div>
 
@@ -114,7 +113,7 @@ const Changepassword = () => {
                                     </div>
                                 </div>
                                 <div className='w-100 text-end' >
-                                    <button className='btn primary-btn px-md-5 mt-4' type="submit">Change Password {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                                    <button className='btn primary-btn px-md-5 mt-4' type="submit">Change Password {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
                             </div>
                         </div>

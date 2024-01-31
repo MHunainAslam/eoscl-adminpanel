@@ -9,10 +9,8 @@ const EditCatModal = ({ getcat, name, id }) => {
     const [isLoading, setisLoading] = useState(false)
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
 
-    console.log(name, CatName)
     useEffect(() => {
         setCatName(name)
-        console.log(name, 'll')
     }, [name])
 
 
@@ -31,7 +29,6 @@ const EditCatModal = ({ getcat, name, id }) => {
             })
                 .then(response => {
                     // Handle successful response here
-                    console.log(response.data);
                     setisLoading(false)
                     toast.success(response?.data?.data)
                     document.querySelector('.closecatmodal').click()
@@ -48,15 +45,15 @@ const EditCatModal = ({ getcat, name, id }) => {
     }
     return (
         <>
-            <button type="button" class="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#EditCategory">
+            <button type="button" className="btn btn-primary addcat d-none" data-bs-toggle="modal" data-bs-target="#EditCategory">
                 Launch demo modal
             </button>
 
-            <div class="modal fade logout-modal " id="EditCategory" tabindex="-1" aria-labelledby="EditCategoryLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <form onSubmit={editcat} class="modal-content back-p">
+            <div className="modal fade logout-modal " id="EditCategory" tabIndex="-1" aria-labelledby="EditCategoryLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <form onSubmit={editcat} className="modal-content back-p">
 
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <p className="heading-m text-white text-center my-3">
                                 Edit Category
                             </p>
@@ -65,9 +62,9 @@ const EditCatModal = ({ getcat, name, id }) => {
                             {/* <label htmlFor="" className='para text-white mt-3'>Value</label>
                             <input type="text" className='inp form-control py-2' placeholder='Ex: All-Rounder' value={CatValue} onChange={(e) => setCatValue(e.target.value.replace(/\s/g, ''))} name="" id="" /> */}
                         </div>
-                        <div class="modal-footer border-0 justify-content-center my-4">
-                            <button type="button" class="btn px-md-4 btn-outline-light rounded-5 closecatmodal" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn px-md-4 btn-light  rounded-5">Update {isLoading ? <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
+                        <div className="modal-footer border-0 justify-content-center my-4">
+                            <button type="button" className="btn px-md-4 btn-outline-light rounded-5 closecatmodal" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" className="btn px-md-4 btn-light  rounded-5">Update {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                         </div>
                     </form>
                 </div>

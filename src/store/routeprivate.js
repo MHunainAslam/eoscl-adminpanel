@@ -12,7 +12,6 @@ import LoadingBar from "react-top-loading-bar";
 const Routeprivate = ({ path, ...rest }) => {
   const [progress, setProgress] = useState(100)
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log(isAuthenticated);
   return isAuthenticated ? (
     <><LoadingBar color='#f11946' progress={progress}
       onLoaderFinished={() => setProgress(0)} />
