@@ -1,0 +1,14 @@
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteBase /subdirectory/ # Remove this line if your app is in the root directory
+#   RewriteRule ^index\.html$ - [L]
+#   RewriteCond %{REQUEST_FILENAME} !-f
+#   RewriteCond %{REQUEST_FILENAME} !-d
+#   RewriteRule . /subdirectory/index.html [L] # Adjust the path if necessary
+# </IfModule>
+<IfModule mod_rewrite.c> 
+  Options -MultiViews
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>

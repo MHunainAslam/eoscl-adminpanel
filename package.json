@@ -1,5 +1,6 @@
 {
   "name": "eoscl-adminpanel",
+  "homepage": "https://eobusinessclub.com/adminpanel/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
