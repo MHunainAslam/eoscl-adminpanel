@@ -410,7 +410,7 @@ body {
 
 .Vendors-Active ul {
   padding: 0;
-  height: 300px;
+  height: 400px;
   overflow: auto;
   background-image: linear-gradient(to bottom, #ffffff, rgb(255 255 255)),
     linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)),
