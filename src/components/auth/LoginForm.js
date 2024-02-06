@@ -36,7 +36,6 @@ const LoginForm = ({ authme }) => {
                     toast.error("Invalid Credentials");
                     setisLoading(false)
 
-
                     return;
                 }
 
@@ -45,6 +44,8 @@ const LoginForm = ({ authme }) => {
                 localStorage.setItem("EosclDashboard", JSON.stringify(user));
                 if (user?.data?.role?.name === 'Admin') {
                     navigate("/dashboard")
+                    window.location.reload(true)
+
                 } else if (user?.data?.role?.name === 'Vendor') {
                     navigate("/mydiscounts")
                 } else {

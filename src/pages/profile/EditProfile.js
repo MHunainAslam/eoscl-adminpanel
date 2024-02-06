@@ -68,7 +68,7 @@ const EditProfile = () => {
             }
         })
             .then(response => {
-             
+
                 setuserdata(response.data.data)
                 setName(response?.data?.data?.name)
                 setStatus(response?.data?.data.status)
@@ -78,7 +78,7 @@ const EditProfile = () => {
                 setPkgPrice(response?.data?.data?.membership?.price)
                 setEmail(response?.data?.data?.email)
                 setRoleid(response?.data?.data?.role?.id)
-                setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
+                setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url)
             })
             .catch(error => {
                 // Handle error here
@@ -103,7 +103,7 @@ const EditProfile = () => {
                 toast.error(error?.response?.data?.message)
             });
     }, [])
-   
+
 
     const membershipidandpkgprice = (e) => {
         // setMembershipId(e.target.value)
@@ -116,7 +116,7 @@ const EditProfile = () => {
         e.preventDefault();
 
         setisLoading(true)
-        axios.patch(`${app_url}/api/user/${slug}`, { name: Name, status: Status, email: userdata?.email, role_id: Roleid, phone: Phone, image: userimg?.toString(), address: Address, membership_id: MembershipId }, {
+        axios.patch(`${app_url}/api/user/${slug}`, { name: Name, status: Status, email: Email, role_id: Roleid, phone: Phone, image: userimg?.toString(), address: Address, membership_id: MembershipId }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
 
@@ -178,6 +178,16 @@ const EditProfile = () => {
                                         <input type="text" value={Name} onChange={(e) => setName(e.target.value)} className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
+                                <div className="d-flex mt-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
+                                            Email:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" value={Email} onChange={(e) => setEmail(e.target.value)} className='inp form-control' name="" id="" />
+                                    </div>
+                                </div>
 
                                 <div className="d-flex mt-3">
                                     <div className="col-md-3 col-4">
@@ -231,8 +241,8 @@ const EditProfile = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                    
-                                        <select name="" className='form-select inp' id=""  value={Status}  onChange={(e) => setStatus(e.target.value)}>
+
+                                        <select name="" className='form-select inp' id="" value={Status} onChange={(e) => setStatus(e.target.value)}>
                                             {/* <option hidden>{Status}</option> */}
                                             <option value="inactive">Inactive</option>
                                             <option value="active">Active</option>

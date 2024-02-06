@@ -10,6 +10,7 @@ const Logout = () => {
         dispatch(logout());
         localStorage.removeItem("EosclDashboard")
         document.querySelector('.close-modal').click()
+        window.location.reload(true)
     }
     return (
         <>
