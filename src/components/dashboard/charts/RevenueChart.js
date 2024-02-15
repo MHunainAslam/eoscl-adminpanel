@@ -1,8 +1,29 @@
 import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto';
+import { app_url } from '../../../config';
+import axios from 'axios';
 
 const RevenueChart = () => {
+    const getuser = localStorage.getItem("EosclDashboard");
+    const usertoken = JSON.parse(getuser);
 
+    // useEffect(() => {
+    //     axios.get(`${app_url}/api/dashboard-charts`, {
+    //         headers: {
+    //             'Authorization': `Bearer ${usertoken?.data?.token}`,
+
+    //         }
+    //     })
+    //         .then(response => {
+    //             // Handle successful response here
+    //             console.log(response)
+
+    //         })
+    //         .catch(error => {
+    //             // Handle error here
+    //             console.error(error);
+    //         });
+    // }, [])
     const chartContainer = useRef(null);
     const chartInstance = useRef(null);
     useEffect(() => {
