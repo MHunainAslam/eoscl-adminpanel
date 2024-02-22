@@ -38,7 +38,7 @@ const DashboardCards = () => {
                         <div className="img mx-auto mb-3">
                             <Usericon />
                         </div>
-                        <p className="heading-m mb-1">{data?.data?.user_count} +</p>
+                        <p className="heading-m mb-1">{data?.data?.user_count}</p>
                         <p className="heading-sm mb-0">Number of Users</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const DashboardCards = () => {
                             <Vendoricon />
                         </div>
                         {/* <p className="heading-m mb-1">200<sup> <span className='heading-sm'>+</span></sup></p> */}
-                        <p className="heading-m mb-1">{data?.data?.vendor_count} +</p>
+                        <p className="heading-m mb-1">{data?.data?.vendor_count} </p>
                         <p className="heading-sm mb-0">Number of Partners</p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const DashboardCards = () => {
                         <div className="img mx-auto mb-3">
                             <Sales />
                         </div>
-                        <p className="heading-m mb-1">{data?.data?.sale_count} +</p>
+                        <p className="heading-m mb-1">{data?.data?.sale_count} </p>
                         <p className="heading-sm mb-0">Number of Sales</p>
                     </div>
                 </div>

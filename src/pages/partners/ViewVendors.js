@@ -43,6 +43,7 @@ const ViewVendors = (state) => {
             .then(response => {
                 // Handle successful response here
                 setisDisable(false)
+                
 
             })
             .catch(error => {
@@ -63,6 +64,7 @@ const ViewVendors = (state) => {
             .then(response => {
                 // Handle successful response here
                 setisLoading(false)
+                console.log(response);
                 setdata(response.data)
 
             })
@@ -128,6 +130,10 @@ const ViewVendors = (state) => {
                                                 <p className="heading-m text-s">
                                                     {item.discount}%
                                                     <span className='para-lg text-black'>off</span>
+                                                </p>
+                                                <p className="heading-m text-s">
+                                                     {item?.membership?.title}
+                                                   
                                                 </p>
                                                 <p className="para text-capitalize">
                                                     {item.description}
