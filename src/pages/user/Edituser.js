@@ -94,6 +94,7 @@ const Edituser = () => {
                 setMembershipId(response.data.data.membership_id)
                 setPkgPrice(response.data.data.membership.price)
                 setStatus(response.data.data.status)
+                setEmail(response.data.data.email)
                 // setEmail(response.data.data.email)
                 setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
             })
@@ -186,6 +187,16 @@ const Edituser = () => {
                                     </div>
                                     <div className="col">
                                         <input type="text" onKeyPress={(e) => !/[+0-9]/.test(e.key) && e.preventDefault()} value={Phone} onChange={(e) => setPhone(e.target.value)} className='inp form-control' name="" id="" />
+                                    </div>
+                                </div>
+                                <div className="d-flex mt-3">
+                                    <div className="col-md-3 col-4">
+                                        <p className="para fw-bold">
+                                            Email:
+                                        </p>
+                                    </div>
+                                    <div className="col">
+                                        <input type="email"  value={Email} onChange={(e) => setEmail(e.target.value)} className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">

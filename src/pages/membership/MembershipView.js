@@ -36,7 +36,7 @@ const MembershipView = ({ authme }) => {
                 // Handle successful response here
                 setisLoading(false)
                 setdata(response?.data?.data)
-
+                console.log(response)
             })
             .catch(error => {
                 // Handle error here
@@ -158,8 +158,8 @@ const MembershipView = ({ authme }) => {
                                             </p>
                                         </div>
                                         <div className="col">
-                                            <p className="para">
-                                                Active
+                                            <p className="para text-capitalize">
+                                                {data.status}
                                             </p>
                                         </div>
                                     </div>
