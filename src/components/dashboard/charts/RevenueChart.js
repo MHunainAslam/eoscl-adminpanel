@@ -2,28 +2,33 @@ import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto';
 import { app_url } from '../../../config';
 import axios from 'axios';
+import { useState } from 'react';
 
 const RevenueChart = () => {
     const getuser = localStorage.getItem("EosclDashboard");
     const usertoken = JSON.parse(getuser);
+    const [Month, setMonth] = useState([])
+    const [Count, setCount] = useState([])
 
-    // useEffect(() => {
-    //     axios.get(`${app_url}/api/dashboard-charts`, {
-    //         headers: {
-    //             'Authorization': `Bearer ${usertoken?.data?.token}`,
+    useEffect(() => {
+        axios.get(`${app_url}/api/dashboard-charts`, {
+            headers: {
+                'Authorization': `Bearer ${usertoken?.data?.token}`,
 
-    //         }
-    //     })
-    //         .then(response => {
-    //             // Handle successful response here
-    //             console.log(response)
+            }
+        })
+            .then(response => {
+                // Handle successful response here
+                console.log(response)
+                setCount(response.data?.data?.count)
+                setMonth(response.data?.data?.months)
 
-    //         })
-    //         .catch(error => {
-    //             // Handle error here
-    //             console.error(error);
-    //         });
-    // }, [])
+            })
+            .catch(error => {
+                // Handle error here
+                console.error(error);
+            });
+    }, [])
     const chartContainer = useRef(null);
     const chartInstance = useRef(null);
     useEffect(() => {
@@ -35,10 +40,10 @@ const RevenueChart = () => {
             chartInstance.current = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'jun', 'July', 'Aug', 'Sep', 'Nov', 'Dec'],
+                    labels: Month,
                     datasets: [{
                         label: '',
-                        data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+                        data: Count,
                         backgroundColor: [
                             '#26235a',
                             '#3029aa',
