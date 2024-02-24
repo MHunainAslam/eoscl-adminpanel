@@ -5,6 +5,7 @@ import axios from 'axios'
 import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
 import AddCatModal from './AddCatModal'
+import Changepassword from './Changepassword'
 const EditVendors = () => {
     const token = JSON.parse(localStorage.getItem('EosclDashboard')).data.token
     const [data, setdata] = useState()
@@ -126,7 +127,7 @@ const EditVendors = () => {
                 // Handle successful response here
                 setisLoading(false)
                 toast.success(response.data.message)
-              
+
             })
             .catch(error => {
                 // Handle error here
@@ -138,11 +139,15 @@ const EditVendors = () => {
     }
     return (
         <>
-            <div className="d-flex align-items-center">
-                <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
-                <p className="heading-m mb-0">
-                    Edit Partner
-                </p>
+            <div className="d-md-flex align-items-center justify-content-between">
+                <div className='d-flex'>
+                    <i className="bi bi-arrow-left-circle-fill fs-4 me-3 pointer" onClick={backforward}></i>
+                    <p className="heading-m mb-0">
+                        Edit Partner
+                    </p>
+                </div>
+
+                <button className='btn primary-btn px-md-5 ' type='button' data-bs-toggle="modal" data-bs-target="#ChangePass">Change Password</button>
             </div>
             <div className="row mt-3">
                 <div className="card mb-3 c-card user-card" >
@@ -232,6 +237,7 @@ const EditVendors = () => {
                                         </select>
                                     </div>
                                 </div>
+
                                 <div className='w-100 text-end' >
                                     <button className='btn primary-btn px-md-5 mt-4' disabled={isLoading} type='submit'>Update {isLoading ? <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> : ''}</button>
                                 </div>
@@ -241,6 +247,7 @@ const EditVendors = () => {
                 </div>
             </div>
             <AddCatModal />
+            <Changepassword/>
         </>
     )
 }

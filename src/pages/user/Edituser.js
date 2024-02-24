@@ -5,6 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { app_url, img_url } from '../../config'
 import toast from 'react-hot-toast'
+import Changepassword from '../partners/Changepassword'
 const Edituser = () => {
     const navigate = useNavigate()
     const backforward = () => {
@@ -86,7 +87,7 @@ const Edituser = () => {
         })
             .then(response => {
                 // Handle successful response here
-           
+
                 setuserdata(response.data.data)
                 setName(response.data.data.name)
                 setPhone(response.data.data.phone)
@@ -96,7 +97,7 @@ const Edituser = () => {
                 setStatus(response.data.data.status)
                 setEmail(response.data.data.email)
                 // setEmail(response.data.data.email)
-                setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url )
+                setImage(response.data.data?.image === null ? user : img_url + response.data.data?.image?.url)
             })
             .catch(error => {
                 // Handle error here
@@ -146,6 +147,9 @@ const Edituser = () => {
                         Edit User
                     </p>
                 </div>
+                <button className='btn primary-btn px-md-5 ' type='button' data-bs-toggle="modal" data-bs-target="#ChangePass">Change Password</button>
+
+
 
             </div>
             <div className="row mt-3">
@@ -196,7 +200,7 @@ const Edituser = () => {
                                         </p>
                                     </div>
                                     <div className="col">
-                                        <input type="email"  value={Email} onChange={(e) => setEmail(e.target.value)} className='inp form-control' name="" id="" />
+                                        <input type="email" value={Email} onChange={(e) => setEmail(e.target.value)} className='inp form-control' name="" id="" />
                                     </div>
                                 </div>
                                 <div className="d-flex mt-3">
@@ -256,6 +260,7 @@ const Edituser = () => {
                     </form>
                 </div>
             </div>
+            <Changepassword />
         </>
     )
 }

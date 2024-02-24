@@ -9,9 +9,10 @@ const RevenueChart = () => {
     const usertoken = JSON.parse(getuser);
     const [Month, setMonth] = useState([])
     const [Count, setCount] = useState([])
+    const [Year, setYear] = useState('')
 
     useEffect(() => {
-        axios.get(`${app_url}/api/dashboard-charts`, {
+        axios.get(`${app_url}/api/dashboard-charts?current_year=${Year}`, {
             headers: {
                 'Authorization': `Bearer ${usertoken?.data?.token}`,
 
@@ -28,7 +29,7 @@ const RevenueChart = () => {
                 // Handle error here
                 console.error(error);
             });
-    }, [])
+    }, [Year])
     const chartContainer = useRef(null);
     const chartInstance = useRef(null);
     useEffect(() => {
@@ -81,15 +82,42 @@ const RevenueChart = () => {
                 }
             });
         }
-    }, []);
+    }, [Count]);
+
+    const [Years10, setYears10] = useState([])
+
+    const getLastTenYears = () => {
+        const currentYear = new Date().getFullYear();
+        const lastTenYears = [];
+
+        for (let i = 0; i < 10; i++) {
+            lastTenYears.push(currentYear - i);
+        }
+        console.log('lastTenYears', lastTenYears);
+        setYears10(lastTenYears)
+        console.log(Years10);
+        return lastTenYears;
+    }
+    useEffect(() => {
+        getLastTenYears()
+
+    }, [])
+
 
     return (
         <>
             <div className="card chart h-100">
                 <div className="card-body">
-                    <p className="heading-m">
-                        Revenue State
-                    </p>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <p className="heading-m mb-0">
+                            Revenue State
+                        </p>
+                        <select name="" className='form-select my-2 inp2 w-auto' id="" value={Year} onChange={(e) => setYear(e.target.value)}>
+                            {Years10?.map((item, i) => (
+                                <option value={item}>{item}</option>
+                            ))}
+                        </select>
+                    </div>
                     <div className="border-bottom"></div>
                     <canvas ref={chartContainer} width="400" id='0' height="200"></canvas>
                 </div>
